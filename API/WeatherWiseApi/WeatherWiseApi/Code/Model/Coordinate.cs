@@ -1,15 +1,18 @@
 ﻿namespace WeatherWiseApi.Code.Model
 {
+    /// <summary>
+    /// Coordenadas do Lugar
+    /// </summary>
     public class Coordinate
     {
         /// <summary>
-        /// LATITUDE
-        /// </summary>
-        public double Lat { get; set; }
-
-        /// <summary>
-        /// LONGITUDE
+        /// Latitude
         /// </summary>
         public double Long { get; set; }
+
+        /// <summary>
+        /// Longitude
+        /// </summary>
+        public double Lat { get; set; }
     }
 }
