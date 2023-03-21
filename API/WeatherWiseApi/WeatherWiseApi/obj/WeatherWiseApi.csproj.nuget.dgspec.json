@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
+    "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
+    "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
         "projectName": "WeatherWiseApi",
-        "projectPath": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "projectPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
         "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
+        "outputPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[109.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
