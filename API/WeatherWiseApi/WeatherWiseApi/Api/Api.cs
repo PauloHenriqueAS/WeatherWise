@@ -25,6 +25,11 @@ public class Api
     public string? HOST { get; set; }
 
     /// <summary>
+    /// API KEY
+    /// </summary>
+    public string API_KEY { get; set; }
+
+    /// <summary>
     /// REQUEST
     /// </summary>
     public RestRequest? REQUEST { get; set; }
@@ -34,11 +39,11 @@ public class Api
         _configuration = configuration;
     }
 
-    public T Post<T>(string uri, object body, Dictionary<string, string> headers)
+    public T Get<T>(string uri, Dictionary<string, string>? headers = null)
     {
         this.URL = this.HOST + uri;
         this.CLIENT = new RestClient(this.URL);
-        this.REQUEST = new RestRequest("", Method.Post)
+        this.REQUEST = new RestRequest("", Method.Get)
         {
             RequestFormat = DataFormat.Json,
             Timeout = int.MaxValue
@@ -50,11 +55,6 @@ public class Api
         if (headers != null)
             foreach (var header in headers)
                 this.REQUEST.AddHeader(header.Key, header.Value);
-
-        var dataJson = JsonConvert.SerializeObject(body);
-
-        if (body != null)
-            this.REQUEST.AddParameter("application/json", dataJson, ParameterType.RequestBody);
 
         var resultData = this.CLIENT.Execute<T>(this.REQUEST);
 
