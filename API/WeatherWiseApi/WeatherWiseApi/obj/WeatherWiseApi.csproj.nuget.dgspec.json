@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
+    "C:\\Users\\Paulo H\\Desktop\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
+    "C:\\Users\\Paulo H\\Desktop\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "projectUniqueName": "C:\\Users\\Paulo H\\Desktop\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
         "projectName": "WeatherWiseApi",
-        "projectPath": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
-        "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathe\\Documents\\workspace_asa\\AzureProjects\\PortalSlim\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
+        "projectPath": "C:\\Users\\Paulo H\\Desktop\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "packagesPath": "C:\\Users\\Paulo H\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Paulo H\\Desktop\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Paulo H\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.izio.com.br/NugetServer/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +45,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[109.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -66,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
