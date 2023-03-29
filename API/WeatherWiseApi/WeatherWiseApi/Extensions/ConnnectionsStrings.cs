@@ -3,16 +3,16 @@
     public static class ConnnectionsStrings
     {
         /// <summary>
-        /// 
+        /// PATH CONFIGURATION FILE
         /// </summary>
         public static string ConfigPath { get; set; }
 
         /// <summary>
-        /// 
+        /// CONFIGURATION FILE NAME
         /// </summary>
         public static string ConfigName { get; set; }
 
-        public static string GetApiKey(IConfiguration configuration)
+        public static string GetApiKey(IConfiguration configuration, string ApiName)
         {
             ConfigPath = configuration.GetSection("ConfigPath").Value;
             ConfigName = configuration.GetSection("ConfigName").Value;
@@ -22,9 +22,20 @@
                                 .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
                                 .Build();
 
-            var teste = configuration.GetSection();
+            return ConfigurationExtensions.GetConnectionString(configApi, $"{ApiName}Key");
+        }
+        
+        public static string GetDatabaseConnectionString(IConfiguration configuration, string ApiName)
+        {
+            ConfigPath = configuration.GetSection("ConfigPath").Value;
+            ConfigName = configuration.GetSection("ConfigName").Value;
 
-            return "key";
+            IConfiguration configDatabase = new ConfigurationBuilder()
+                                .SetBasePath(ConfigPath)
+                                .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
+                                .Build();
+
+            return ConfigurationExtensions.GetConnectionString(configDatabase, "Database");
         }
     }
 }
