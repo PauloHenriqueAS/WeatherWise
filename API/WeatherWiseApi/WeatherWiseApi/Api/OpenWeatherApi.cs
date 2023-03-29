@@ -16,6 +16,6 @@ public class OpenWeatherApi : Api
 
     public CurrentWeather GetCurrentWeather(Coordinate coordinate)
     {
-        return base.Get<CurrentWeather>($"weather?lat={coordinate.Lat}&lon={coordinate.Long}&units=metric&appid={this.API_KEY}");
+        return base.Get<CurrentWeather>($"weather?lat={coordinate.Lat}&lon={coordinate.Lon}&units=metric&appid={this.API_KEY}");
     }
 }

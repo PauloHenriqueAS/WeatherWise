@@ -16,28 +16,40 @@
       "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Newtonsoft.Json.dll": {}
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "RestSharp/109.0.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/RestSharp.dll": {}
+          "lib/net6.0/RestSharp.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/RestSharp.dll": {}
+          "lib/net6.0/RestSharp.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Swashbuckle.AspNetCore/6.2.3": {
@@ -58,10 +70,14 @@
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Swashbuckle.AspNetCore.Swagger/6.5.0": {
@@ -70,10 +86,14 @@
           "Microsoft.OpenApi": "1.2.3"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -85,19 +105,27 @@
           "Swashbuckle.AspNetCore.Swagger": "6.5.0"
         },
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "related": ".pdb;.xml"
+          }
         }
       },
       "Swashbuckle.AspNetCore.SwaggerUI/6.2.3": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+          "lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "related": ".pdb;.xml"
+          }
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -323,23 +351,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mathe\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ricar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+      "projectUniqueName": "D:\\facool\\2023\\pdsi1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
       "projectName": "WeatherWiseApi",
-      "projectPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
-      "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
+      "projectPath": "D:\\facool\\2023\\pdsi1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+      "packagesPath": "C:\\Users\\ricar\\.nuget\\packages\\",
+      "outputPath": "D:\\facool\\2023\\pdsi1\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ricar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -388,7 +412,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -400,7 +425,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
