@@ -34,11 +34,6 @@ public class Api
     /// </summary>
     public RestRequest? REQUEST { get; set; }
 
-    public Api(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
     public T Get<T>(string uri, Dictionary<string, string>? headers = null)
     {
         this.URL = this.HOST + uri;

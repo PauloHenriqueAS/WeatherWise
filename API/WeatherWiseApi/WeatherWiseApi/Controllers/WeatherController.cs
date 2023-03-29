@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
+using WeatherWiseApi.Code.BLL;
 using WeatherWiseApi.Code.Model;
 using Microsoft.AspNetCore.Mvc;
 using WeatherWiseApi.Api;
@@ -6,6 +9,7 @@ using System.Net;
 
 namespace WeatherWiseApi.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
 
@@ -120,7 +124,7 @@ namespace WeatherWiseApi.Controllers
                 if (new Comum().ValidateObjCoordenate(coordinate))
                 {
                     //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
-
+                
                     //return Ok(retorno);
                     return null;
                 }
