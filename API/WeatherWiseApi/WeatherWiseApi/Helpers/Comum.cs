@@ -1,7 +1,7 @@
 ﻿using WeatherWiseApi.Code.Model;
 using System.Reflection;
 
-namespace WeatherWiseApi.Api
+namespace WeatherWiseApi.Helpers
 {
     /// <summary>
     /// Objeto Comum para Métodos Genéricos e Globais

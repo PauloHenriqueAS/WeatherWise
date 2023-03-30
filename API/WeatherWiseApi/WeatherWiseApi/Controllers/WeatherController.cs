@@ -2,7 +2,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using WeatherWiseApi.Code.Model;
 using Microsoft.AspNetCore.Mvc;
 using WeatherWiseApi.Code.BLL;
-using WeatherWiseApi.Api;
+using WeatherWiseApi.Helpers;
 using System.Net;
 
 namespace WeatherWiseApi.Controllers
