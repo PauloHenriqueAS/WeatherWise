@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Net;
-using WeatherWiseApi.Code.BLL;
 using WeatherWiseApi.Code.Model;
 using Microsoft.AspNetCore.Mvc;
+using WeatherWiseApi.Code.BLL;
 using WeatherWiseApi.Api;
 using System.Net;
 
@@ -22,6 +20,7 @@ namespace WeatherWiseApi.Controllers
             _configuration = configuration;
         }
 
+        #region GET
         [HttpPost]
         [Route("GetCurrentWeather")]
         [SwaggerOperation("GetCurrentWeather")]
@@ -35,10 +34,12 @@ namespace WeatherWiseApi.Controllers
             {
                 if (new Comum().ValidateObjCoordenate(coordinate))
                 {
-                    //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
+                    var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
 
-                    //return Ok(retorno);
-                    return null;
+                    if (retorno != null)
+                        return Ok(retorno);
+                    else
+                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
                 }
                 else
                 {
@@ -50,36 +51,6 @@ namespace WeatherWiseApi.Controllers
                 return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
             }
         }
-
-        [HttpPost]
-        [Route("PostWeather")]
-        [SwaggerOperation("PostCurrentWeather")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
-        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
-        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
-        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult PostCurrentWeather(Coordinate coordinate)
-        {
-            try
-            {
-                if (new Comum().ValidateObjCoordenate(coordinate))
-                {
-                    //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
-
-                    //return Ok(retorno);
-                    return null;
-                }
-                else
-                {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
-                }
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
-            }
-        }
-
 
         [HttpPost]
         [Route("GetForecastWeather")]
@@ -94,6 +65,41 @@ namespace WeatherWiseApi.Controllers
             {
                 if (new Comum().ValidateObjCoordenate(coordinate))
                 {
+                    var retorno = new WeatherBLL(_configuration).GetForecastWeather(coordinate);
+
+                    if (retorno != null)
+                        return Ok(retorno);
+                    else
+                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações futuras do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                }
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+            }
+        }
+
+        #endregion
+
+        #region POST
+
+        [HttpPost]
+        [Route("PostWeather")]
+        [SwaggerOperation("PostCurrentWeather")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
+        public IActionResult PostCurrentWeather(CurrentWeather objCurrentWeather)
+        {
+            try
+            {
+                if (new Comum().ValidateObjCurrentWeather(objCurrentWeather))
+                {
                     //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
 
                     //return Ok(retorno);
@@ -101,7 +107,7 @@ namespace WeatherWiseApi.Controllers
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                    return StatusCode((int)HttpStatusCode.BadRequest, "Erro nas informações do objeto enviado.");
                 }
             }
             catch (Exception e)
@@ -117,20 +123,20 @@ namespace WeatherWiseApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult PostForecastWeather(Coordinate coordinate)
+        public IActionResult PostForecastWeather(Forecast objForecast)
         {
             try
             {
-                if (new Comum().ValidateObjCoordenate(coordinate))
+                if (new Comum().ValidateObjForecastWeather(objForecast))
                 {
                     //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
-                
+
                     //return Ok(retorno);
                     return null;
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                    return StatusCode((int)HttpStatusCode.BadRequest, "Erro nas informações do objeto enviado.");
                 }
             }
             catch (Exception e)
@@ -138,5 +144,6 @@ namespace WeatherWiseApi.Controllers
                 return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
             }
         }
+        #endregion
     }
 }

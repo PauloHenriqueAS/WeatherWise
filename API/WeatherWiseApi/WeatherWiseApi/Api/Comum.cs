@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using WeatherWiseApi.Code.Model;
+using System.Reflection;
 
 namespace WeatherWiseApi.Api
 {
@@ -24,6 +25,70 @@ namespace WeatherWiseApi.Api
                 double longitude = (double)LongProperty.GetValue(objJason);
 
                 if (latitude == 0 || longitude == 0)
+                {
+                    return false;
+                }
+                else { return true; }
+            }
+            else { return false; }
+        }
+
+        /// <summary>
+        /// Método para a Validação do objeto de poluição do ar
+        /// </summary>
+        /// <param name="objAirPollution"></param>
+        /// <returns></returns>
+        public bool ValidateObjAirPollution(AirPollution objAirPollution)
+        {
+            if (ValidateObjCoordenate(objAirPollution.coord))
+            {
+                if (objAirPollution != null && objAirPollution.list.Count > 0 && objAirPollution.list != null)
+                {
+                    if (objAirPollution.list.FirstOrDefault().main == null || objAirPollution.list.FirstOrDefault().components == null)
+                    {
+                        return false;
+                    }
+                    else { return true; }
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
+
+        /// <summary>
+        /// Método para a Validação do objeto de tempo atual
+        /// </summary>
+        /// <param name="objCurrentWeather"></param>
+        /// <returns></returns>
+        public bool ValidateObjCurrentWeather(CurrentWeather objCurrentWeather)
+        {
+            if (objCurrentWeather != null)
+            {
+                if (ValidateObjCoordenate(objCurrentWeather.coord))
+                {
+                    if (objCurrentWeather.weather.FirstOrDefault() == null ||
+                        objCurrentWeather.main == null || objCurrentWeather.wind == null ||
+                        objCurrentWeather.clouds == null || objCurrentWeather.sys == null)
+                    {
+                        return false;
+                    }
+                    else { return true; }
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
+
+        /// <summary>
+        /// Método para a Validação do objeto de tempo futuro
+        /// </summary>
+        /// <param name="objForecast"></param>
+        /// <returns></returns>
+        public bool ValidateObjForecastWeather(Forecast objForecast)
+        {
+            if (objForecast != null)
+            {
+                if (objForecast.list.FirstOrDefault() == null || objForecast.city == null)
                 {
                     return false;
                 }

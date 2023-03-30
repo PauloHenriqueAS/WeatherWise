@@ -13,7 +13,7 @@
         /// <summary>
         /// Lista de Informações do Tempo
         /// </summary>
-        public List<Weather>? weather { get; set; }
+        public List<Weather> weather { get; set; }
 
         /// <summary>
         /// Info Base
@@ -23,7 +23,7 @@
         /// <summary>
         /// Informações Principais
         /// </summary>
-        public Main? main { get; set; }
+        public Main main { get; set; }
 
         /// <summary>
         /// Visibilidade

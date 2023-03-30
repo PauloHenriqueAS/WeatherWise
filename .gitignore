@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#ignore folders
+API/WeatherWiseApi/.vs
+API/WeatherWiseApi/WeatherWiseApi/bin
+API/WeatherWiseApi/WeatherWiseApi/obj
