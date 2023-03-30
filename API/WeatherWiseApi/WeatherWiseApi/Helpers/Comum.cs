@@ -17,7 +17,7 @@ namespace WeatherWiseApi.Helpers
         public bool ValidateObjCoordenate<T>(T objJason)
         {
             PropertyInfo LatProperty = typeof(T).GetProperty("Lat");
-            PropertyInfo LongProperty = typeof(T).GetProperty("Long");
+            PropertyInfo LongProperty = typeof(T).GetProperty("Lon");
 
             if (objJason != null)
             {

@@ -1,5 +1,5 @@
-﻿using WeatherWiseApi.Api;
-using WeatherWiseApi.Code.Model;
+﻿using WeatherWiseApi.Code.Model;
+using WeatherWiseApi.Api;
 
 namespace WeatherWiseApi.Code.BLL
 {

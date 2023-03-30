@@ -1,14 +1,15 @@
-﻿using WeatherWiseApi.Api;
-using WeatherWiseApi.Code.Model;
+﻿using WeatherWiseApi.Code.Model;
+using WeatherWiseApi.Api;
 
 namespace WeatherWiseApi.Code.BLL
 {
     public class CoordinateBLL
     {
-        public CoordinateBLL()
-        {
-        }
-
+        /// <summary>
+        /// Consultar Coordenadas de um lugar pelo
+        /// </summary>
+        /// <param name="place"></param>
+        /// <returns></returns>
         public Coordinate GetCoordinate(string place)
         {
             return new NominatimApi().GetCoordinates(place).FirstOrDefault();

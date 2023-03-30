@@ -36,7 +36,7 @@ public class OpenWeatherApi : Api
     /// <returns></returns>
     public Forecast GetForecastWeather(Coordinate coordinate)
     {
-        return base.Get<Forecast>($"forecast?lat={coordinate.Lat}&lon={coordinate.Long}&units=metric&appid={this.API_KEY}");
+        return base.Get<Forecast>($"forecast?lat={coordinate.Lat}&lon={coordinate.Lon}&units=metric&appid={this.API_KEY}");
     }
     
     /// <summary>
@@ -46,6 +46,6 @@ public class OpenWeatherApi : Api
     /// <returns></returns>
     public AirPollution GetAirPollution(Coordinate coordinate)
     {
-        return base.Get<AirPollution>($"air_pollution?lat={coordinate.Lat}&lon={coordinate.Long}&units=metric&appid={this.API_KEY}");
+        return base.Get<AirPollution>($"air_pollution?lat={coordinate.Lat}&lon={coordinate.Lon}&units=metric&appid={this.API_KEY}");
     }
 }

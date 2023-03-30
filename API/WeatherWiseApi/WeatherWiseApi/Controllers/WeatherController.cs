@@ -39,11 +39,11 @@ namespace WeatherWiseApi.Controllers
                     if (retorno != null)
                         return Ok(retorno);
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
                 }
             }
             catch (Exception e)
@@ -70,11 +70,11 @@ namespace WeatherWiseApi.Controllers
                     if (retorno != null)
                         return Ok(retorno);
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações futuras do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações futuras do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Long}");
+                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
                 }
             }
             catch (Exception e)
