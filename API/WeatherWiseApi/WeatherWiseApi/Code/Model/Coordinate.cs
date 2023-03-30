@@ -1,4 +1,6 @@
-﻿namespace WeatherWiseApi.Code.Model
+﻿using Newtonsoft.Json;
+
+namespace WeatherWiseApi.Code.Model
 {
     /// <summary>
     /// Coordenadas do Lugar
@@ -6,12 +8,18 @@
     public class Coordinate
     {
         /// <summary>
-        /// Latitude
+        /// Nome correto da localização retornada pela API Nominatim
         /// </summary>
-        public double Long { get; set; }
+        [JsonProperty("display_name")]
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Longitude
+        /// </summary>
+        public double Lon { get; set; }
+
+        /// <summary>
+        /// Latitude
         /// </summary>
         public double Lat { get; set; }
     }
