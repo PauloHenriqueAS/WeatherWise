@@ -1,5 +1,7 @@
-﻿using WeatherWiseApi.Code.Model;
+﻿using System.Security.Cryptography;
+using WeatherWiseApi.Code.Model;
 using System.Reflection;
+using System.Text;
 
 namespace WeatherWiseApi.Helpers
 {
@@ -95,6 +97,19 @@ namespace WeatherWiseApi.Helpers
                 else { return true; }
             }
             else { return false; }
+        }
+
+        /// <summary>
+        /// Método para a encriptar a senha so usuário
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public string EncriptyUserPassword(string password)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            SHA256 encryptor = SHA256.Create();
+            byte[] hashBytes = encryptor.ComputeHash(bytes);
+            return BitConverter.ToString(hashBytes);
         }
     }
 }
