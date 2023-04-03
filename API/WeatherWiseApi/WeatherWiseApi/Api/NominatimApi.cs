@@ -1,14 +1,14 @@
 ﻿using WeatherWiseApi.Code.Model;
-using WeatherWiseApi.Extensions;
 
 namespace WeatherWiseApi.Api;
 
 public class NominatimApi : Api
 {
-    public NominatimApi()
-    {
-    }
-
+    /// <summary>
+    /// Consulta de Latitude e Longitude por nome
+    /// </summary>
+    /// <param name="place"></param>
+    /// <returns></returns>
     public IEnumerable<Coordinate> GetCoordinates(string place)
     {
         var apiUrl = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(place)}&format=json&limit=1";

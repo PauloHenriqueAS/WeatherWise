@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net;
-using WeatherWiseApi.Code.Model;
+﻿using Swashbuckle.AspNetCore.Annotations;
+using Microsoft.AspNetCore.Mvc;
 using WeatherWiseApi.Code.BLL;
-using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace WeatherWiseApi.Controllers
 {
@@ -27,13 +24,28 @@ namespace WeatherWiseApi.Controllers
         [HttpGet]
         [Route("GetCoordinate")]
         [SwaggerOperation("GetCoordinate")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
         public IActionResult GetCoordinate(string place = "Rondon Pacheco, Uberlandia")
         {
             try
             {
-                var retorno = new CoordinateBLL().GetCoordinate(place);
+                if (!String.IsNullOrEmpty(place))
+                {
+                    var retorno = new CoordinateBLL().GetCoordinate(place);
 
-                return Ok(retorno);
+                    if (retorno != null)
+                        return Ok(retorno);
+                    else
+                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta da Latitude e Longitude para a localidade {place} informada.");
+                }
+                else
+                {
+                    return StatusCode((int)HttpStatusCode.BadRequest, "Informe uma Localidade Válida.");
+                }
+               
             }
             catch (Exception e)
             {

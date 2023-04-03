@@ -48,7 +48,7 @@
         /// <summary>
         /// Temperatura KF
         /// </summary>
-        public float temp_kf { get; set; }
+        public double temp_kf { get; set; }
 
         /// <summary>
         /// AQI

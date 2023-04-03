@@ -16,9 +16,14 @@ public class User
     public string name_user { get; set; }
 
     /// <summary>
+    /// Email do Usuário
+    /// </summary>
+    public string email_user { get; set; }
+
+    /// <summary>
     /// Senha do Usuário
     /// </summary>
-    public HashCode password_user { get; set; }
+    public string password_user { get; set; }
 
     /// <summary>
     /// Tipo do Usuário

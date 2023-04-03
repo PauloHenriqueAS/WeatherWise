@@ -25,35 +25,6 @@ C:\Users\mathe\Documents\workspace_asa\AzureProjects\PortalSlim\WeatherWiseApi\W
 C:\Users\mathe\Documents\workspace_asa\AzureProjects\PortalSlim\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.pdb
 C:\Users\mathe\Documents\workspace_asa\AzureProjects\PortalSlim\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
 C:\Users\mathe\Documents\workspace_asa\AzureProjects\PortalSlim\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.exe
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.deps.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.runtimeconfig.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.pdb
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\RestSharp.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.AssemblyReference.cache
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfoInputs.cache
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfo.cs
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CoreCompileInputs.cache
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\scopedcss\bundle\WeatherWiseApi.styles.css
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CopyComplete
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\refint\WeatherWiseApi.dll
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.pdb
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
-C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.json
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.exe
@@ -84,38 +55,56 @@ C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWis
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
 C:\Users\mathe\OneDrive\Imagens\Documentos\ufu\segundo_semestre\PDSI1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.Development.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.exe
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.deps.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.runtimeconfig.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.pdb
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Newtonsoft.Json.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\RestSharp.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.AssemblyReference.cache
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.GeneratedMSBuildEditorConfig.editorconfig
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfoInputs.cache
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfo.cs
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CoreCompileInputs.cache
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cs
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cache
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets\msbuild.WeatherWiseApi.Microsoft.AspNetCore.StaticWebAssets.props
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets\msbuild.build.WeatherWiseApi.props
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.WeatherWiseApi.props
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.WeatherWiseApi.props
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.pack.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.build.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.development.json
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\scopedcss\bundle\WeatherWiseApi.styles.css
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CopyComplete
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\refint\WeatherWiseApi.dll
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.pdb
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
-D:\facool\2023\pdsi1\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.AssemblyReference.cache
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfoInputs.cache
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.AssemblyInfo.cs
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CoreCompileInputs.cache
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\appsettings.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.exe
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.deps.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.runtimeconfig.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\WeatherWiseApi.pdb
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\RestSharp.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Swashbuckle.Core.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\scopedcss\bundle\WeatherWiseApi.styles.css
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.csproj.CopyComplete
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\refint\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.pdb
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
