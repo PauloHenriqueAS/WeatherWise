@@ -3,13 +3,19 @@ using WeatherWiseApi.Helpers;
 using System.Reflection;
 using System.Text;
 using System.Data;
+using Npgsql;
 
 namespace WeatherWiseApi.Code.DAL
 {
     public class UserDAL : DataBase
     {
+        public UserDAL(IConfiguration configuration) : base(configuration)
+        {
+
+        }
+
         #region SELECTS
-        
+
         /// <summary>
         /// Consultar a senha do usuário salva no banco de dados
         /// </summary>
@@ -19,22 +25,35 @@ namespace WeatherWiseApi.Code.DAL
         public string GetPasswordUser(User objUser)
         {
             var selectSql = new StringBuilder();
-            selectSql.AppendLine("SELECT password_user FROM tab_User");
-            selectSql.AppendLine("WHERE email_user = :email_user");
-            string cmdSql = selectSql.ToString();
+            selectSql.AppendLine("SELECT PASSWORD_USER FROM WS.TB_USER");
+            selectSql.AppendLine("WHERE EMAIL_USER = @EMAIL_USER");
 
-            databaseCommand = db.GetSqlStringCommand(cmdSql);
             try
             {
-                string passwordBD = "";
-                this.db.AddInParameter(databaseCommand, ":email_user", DbType.String, objUser.email_user);
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
 
-                var ret = db.ExecuteScalar(databaseCommand);
-                return "";
+                    using (var command = new NpgsqlCommand(selectSql.ToString(), connection))
+                    {
+                        command.Parameters.AddWithValue("@EMAIL_USER", objUser.email_user);
+
+                        var results = new List<string>();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {                                
+                                results.Add(reader.GetFieldValue<string>("PASSWORD_USER"));
+                            }
+                        }
+
+                        return results.FirstOrDefault()!;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
+                throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message)!;
             }
         }
 
@@ -44,21 +63,40 @@ namespace WeatherWiseApi.Code.DAL
         /// <param name="objUser"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public User GetUserInfo(User objUser)
+        public User GetUserInfo(string email_user)
         {
             var selectSql = new StringBuilder();
-            selectSql.AppendLine("SELECT name_user, type_user, email_user FROM tab_User");
-            selectSql.AppendLine("WHERE email_user = :email_user");
-            string cmdSql = selectSql.ToString();
-
-            databaseCommand = db.GetSqlStringCommand(cmdSql);
+            selectSql.AppendLine("SELECT NAME_USER, TYPE_USER, EMAIL_USER FROM WS.TB_USER");
+            selectSql.AppendLine("WHERE EMAIL_USER = @EMAIL_USER");
             try
             {
-                User user = new User();
-                this.db.AddInParameter(databaseCommand, ":email_user", DbType.String, objUser.email_user);
-                //TO-DO db.ExecuteScalar(databaseCommand);
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
 
-                return user;
+                    using (var command = new NpgsqlCommand(selectSql.ToString(), connection))
+                    {
+                        command.Parameters.AddWithValue("@EMAIL_USER", email_user);
+
+                        var results = new List<User>();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var model = new User
+                                {
+                                    name_user = reader.GetFieldValue<string>("NAME_USER"),
+                                    //type_user = reader.GetFieldValue<string>("TYPE_USER"),
+                                    email_user = reader.GetFieldValue<string>("EMAIL_USER"),
+                                };
+
+                                results.Add(model);
+                            }
+                        }
+
+                        return results.FirstOrDefault();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -77,19 +115,42 @@ namespace WeatherWiseApi.Code.DAL
         public bool PostUser(User objUser)
         {
             var insertSql = new StringBuilder();
-            insertSql.AppendLine("INSERT INTO table_name (column1, column2, column3 )");
-            insertSql.AppendLine("VALUES(value1, value2, value3 ) ");
-            string cmdSql = insertSql.ToString();
 
-            databaseCommand = db.GetSqlStringCommand(cmdSql);
+            insertSql.AppendLine(" INSERT INTO ");
+            insertSql.AppendLine("     WS.TB_USER ( ");
+            insertSql.AppendLine("         ID_USER, ");
+            insertSql.AppendLine("         NAME_USER, ");
+            insertSql.AppendLine("         TYPE_USER, ");
+            insertSql.AppendLine("         PASSWORD_USER, ");
+            insertSql.AppendLine("         EMAIL_USER ");
+            insertSql.AppendLine("     ) ");
+            insertSql.AppendLine(" VALUES ");
+            insertSql.AppendLine("     ( ");
+            insertSql.AppendLine("         @ID_USER, ");
+            insertSql.AppendLine("         @NAME_USER, ");
+            insertSql.AppendLine("         @TYPE_USER, ");
+            insertSql.AppendLine("         @PASSWORD_USER, ");
+            insertSql.AppendLine("         @EMAIL_USER ");
+            insertSql.AppendLine("     ) ");
+
             try
             {
-                this.db.AddInParameter(databaseCommand, ":name_user", DbType.String, objUser.name_user);
-                this.db.AddInParameter(databaseCommand, ":type_user", DbType.String, objUser.type_user);
-                this.db.AddInParameter(databaseCommand, ":password_user", DbType.String, objUser.password_user);
-                this.db.AddInParameter(databaseCommand, ":email_user", DbType.String, objUser.email_user);
 
-                return db.ExecuteNonQuery(databaseCommand) > 0;
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new NpgsqlCommand(insertSql.ToString(), connection))
+                    {
+                        command.Parameters.AddWithValue("@ID_USER", objUser.id_user);
+                        command.Parameters.AddWithValue("@NAME_USER", objUser.name_user);
+                        command.Parameters.AddWithValue("@TYPE_USER", TypesUser.Admin.ToString());
+                        command.Parameters.AddWithValue("@PASSWORD_USER", objUser.password_user);
+                        command.Parameters.AddWithValue("@EMAIL_USER", objUser.email_user);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -108,19 +169,34 @@ namespace WeatherWiseApi.Code.DAL
         public bool PutUser(User objUser)
         {
             var updateSql = new StringBuilder();
-            updateSql.AppendLine("INSERT INTO table_name (column1, column2, column3 )");
-            updateSql.AppendLine("VALUES(value1, value2, value3 ) ");
-            string cmdSql = updateSql.ToString();
 
-            databaseCommand = db.GetSqlStringCommand(cmdSql);
+            updateSql.AppendLine(" UPDATE ");
+            updateSql.AppendLine("     WS.TB_USER ");
+            updateSql.AppendLine(" SET ");
+            updateSql.AppendLine("     ID_USER = @ID_USER, ");
+            updateSql.AppendLine("     NAME_USER = @NAME_USER, ");
+            updateSql.AppendLine("     TYPE_USER = @TYPE_USER, ");
+            updateSql.AppendLine("     PASSWORD_USER = @PASSWORD_USER ");
+            updateSql.AppendLine(" WHERE  ");
+            updateSql.AppendLine("     EMAIL_USER = @EMAIL_USER ");
+
             try
             {
-                this.db.AddInParameter(databaseCommand, ":name_user", DbType.String, objUser.name_user);
-                this.db.AddInParameter(databaseCommand, ":type_user", DbType.String, objUser.type_user);
-                this.db.AddInParameter(databaseCommand, ":password_user", DbType.String, objUser.password_user);
-                this.db.AddInParameter(databaseCommand, ":email_user", DbType.String, objUser.email_user);
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
 
-                return db.ExecuteNonQuery(databaseCommand) > 0;
+                    using (var command = new NpgsqlCommand(updateSql.ToString(), connection))
+                    {   
+                        command.Parameters.AddWithValue("@ID_USER", objUser.id_user);
+                        command.Parameters.AddWithValue("@NAME_USER", objUser.name_user);
+                        command.Parameters.AddWithValue("@TYPE_USER", TypesUser.Admin.ToString());
+                        command.Parameters.AddWithValue("@PASSWORD_USER", objUser.password_user);
+                        command.Parameters.AddWithValue("@EMAIL_USER", objUser.email_user);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
             }
             catch (Exception ex)
             {

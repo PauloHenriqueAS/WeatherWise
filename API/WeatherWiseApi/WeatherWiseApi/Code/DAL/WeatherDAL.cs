@@ -8,6 +8,10 @@ namespace WeatherWiseApi.Code.DAL
 {
     public class WeatherDAL : DataBase
     {
+        public WeatherDAL(IConfiguration configuration) : base(configuration)
+        {
+
+        }
         #region INSERTS
 
         /// <summary>

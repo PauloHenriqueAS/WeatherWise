@@ -70,7 +70,7 @@ namespace WeatherWiseApi.Controllers
                 if (!String.IsNullOrEmpty(email_user))
                 {
 
-                    var retorno = new UserBLL(_configuration);
+                    var retorno = new UserBLL(_configuration).GetUserInfo(email_user);
 
                     if (retorno != null)
                         return Ok(retorno);

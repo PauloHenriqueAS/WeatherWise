@@ -2,11 +2,13 @@
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System;
+using WeatherWiseApi.Extensions;
 
 namespace WeatherWiseApi.Helpers
 {
     public class DataBase : IDisposable
     {
+        private readonly IConfiguration _configuration;
         /// <summary>
         /// Instância da base de dados.
         /// </summary>
@@ -18,11 +20,17 @@ namespace WeatherWiseApi.Helpers
         public DbCommand databaseCommand;
 
         /// <summary>
+        /// String de conexão
+        /// </summary>
+        public string ConnectionString { get; set; }
+
+        /// <summary>
         /// Busca a configuração padrão da Web Config.
         /// </summary>
-        public DataBase()
+        public DataBase(IConfiguration configuration)
         {
-            this.db = new DatabaseProviderFactory(new SystemConfigurationSource()).CreateDefault();
+            _configuration = configuration;
+            this.ConnectionString = ConnnectionsStrings.GetDatabaseConnectionString(configuration);
         }
 
         public void Dispose()

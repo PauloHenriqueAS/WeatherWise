@@ -24,7 +24,7 @@ namespace WeatherWiseApi.Code.BLL
         public bool AuthorizeUser(User objUser)
         {
             objUser.password_user = new Comum().EncriptyUserPassword(objUser.password_user);
-            string passwordBD = new UserDAL().GetPasswordUser(objUser);
+            string passwordBD = new UserDAL(_configuration).GetPasswordUser(objUser);
 
             if (passwordBD.Equals(objUser.password_user))
             {
@@ -41,9 +41,9 @@ namespace WeatherWiseApi.Code.BLL
         /// </summary>
         /// <param name="objUser"></param>
         /// <returns></returns>
-        public User GetUserInfo(User objUser)
+        public User GetUserInfo(string email_user)
         {
-            return new UserDAL().GetUserInfo(objUser);
+            return new UserDAL(_configuration).GetUserInfo(email_user);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace WeatherWiseApi.Code.BLL
         /// <returns></returns>
         public bool PostUser(User objUser)
         {
-            return new UserDAL().PostUser(objUser);
+            return new UserDAL(_configuration).PostUser(objUser);
         }
         
         /// <summary>
@@ -63,7 +63,7 @@ namespace WeatherWiseApi.Code.BLL
         /// <returns></returns>
         public bool PutUser(User objUser)
         {
-            return new UserDAL().PostUser(objUser);
+            return new UserDAL(_configuration).PutUser(objUser);
         }
     }
 }
