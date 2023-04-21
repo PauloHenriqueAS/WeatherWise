@@ -22,7 +22,7 @@ namespace WeatherWiseApi.Code.DAL
         /// <param name="objUser"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public string GetPasswordUser(User objUser)
+        public string GetPasswordUser(UserCredentials objUser)
         {
             var selectSql = new StringBuilder();
             selectSql.AppendLine("SELECT PASSWORD_USER FROM WS.TB_USER");

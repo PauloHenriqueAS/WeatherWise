@@ -21,10 +21,14 @@ namespace WeatherWiseApi.Code.BLL
         /// </summary>
         /// <param name="objUser"></param>
         /// <returns></returns>
-        public bool AuthorizeUser(User objUser)
+        public bool AuthorizeUser(UserCredentials objUser)
         {
             objUser.password_user = new Comum().EncriptyUserPassword(objUser.password_user);
             string passwordBD = new UserDAL(_configuration).GetPasswordUser(objUser);
+            if(passwordBD is null)
+            {
+                return false;
+            }
 
             if (passwordBD.Equals(objUser.password_user))
             {

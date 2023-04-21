@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\Backup\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
+    "D:\\mathe\\Documents\\worspace_pessoal\\UFU\\segundo_semestre\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\Backup\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
+    "D:\\mathe\\Documents\\worspace_pessoal\\UFU\\segundo_semestre\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\Backup\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "projectUniqueName": "D:\\mathe\\Documents\\worspace_pessoal\\UFU\\segundo_semestre\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
         "projectName": "WeatherWiseApi",
-        "projectPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\Backup\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
+        "projectPath": "D:\\mathe\\Documents\\worspace_pessoal\\UFU\\segundo_semestre\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\WeatherWiseApi.csproj",
         "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mathe\\OneDrive\\Imagens\\Documentos\\ufu\\segundo_semestre\\PDSI1\\Backup\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
+        "outputPath": "D:\\mathe\\Documents\\worspace_pessoal\\UFU\\segundo_semestre\\WeatherWise\\API\\WeatherWiseApi\\WeatherWiseApi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -82,7 +79,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -94,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

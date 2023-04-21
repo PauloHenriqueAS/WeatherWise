@@ -30,7 +30,7 @@ namespace WeatherWiseApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult AuthorizeUser(User objUser)
+        public IActionResult AuthorizeUser(UserCredentials objUser)
         {
             try
             {
@@ -40,19 +40,19 @@ namespace WeatherWiseApi.Controllers
                     bool retorno = new UserBLL(_configuration).AuthorizeUser(objUser);
 
                     if (retorno != false)
-                        return Ok(retorno);
+                        return Ok(new { success = true, message = "Autorização concedida." });
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Autorização negada!");
+                        return Unauthorized(new { success = false, message = "Autorização negada." });
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, "Informe uma Localidade Válida.");
+                    return Unauthorized(new { success = false, message = "Autorização negada." });
                 }
-               
+
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new { success = false, message = "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message });
             }
         }
 
@@ -72,19 +72,16 @@ namespace WeatherWiseApi.Controllers
 
                     var retorno = new UserBLL(_configuration).GetUserInfo(email_user);
 
-                    if (retorno != null)
-                        return Ok(retorno);
-                    else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Não foi possível obter as informações do usuário informado.");
+                    return Ok(retorno);
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, "Informe uma Localidade Válida.");
+                    return BadRequest("Informe uma Localidade Válida.");
                 }
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest("Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
             }
         }
 
