@@ -39,6 +39,10 @@ function createNewLoginUser(){
         });
 }
 
+function storeUserOnLocalStorage(user){
+    sessionStorage.setItem("userData", JSON.stringify(user))
+}
+
 function LoginUser(){
     const url = `${baseUrl}/User/AuthorizeUser`;
     
@@ -60,6 +64,7 @@ function LoginUser(){
         .then((response) => response.json())
         .then((result) => {
             if (result.success) {
+                sessionStorage.setItem("userData", JSON.stringify(result.data))
                 window.location.replace("report.html");
             } else {
                 Swal.fire({

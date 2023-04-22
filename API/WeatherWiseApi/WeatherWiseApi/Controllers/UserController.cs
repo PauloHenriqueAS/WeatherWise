@@ -37,22 +37,22 @@ namespace WeatherWiseApi.Controllers
                 if (!String.IsNullOrEmpty(objUser.email_user) && !String.IsNullOrEmpty(objUser.password_user))
                 {
                     
-                    bool retorno = new UserBLL(_configuration).AuthorizeUser(objUser);
+                    User retorno = new UserBLL(_configuration).AuthorizeUser(objUser);
 
-                    if (retorno != false)
-                        return Ok(new { success = true, message = "Autorização concedida." });
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, "Autorização concedida."));
                     else
-                        return Unauthorized(new { success = false, message = "Autorização negada." });
+                        return Unauthorized(new ResponseApi(retorno, false, "Usuário não autorizado!"));
                 }
                 else
                 {
-                    return Unauthorized(new { success = false, message = "Autorização negada." });
+                    return Unauthorized(new ResponseApi(null, false, "Usuário não autorizado!"));
                 }
 
             }
             catch (Exception e)
             {
-                return BadRequest(new { success = false, message = "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message });
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
 
