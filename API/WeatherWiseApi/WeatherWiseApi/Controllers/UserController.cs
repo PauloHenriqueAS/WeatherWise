@@ -102,18 +102,18 @@ namespace WeatherWiseApi.Controllers
                     var retorno = new UserBLL(_configuration).PostUser(objUser);
 
                     if (retorno != false)
-                        return Ok(retorno);
+                        return Ok(new ResponseApi(retorno, true, "Cadastro realizado com sucesso!."));
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Não foi possível salvar as informações do usuário informado.");
+                        return BadRequest(new ResponseApi(retorno, false, "Não foi possível realizar cadastro do usuário"));
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, "Informe uma Localidade Válida.");
+                    return BadRequest(new ResponseApi(false, false, "Não foi possível realizar cadastro"));
                 }
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
 

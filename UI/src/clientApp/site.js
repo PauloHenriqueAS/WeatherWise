@@ -18,6 +18,16 @@ function logoutUser() {
     window.location.replace("login.html");
 }
 
+
+function warningAlert(titleMessage = '', textMessage = '')
+{
+    Swal.fire({
+        icon: 'warning',
+        title: titleMessage,
+        text: textMessage
+    });
+}
+
 function isPagePrivate() {
     const currentPage = window.location.href;
     const privatePages = ['dashboard.html', 'report.html', 'warning.html', 'profile.html', 'warning.html']
