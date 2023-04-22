@@ -1,8 +1,7 @@
 const baseUrl = 'https://localhost:7126';
 
 function createNewLoginUser() {
-    const urlBase = 'https://localhost:7126';
-    const url = `${urlBase}/User/PostUserInfo`;
+    const url = `${baseUrl}/User/PostUserInfo`;
 
     const body = {
         "name_user": "string",
@@ -27,8 +26,6 @@ function createNewLoginUser() {
                     title: 'Imagem anexada com sucesso',
                     text: result.message
                 });
-
-                saveAttachedImages(getProtocolNumberByUrl(), true);
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -64,7 +61,7 @@ function LoginUser() {
         .then((response) => response.json())
         .then((result) => {
             if (result.success) {
-                sessionStorage.setItem("userData", JSON.stringify(result.data))
+                storeUserOnLocalStorage(result.data);
                 window.location.replace("dashboard.html");
             } else {
                 Swal.fire({

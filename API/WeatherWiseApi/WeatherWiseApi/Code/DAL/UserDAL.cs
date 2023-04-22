@@ -66,7 +66,7 @@ namespace WeatherWiseApi.Code.DAL
         public User GetUserInfo(string email_user)
         {
             var selectSql = new StringBuilder();
-            selectSql.AppendLine("SELECT NAME_USER, TYPE_USER, EMAIL_USER FROM WS.TB_USER");
+            selectSql.AppendLine("SELECT NAME_USER, TYPE_USER, EMAIL_USER, PROFILE_IMAGE FROM WS.TB_USER");
             selectSql.AppendLine("WHERE EMAIL_USER = @EMAIL_USER");
             try
             {
@@ -88,6 +88,7 @@ namespace WeatherWiseApi.Code.DAL
                                     name_user = reader.GetFieldValue<string>("NAME_USER"),
                                     //type_user = reader.GetFieldValue<string>("TYPE_USER"),
                                     email_user = reader.GetFieldValue<string>("EMAIL_USER"),
+                                    profile_image = reader.GetFieldValue<string>("PROFILE_IMAGE")
                                 };
 
                                 results.Add(model);
@@ -173,9 +174,8 @@ namespace WeatherWiseApi.Code.DAL
             updateSql.AppendLine(" UPDATE ");
             updateSql.AppendLine("     WS.TB_USER ");
             updateSql.AppendLine(" SET ");
-            updateSql.AppendLine("     ID_USER = @ID_USER, ");
             updateSql.AppendLine("     NAME_USER = @NAME_USER, ");
-            updateSql.AppendLine("     TYPE_USER = @TYPE_USER, ");
+            updateSql.AppendLine("     PROFILE_IMAGE = @PROFILE_IMAGE, ");
             updateSql.AppendLine("     PASSWORD_USER = @PASSWORD_USER ");
             updateSql.AppendLine(" WHERE  ");
             updateSql.AppendLine("     EMAIL_USER = @EMAIL_USER ");
@@ -188,9 +188,8 @@ namespace WeatherWiseApi.Code.DAL
 
                     using (var command = new NpgsqlCommand(updateSql.ToString(), connection))
                     {   
-                        command.Parameters.AddWithValue("@ID_USER", objUser.id_user);
                         command.Parameters.AddWithValue("@NAME_USER", objUser.name_user);
-                        command.Parameters.AddWithValue("@TYPE_USER", TypesUser.Admin.ToString());
+                        command.Parameters.AddWithValue("@PROFILE_IMAGE", objUser.profile_image);
                         command.Parameters.AddWithValue("@PASSWORD_USER", objUser.password_user);
                         command.Parameters.AddWithValue("@EMAIL_USER", objUser.email_user);
 

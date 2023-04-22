@@ -68,6 +68,7 @@ namespace WeatherWiseApi.Code.BLL
         /// <returns></returns>
         public bool PutUser(User objUser)
         {
+            objUser.password_user = new Comum().EncriptyUserPassword(objUser.password_user);
             return new UserDAL(_configuration).PutUser(objUser);
         }
     }

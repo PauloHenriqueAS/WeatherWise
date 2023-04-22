@@ -72,16 +72,19 @@ namespace WeatherWiseApi.Controllers
 
                     var retorno = new UserBLL(_configuration).GetUserInfo(email_user);
 
-                    return Ok(retorno);
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
+                    else
+                        return BadRequest(new ResponseApi(retorno, false, "Não foi possível buscar usuário!"));
                 }
                 else
                 {
-                    return BadRequest("Informe uma Localidade Válida.");
+                    return BadRequest(new ResponseApi(null, false, "Não foi possível buscar usuário!"));
                 }
             }
             catch (Exception e)
             {
-                return BadRequest("Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
 
@@ -134,18 +137,18 @@ namespace WeatherWiseApi.Controllers
                     var retorno = new UserBLL(_configuration).PutUser(objUser);
 
                     if (retorno != false)
-                        return Ok(retorno);
+                        return Ok(new ResponseApi(retorno, true, "Cadastro atualizado com sucesso!."));
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Não foi possível atualizar as informações do usuário informado.");
+                        return BadRequest(new ResponseApi(retorno, false, "Não foi possível atualizar cadastro do usuário"));
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, "Informe uma Localidade Válida.");
+                    return BadRequest(new ResponseApi(false, false, "Não foi possível atualizar cadastro"));
                 }
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,27 @@
 </head>
 
 <body id="page-top">
+
+      <!-- Modal -->
+      <div class="modal fade" id="profilePhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Alterar foto de perfil</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="inputProfilePhoto">
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="closeProfilePhotoModal()" data-dismiss="modal">Fechar</button>
+              <button type="button" onclick="changeProfilePhoto()" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0"><a
@@ -202,8 +223,8 @@
                         <div class="col-lg-4 col-xl-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4"
-                                        src="assets/img/dogs/image2.jpeg" width="160" height="160">
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Trocar
+                                        src="assets/img/dogs/image2.jpeg" id="profilePhoto" width="160" height="160">
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" onclick="openProfilePhotoModal()" type="button">Trocar
                                             foto</button></div>
                                 </div>
                             </div>
@@ -249,39 +270,37 @@
                                         </div>
                                         <div class="card-body">
                                             <form>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                for="username"><strong>Nome de
-                                                                    usuário</strong></label><input class="form-control"
-                                                                type="text" id="username" placeholder="user.name"
-                                                                name="username"></div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3"><label class="form-label"
-                                                                for="email"><strong>E-mail</strong></label><input
-                                                                class="form-control" type="email" id="email"
-                                                                placeholder="user@example.com" name="email"></div>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="mb-3"><label class="form-label"
                                                                 for="first_name"><strong>Primeiro
                                                                     nome</strong></label><input class="form-control"
-                                                                type="text" id="first_name" placeholder="Jane"
+                                                                type="text" id="first_name" placeholder="Alan"
                                                                 name="first_name"></div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3"><label class="form-label"
                                                                 for="last_name"><strong>Último
                                                                     nome</strong></label><input class="form-control"
-                                                                type="text" id="last_name" placeholder="Doe"
+                                                                type="text" id="last_name" placeholder="Turing"
                                                                 name="last_name"></div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="first_name"><strong>Senha</strong></label><input class="form-control"
+                                                                type="password" id="profilePassword"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label"
+                                                                for="last_name"><strong>Repetir senha</strong></label><input class="form-control"
+                                                                type="password" id="profileRepeteatedPassword"></div>
+                                                    </div>
+                                                </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm"
-                                                        type="submit">Salvar configuraçoes</button></div>
+                                                        type="button" onclick="validateProfileChanges()">Salvar configuraçoes</button></div>
                                             </form>
                                         </div>
                                     </div>
@@ -308,6 +327,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
     <script src="./clientApp/site.js"></script>
+    <script src="./clientApp/partialProfile.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,26 @@
+const baseUrl = 'https://localhost:7126';
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    const isLoginPage = window.location.href.includes('login.html');
+
+    if (!isSessionOn() && !isLoginPage && isPagePrivate()) {
+
+        Swal.fire({
+            icon: 'warning',
+            title: 'Acesso não autorizado!',
+            text: 'Faça login!'
+        }).then(() => { window.location.replace("login.html"); });
+    }else {
+        const user = getUserData();
+
+        $('.userName').text(user.name_user);
+
+        if(user.profile_image != null && user.profile_image != undefined){
+            $('.img-profile').prop('src', user.profile_image);
+        }        
+    }
+});
+
 function isSessionOn() {
     const user = sessionStorage.getItem("userData");
     return user != null && user != '' && user != undefined;
@@ -41,19 +64,3 @@ function isPagePrivate() {
     return false;
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
-    const isLoginPage = window.location.href.includes('login.html');
-
-    if (!isSessionOn() && !isLoginPage && isPagePrivate()) {
-
-        Swal.fire({
-            icon: 'warning',
-            title: 'Acesso não autorizado!',
-            text: 'Faça login!'
-        }).then(() => { window.location.replace("login.html"); });
-    }else {
-        const user = getUserData();
-
-        $('.userName').text(user.name_user)
-    }
-});

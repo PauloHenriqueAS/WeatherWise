@@ -29,4 +29,9 @@ public class User
     /// Tipo do Usuário
     /// </summary>
     public TypesUser type_user { get; set; }
+
+    /// <summary>
+    /// PROFILE IMAGE
+    /// </summary>
+    public string profile_image { get; set; }
 }
