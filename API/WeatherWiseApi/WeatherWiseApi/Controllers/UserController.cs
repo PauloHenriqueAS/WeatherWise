@@ -120,7 +120,7 @@ namespace WeatherWiseApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("PutUserInfo")]
         [SwaggerOperation("PutUserInfo")]
         [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]

@@ -1,5 +1,7 @@
 ﻿using WeatherWiseApi.Code.Model;
 using WeatherWiseApi.Api;
+using WeatherWiseApi.Code.DAL;
+using WeatherWiseApi.Helpers;
 
 namespace WeatherWiseApi.Code.BLL
 {
@@ -26,7 +28,15 @@ namespace WeatherWiseApi.Code.BLL
             return result;
         }
 
-        
+        /// <summary>
+        /// Inserir as alertas
+        /// </summary>
+        /// <param name="objUser"></param>
+        /// <returns></returns>
+        public bool InsertAlert(Alert alert)
+        {
+            return new WeatherDAL(_configuration).InsertAlert(alert);
+        }
 
         /// <summary>
         /// Consultar previsão do tempo

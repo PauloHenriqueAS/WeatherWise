@@ -144,6 +144,37 @@ namespace WeatherWiseApi.Controllers
                 return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
             }
         }
+        
+        [HttpPost]
+        [Route("InsertAlert")]
+        [SwaggerOperation("InsertAlert")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
+        public IActionResult InsertAlert(Alert alert)
+        {
+            try
+            {
+                if (alert is not null)
+                {
+                    var retorno = new WeatherBLL(_configuration).InsertAlert(alert);
+
+                    if (retorno != false)
+                        return Ok(new ResponseApi(retorno, true, "Alerta cadastrado com sucesso!."));
+                    else
+                        return BadRequest(new ResponseApi(retorno, false, "Não foi possível realizar cadastro do alerta"));
+                }
+                else
+                {
+                    return BadRequest(new ResponseApi(false, false, "Não foi possível realizar cadastro do alerta!"));
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
+            }
+        }
         #endregion
     }
 }

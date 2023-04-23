@@ -33,5 +33,5 @@ public class User
     /// <summary>
     /// PROFILE IMAGE
     /// </summary>
-    public string profile_image { get; set; }
+    public string? profile_image { get; set; }
 }

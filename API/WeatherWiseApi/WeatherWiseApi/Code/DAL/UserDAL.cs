@@ -88,7 +88,7 @@ namespace WeatherWiseApi.Code.DAL
                                     name_user = reader.GetFieldValue<string>("NAME_USER"),
                                     //type_user = reader.GetFieldValue<string>("TYPE_USER"),
                                     email_user = reader.GetFieldValue<string>("EMAIL_USER"),
-                                    profile_image = reader.GetFieldValue<string>("PROFILE_IMAGE")
+                                    profile_image = reader.IsDBNull(reader.GetOrdinal("PROFILE_IMAGE")) ? null : reader.GetFieldValue<string>("PROFILE_IMAGE")
                                 };
 
                                 results.Add(model);
