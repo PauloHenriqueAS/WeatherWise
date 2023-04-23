@@ -1,8 +1,8 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using WeatherWiseApi.Extensions;
 using System.Data.Common;
 using System;
-using WeatherWiseApi.Extensions;
 
 namespace WeatherWiseApi.Helpers
 {

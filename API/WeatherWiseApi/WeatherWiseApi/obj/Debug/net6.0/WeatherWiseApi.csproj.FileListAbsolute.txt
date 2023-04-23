@@ -225,3 +225,6 @@ D:\mathe\Documents\worspace_pessoal\UFU\segundo_semestre\WeatherWise\API\Weather
 D:\mathe\Documents\worspace_pessoal\UFU\segundo_semestre\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.pdb
 D:\mathe\Documents\worspace_pessoal\UFU\segundo_semestre\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\WeatherWiseApi.genruntimeconfig.cache
 D:\mathe\Documents\worspace_pessoal\UFU\segundo_semestre\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\obj\Debug\net6.0\ref\WeatherWiseApi.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Paulo H\Desktop\WeatherWise\API\WeatherWiseApi\WeatherWiseApi\bin\Debug\net6.0\Npgsql.dll
