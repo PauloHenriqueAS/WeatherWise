@@ -4,12 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blank Page - Brand</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon.png">
+    <title>Warming - Weather Wise</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <style>
+        #iconDashboard,
+        #iconPerfil,
+        #iconRelatorio,
+        #iconAlerta,
+        #iconRegistro {
+            margin-right: 5%;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -22,7 +32,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html"><svg
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html"><svg id="iconDashboard"
                                 xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                 viewBox="0 0 16 16" class="bi bi-clipboard-data">
                                 <path
@@ -35,20 +45,22 @@
                                     d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z">
                                 </path>
                             </svg><span>Dashboard</span></a><a class="nav-link" href="report.html"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
-                                viewBox="0 0 16 16" class="bi bi-list-columns-reverse">
+                                id="iconRelatorio" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="currentColor" viewBox="0 0 16 16" class="bi bi-list-columns-reverse">
                                 <path fill-rule="evenodd"
                                     d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5Zm-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5Zm-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5Zm4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5Z">
                                 </path>
                             </svg><span>Relatórios</span></a></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link active" href="warning.html"><i
+                    <li class="nav-item"><a class="nav-link active" href="warning.html"><i id="iconAlerta"
                                 class="icon ion-android-warning"></i><span>Alertas</span></a></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="register.html"><span>Register</span></a>
+                    <li class="nav-item"><a class="nav-link" href="register.html"><i id="iconRegistro"
+                                class="icon fas fa-edit"></i><span>Register</span></a>
                     </li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><span>Perfil</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i id="iconPerfil"
+                                class="icon fas fa-user-circle"></i><span>Perfil</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
                         id="sidebarToggle" type="button"></button></div>
@@ -179,18 +191,22 @@
                                             class="d-none d-lg-inline me-2 text-gray-600 small userName">Jane
                                             Doe</span><img class="border rounded-circle img-profile"
                                             src="assets/img/avatars/avatar1.jpeg"></a>
-                                            <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                                <a class="dropdown-item" href="#">
-                                                <i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><aclass="dropdown-item" href="#">
-                                                <div class="dropdown-divider"></div><a class="dropdown-item" onclick="logoutUser()" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
-                                            </div>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="#">
+                                            <i
+                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Perfil</a><aclass="dropdown-item"
+                                            href="#">
+                                            <div class="dropdown-divider"></div><a class="dropdown-item"
+                                                onclick="logoutUser()" href="#"><i
+                                                    class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-1">Blank Page</h3>
+                    <h3 class="text-dark mb-1"><i style="margin-right: 1%;" class="icon ion-android-warning"></i>Alertas</h3>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
