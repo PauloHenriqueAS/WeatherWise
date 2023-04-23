@@ -19,17 +19,16 @@ function createNewLoginUser() {
     })
         .then((response) => response.json())
         .then((result) => {
-            jsLoading(false);
             if (result.success) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Imagem anexada com sucesso',
+                    title: 'Usuário cadastrado com sucesso!',
                     text: result.message
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Erro ao anexar imagem',
+                    title: 'Erro ao cadastrar usuário!',
                     text: result.message
                 });
             }

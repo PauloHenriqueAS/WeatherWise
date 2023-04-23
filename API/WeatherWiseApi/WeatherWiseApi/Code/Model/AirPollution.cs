@@ -6,6 +6,11 @@
     public class AirPollution
     {
         /// <summary>
+        /// Description air pollution
+        /// </summary>
+        public string air_pollution_description { get; set; }
+
+        /// <summary>
         /// Coordenadas
         /// </summary>
         public Coordinate coord { get; set; }
