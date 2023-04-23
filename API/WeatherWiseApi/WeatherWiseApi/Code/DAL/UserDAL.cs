@@ -127,7 +127,7 @@ namespace WeatherWiseApi.Code.DAL
             insertSql.AppendLine("     ) ");
             insertSql.AppendLine(" VALUES ");
             insertSql.AppendLine("     ( ");
-            insertSql.AppendLine("         @ID_USER, ");
+            insertSql.AppendLine("         (SELECT MAX(ID_USER) + 1 FROM WS.TB_USER), ");
             insertSql.AppendLine("         @NAME_USER, ");
             insertSql.AppendLine("         @TYPE_USER, ");
             insertSql.AppendLine("         @PASSWORD_USER, ");
@@ -143,7 +143,6 @@ namespace WeatherWiseApi.Code.DAL
 
                     using (var command = new NpgsqlCommand(insertSql.ToString(), connection))
                     {
-                        command.Parameters.AddWithValue("@ID_USER", objUser.id_user);
                         command.Parameters.AddWithValue("@NAME_USER", objUser.name_user);
                         command.Parameters.AddWithValue("@TYPE_USER", TypesUser.Admin.ToString());
                         command.Parameters.AddWithValue("@PASSWORD_USER", objUser.password_user);

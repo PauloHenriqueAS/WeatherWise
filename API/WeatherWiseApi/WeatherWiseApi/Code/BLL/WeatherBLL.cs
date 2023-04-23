@@ -22,8 +22,11 @@ namespace WeatherWiseApi.Code.BLL
         /// <returns></returns>
         public CurrentWeather GetCurrentWeather(Coordinate coordinate)
         {
-            return new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
+            var result = new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
+            return result;
         }
+
+        
 
         /// <summary>
         /// Consultar previsão do tempo

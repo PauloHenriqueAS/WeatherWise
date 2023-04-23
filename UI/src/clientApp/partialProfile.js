@@ -113,7 +113,10 @@ function saveProfileChanges(){
                     icon: 'success',
                     title: 'Perfil atualizado com sucesso!'
                 }).then(() => { 
-                    updateLocalStorageUserInformations().then(() => { loadUserInformations(); });                   
+                    updateLocalStorageUserInformations().then(() => { 
+                        loadUserInformations();
+                        window.location.reload();
+                    });                   
                 })
             } else {
                 Swal.fire({

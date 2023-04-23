@@ -36,19 +36,19 @@ namespace WeatherWiseApi.Controllers
                 {
                     var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
 
-                    if (retorno != null)
-                        return Ok(retorno);
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
+                        return BadRequest(new ResponseApi(retorno, false, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}."));
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
+                    return BadRequest(new ResponseApi(null, false, $"Erro na consulta das informações do tempo para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}."));
                 }
             }
             catch (Exception e)
             {
-                return StatusCode(500, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
 

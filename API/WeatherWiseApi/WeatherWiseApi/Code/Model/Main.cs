@@ -53,6 +53,6 @@
         /// <summary>
         /// AQI
         /// </summary>
-        public int aqi { get; set; }
+        public int aqi { get; set; }        
     }
 }
