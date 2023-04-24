@@ -28,7 +28,7 @@ namespace WeatherWiseApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult GetAirPollution(Coordinate coordinate)
+        public IActionResult GetAirPollution([FromBody]Coordinate coordinate)
         {
             try
             {
@@ -36,19 +36,19 @@ namespace WeatherWiseApi.Controllers
                 {
                     var retorno = new AirPollutionBLL(_configuration).GetAirPollution(coordinate);
 
-                    if (retorno != null)
-                        return Ok(retorno);
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta das informações da poluição do ar para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
+                        return BadRequest(new ResponseApi(retorno, false, $"Erro na consulta das informações da poluição do ar para a Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}."));
                 }
                 else
                 {
-                    return StatusCode((int)HttpStatusCode.BadRequest, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}.");
+                    return BadRequest(new ResponseApi(null, false, $"Erro nas Coordenadas informadas. Latitude: {coordinate.Lat}, e na Longitude {coordinate.Lon}."));
                 }
             }
             catch (Exception e)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message);
+                return BadRequest(new ResponseApi(null, false, "Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
         #endregion
@@ -62,7 +62,7 @@ namespace WeatherWiseApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult PostAirPollution(AirPollution objAirPollution)
+        public IActionResult PostAirPollution([FromBody]AirPollution objAirPollution)
         {
             try
             {

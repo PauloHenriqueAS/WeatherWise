@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/site.css">
     <style>
         #iconDashboard,
         #iconPerfil,
@@ -57,7 +58,7 @@
                                 class="icon ion-android-warning"></i><span>Alertas</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="register.html"><i id="iconRegistro"
-                        class="icon fas fa-edit"></i><span>Registrar Usuário</span></a>
+                                class="icon fas fa-edit"></i><span>Registrar Usuário</span></a>
                     </li>
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="profile.html"><i id="iconPerfil"
@@ -92,7 +93,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <li class="nav-item dropdown no-arrow mx-1 d-none">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
                                             class="badge bg-danger badge-counter">3+</span><i
@@ -129,7 +130,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
+                            <li class="nav-item dropdown no-arrow mx-1 d-none">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
                                             class="badge bg-danger badge-counter">7</span><i
@@ -191,7 +192,7 @@
                                         aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
                                             class="d-none d-lg-inline me-2 text-gray-600 small userName">Jane
                                             Doe</span><img class="border rounded-circle img-profile"
-                                            src="assets/img/avatars/avatar1.jpeg"></a>
+                                            src="assets/img/avatars/avatar5.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                                         <a class="dropdown-item" href="profile.html">
                                             <i
@@ -208,11 +209,14 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Dashboard</h3><button class="btn btn-warning btn-icon-split"
-                            data-bss-hover-animate="pulse" type="button"><span class="text-white-50 icon"><i
-                                    class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Criar
-                                Alerta</span></button><a class="btn btn-primary btn-sm d-none d-sm-inline-block"
-                            role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
+                        <h3 class="text-dark mb-0">Dashboard</h3>
+                        <button class="btn btn-warning btn-icon-split warning-button"
+                            data-bss-hover-animate="pulse" type="button" onclick="location.href = 'warning.html'"><span class="text-white-50 icon"><i
+                                    class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Criar Alerta</span>
+                            </button>
+
+
+                            <a class="btn btn-primary btn-sm d-none d-sm-inline-block"role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
                             Relatório (.csv)</a>
                     </div>
                     <div class="row">
@@ -245,7 +249,8 @@
                                             <div class="text-uppercase text-success fw-bold text-xs mb-1">
                                                 <span>ventos</span>
                                             </div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>10 km/h</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span id="windSpeed"> - km/h</span>
+                                            </div>
                                         </div>
                                         <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16"
@@ -267,7 +272,8 @@
                                                     (AQI)</span></div>
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-auto col-xl-12">
-                                                    <div class="text-dark fw-bold h5 mb-0"><span>Bom</span></div>
+                                                    <div class="text-dark fw-bold h5 mb-0"><span
+                                                            id="airPollutionDescription">-</span></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -292,7 +298,7 @@
                                             <div class="text-uppercase text-warning fw-bold text-xs mb-1">
                                                 <span>Visibilidade</span>
                                             </div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>18</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span id="visibility">-</span></div>
                                         </div>
                                         <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
                                                 height="1em" fill="currentColor" viewBox="0 0 16 16"
@@ -307,10 +313,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-7 col-xl-8">
+                        <div class="col-lg-12 col-xl-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Precipitação -10 +10 dias</h6>
+                                    <h6 class="text-primary fw-bold m-0">Velocidade do vento</h6>
                                     <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle"
                                             aria-expanded="false" data-bs-toggle="dropdown" type="button"><i
                                                 class="fas fa-ellipsis-v text-gray-400"></i></button>
@@ -324,13 +330,13 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="chart-area"><canvas
-                                            data-bss-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}]}}}"></canvas>
+                                    <div class="chart-area">
+                                        <canvas id="windChart"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-xl-4">
+                        <div class="col-lg-5 col-xl-4 d-none">
                             <div class="card shadow mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary fw-bold m-0">Distribuição de chuvas pela cidade</h6>
@@ -357,40 +363,38 @@
                     <div class="row">
                         <div class="col offset-xl-0">
                             <div class="row">
-                                <div class="col-lg-6 mb-4">
+                                <div class="col-lg-4 mb-4">
                                     <div class="card text-white bg-primary shadow">
                                         <div class="card-body">
-                                            <p class="text-center m-0">Bom</p>
+                                            <p class="text-center m-0">Norte</p>
                                             <p class="text-white-50 small m-0"></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-4">
+                                <div class="col-lg-4 mb-4">
                                     <div class="card text-white bg-success shadow">
                                         <div class="card-body">
-                                            <p class="text-center m-0"><span>Excelente</span></p>
+                                            <p class="text-center m-0"><span>Sul</span></p>
                                             <p class="text-white-50 small m-0"></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-4">
+                                <div class="col-lg-4 mb-4">
                                     <div class="card text-white bg-warning shadow">
                                         <div class="card-body">
-                                            <p class="text-center m-0">Atenção</p>
+                                            <p class="text-center m-0">Leste</p>
                                             <p class="text-white-50 small m-0"></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-xl-6 mb-4">
+                                <div class="col-lg-4 mb-4"></div>
+                                <div class="col-lg-4 mb-4">
                                     <div class="card text-white bg-danger shadow">
                                         <div class="card-body">
-                                            <p class="text-center m-0">Perigo</p>
+                                            <p class="text-center m-0">Oeste</p>
                                             <p class="text-white-50 small m-0"></p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card text-white bg-secondary shadow"></div>
                                 </div>
                             </div>
                         </div>
@@ -410,6 +414,7 @@
     <script src="assets/js/theme.js"></script>
 
     <script src="./clientApp/site.js"></script>
+    <script src="./clientApp/partialDashboard.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="jquery-3.6.4.min.js"></script>

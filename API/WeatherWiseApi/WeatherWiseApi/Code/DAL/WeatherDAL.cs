@@ -315,6 +315,57 @@ namespace WeatherWiseApi.Code.DAL
                 {
                     connection.Open();
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Método de Inserir um alerta
+        /// </summary>
+        /// <param name="alert"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public bool InsertAlert(Alert alert)
+        {
+            var insertSql = new StringBuilder();
+
+            insertSql.AppendLine(" INSERT INTO ");
+            insertSql.AppendLine("     WS.TB_ALERT ( ");
+            insertSql.AppendLine("         EMAIL_USER, ");
+            insertSql.AppendLine("         WIND_SPEED, ");
+            insertSql.AppendLine("         VISIBILITY, ");
+            insertSql.AppendLine("         PRECIPTATION, ");
+            insertSql.AppendLine("         AIR_POLLUTION_AQI ");
+            insertSql.AppendLine("     ) ");
+            insertSql.AppendLine(" VALUES ");
+            insertSql.AppendLine("     ( ");
+            insertSql.AppendLine("         @EMAIL_USER, ");
+            insertSql.AppendLine("         @WIND_SPEED, ");
+            insertSql.AppendLine("         @VISIBILITY, ");
+            insertSql.AppendLine("         @PRECIPTATION, ");
+            insertSql.AppendLine("         @AIR_POLLUTION_AQI ");
+            insertSql.AppendLine("     ) ");
+
+            try
+            {
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new NpgsqlCommand(insertSql.ToString(), connection))
+                    {
+                        command.Parameters.AddWithValue("@EMAIL_USER", alert.email_user);
+                        command.Parameters.AddWithValue("@WIND_SPEED", alert.wind_speed);
+                        command.Parameters.AddWithValue("@VISIBILITY", alert.visibility);
+                        command.Parameters.AddWithValue("@PRECIPTATION", alert.precipitation);
+                        command.Parameters.AddWithValue("@AIR_POLLUTION_AQI", alert.air_pollution_aqi);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
                     using (var command = new NpgsqlCommand(deletSql.ToString(), connection))
                     {
                         return command.ExecuteNonQuery() > 0;

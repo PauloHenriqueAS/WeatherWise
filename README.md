@@ -19,13 +19,46 @@
 
 <hr>
 
-## 📁 Organização das pastas
-
-- **Models:** 
-- **Controllers:** 
-- **DAL:** 
-- **BLL:** 
-- **API:** 
+- **Models:**
+    - AirPollution.cs
+    - City.cs
+    - Cloud.cs
+    - Components.cs
+    - Coordinate.cs
+    - CurrentWeather.cs
+    - Forecast.cs
+    - Main.cs
+    - Sys.cs
+    - TypesUser.cs
+    - User.cs
+    - UserCredentials.cs
+    - Weather.cs
+    - Wind.cs
+- **Controllers:**
+    - AirPollutionController.cs
+    - CoordinateController.cs
+    - UserController.cs
+    - WeatherController.cs
+- **DAL:**
+    - AirPollutionDAL.cs
+    - UserDAL.cs
+    - WeatherDAL.cs
+- **BLL:**
+    - AirPollutionBLL.cs
+    - CoordinateBLL.cs
+    - UserBLL.cs
+    - WeatherBLL.cs
+- **API:**
+    - Api.cs
+    - AccuWeather.cs
+    - OpenWeatherApi.cs
+    - NominatimApi.cs
+- **Extensions:**
+    - ConnectionStrings.cs
+- **Helpers:**
+    - Common.cs
+    - DataBase.cs
+    - ResponseApi.cs
 
 <div align="center">
     <h1> :octocat: GIT  </h1> 

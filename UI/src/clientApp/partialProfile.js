@@ -90,7 +90,7 @@ function updateLocalStorageUserInformations() {
 
 function saveProfileChanges(){
     const user = getUserData();
-    const url = `${baseUrl}/User/PutUserInfo`;
+    const url = `${baseUrl}/Weather/InsertAlert`;
 
     const body = {
         "name_user": `${$('#first_name').val()} ${$('#last_name').val()}`,
@@ -99,10 +99,11 @@ function saveProfileChanges(){
         "profile_image": $('#profilePhoto').attr("src"),
     }
 
+    console.log(JSON.stringify(body))
     fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
+            'Content-Type': 'application/json;charset=UTF-8',            
         },
         body: JSON.stringify(body),
     })
@@ -113,7 +114,10 @@ function saveProfileChanges(){
                     icon: 'success',
                     title: 'Perfil atualizado com sucesso!'
                 }).then(() => { 
-                    updateLocalStorageUserInformations().then(() => { loadUserInformations(); });                   
+                    updateLocalStorageUserInformations().then(() => { 
+                        loadUserInformations();
+                        window.location.reload();
+                    });                   
                 })
             } else {
                 Swal.fire({

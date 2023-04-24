@@ -25,7 +25,18 @@ namespace WeatherWiseApi.Code.BLL
         /// <returns></returns>
         public CurrentWeather GetCurrentWeather(Coordinate coordinate)
         {
-            return new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
+            var result = new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
+            return result;
+        }
+
+        /// <summary>
+        /// Inserir as alertas
+        /// </summary>
+        /// <param name="objUser"></param>
+        /// <returns></returns>
+        public bool InsertAlert(Alert alert)
+        {
+            return new WeatherDAL(_configuration).InsertAlert(alert);
         }
 
         /// <summary>

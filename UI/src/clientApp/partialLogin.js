@@ -1,5 +1,3 @@
-const baseUrl = 'https://localhost:7126';
-
 function createNewLoginUser() {
     const url = `${baseUrl}/User/PostUserInfo`;
 
@@ -19,17 +17,16 @@ function createNewLoginUser() {
     })
         .then((response) => response.json())
         .then((result) => {
-            jsLoading(false);
             if (result.success) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Imagem anexada com sucesso',
+                    title: 'Usuário cadastrado com sucesso!',
                     text: result.message
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Erro ao anexar imagem',
+                    title: 'Erro ao cadastrar usuário!',
                     text: result.message
                 });
             }
@@ -95,7 +92,6 @@ function validateRegisterUserData() {
 
 function registerUser() {
     const url = `${baseUrl}/User/PostUserInfo`;
-
     validateRegisterUserData().then((isDataValid) => {
         if (isDataValid) {
             const body = {
@@ -104,11 +100,14 @@ function registerUser() {
                 "password_user": `${$('#examplePasswordInput').val().trim()}`,
                 "type_user": 0
             }
+
+            console.log(JSON.stringify(body));
+
         
             fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json;charset=UTF-8',
                     'mode': 'no-cors',
                 },
                 body: JSON.stringify(body),

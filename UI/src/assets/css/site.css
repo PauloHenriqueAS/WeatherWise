@@ -1,0 +1,13 @@
+#airPollutionSituation{
+    border-radius: 10rem;
+    padding: 1rem;
+    font-size: .8rem;
+}
+
+#airPollutionSituation:hover{
+    cursor: pointer;
+}
+
+.warning-button:hover{
+    cursor: pointer;
+}
