@@ -8,17 +8,17 @@
         /// <summary>
         /// Código do Forecast
         /// </summary>
-        public string? cod { get; set; }
+        public string cod { get; set; }
 
         /// <summary>
         /// Mensagem
         /// </summary>
-        public int? message { get; set; }
+        public int message { get; set; }
 
         /// <summary>
         /// CNT
         /// </summary>
-        public int? cnt { get; set; }
+        public int cnt { get; set; }
 
         /// <summary>
         /// Lista de Previões do Tempo
@@ -28,17 +28,17 @@
         /// <summary>
         /// Cidade da Previsão
         /// </summary>
-        public City? city { get; set; }
+        public City city { get; set; }
 
         /// <summary>
         /// Id de identificação no Banco de Dados sobre a lista de forecast
         /// </summary>
-        public int? id_listForecast { get; set; }
+        public int id_listForecast { get; set; }
 
         /// <summary>
         /// Id de identificação no Banco de Dados sobre a cidade
         /// </summary>
-        public int? id_city { get; set; }
+        public int id_city { get; set; }
     }
 
     /// <summary>
@@ -54,20 +54,20 @@
         /// <summary>
         /// Main
         /// </summary>
-        public Main? main { get; set; }
+        public Main main { get; set; }
 
         /// <summary>
         /// Lista do Tempo
         /// </summary>
-        public List<Weather>? weather { get; set; }
+        public List<Weather> weather { get; set; }
 
         //Nuvens
-        public Clouds? clouds { get; set; }
+        public Clouds clouds { get; set; }
 
         /// <summary>
         /// Vento
         /// </summary>
-        public Wind? wind { get; set; }
+        public Wind wind { get; set; }
 
         /// <summary>
         /// Visibilidade
@@ -82,17 +82,17 @@
         /// <summary>
         /// Chuva
         /// </summary>
-        public Rain? rain { get; set; }
+        public Rain rain { get; set; }
 
         /// <summary>
         /// Sys
         /// </summary>
-        public Sys? sys { get; set; }
+        public Sys sys { get; set; }
 
         /// <summary>
         /// Texto Dt
         /// </summary>
-        public string? dt_txt { get; set; }
+        public string dt_txt { get; set; }
     }
 
 

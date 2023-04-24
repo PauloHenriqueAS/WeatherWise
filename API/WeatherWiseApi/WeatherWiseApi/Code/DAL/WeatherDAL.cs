@@ -205,7 +205,7 @@ namespace WeatherWiseApi.Code.DAL
         /// <param name="objListForecast"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public int PostListForecast(ListForecast objListForecast)
+        public int PostListForecast(ForecastDB objListForecast)
         {
             var insertSql = new StringBuilder();
 
@@ -245,16 +245,16 @@ namespace WeatherWiseApi.Code.DAL
 
                     using (var command = new NpgsqlCommand(insertSql.ToString(), connection))
                     {
-                        command.Parameters.AddWithValue("@DT", objListForecast);
-                        command.Parameters.AddWithValue("@ID_MAIN", objListForecast);
-                        command.Parameters.AddWithValue("@ID_WEATHER", objListForecast);
-                        command.Parameters.AddWithValue("@ID_CLOUDS", objListForecast);
-                        command.Parameters.AddWithValue("@ID_WIND", objListForecast);
-                        command.Parameters.AddWithValue("@VISIBILITY", objListForecast);
-                        command.Parameters.AddWithValue("@POP", objListForecast);
-                        command.Parameters.AddWithValue("@ID_RAIN", objListForecast);
-                        command.Parameters.AddWithValue("@ID_SYS", objListForecast);
-                        command.Parameters.AddWithValue("@DT_TXT", objListForecast);
+                        command.Parameters.AddWithValue("@DT", objListForecast.dt);
+                        command.Parameters.AddWithValue("@ID_MAIN", objListForecast.id_main);
+                        command.Parameters.AddWithValue("@ID_WEATHER", objListForecast.id_weather);
+                        command.Parameters.AddWithValue("@ID_CLOUDS", objListForecast.id_clouds);
+                        command.Parameters.AddWithValue("@ID_WIND", objListForecast.id_wind);
+                        command.Parameters.AddWithValue("@VISIBILITY", objListForecast.visibility);
+                        command.Parameters.AddWithValue("@POP", objListForecast.pop);
+                        command.Parameters.AddWithValue("@ID_RAIN", objListForecast.id_rain);
+                        command.Parameters.AddWithValue("@ID_SYS", objListForecast.id_sys);
+                        command.Parameters.AddWithValue("@DT_TXT", objListForecast.dt_txt);
 
                         return Convert.ToInt32(command.ExecuteScalar());
                     }

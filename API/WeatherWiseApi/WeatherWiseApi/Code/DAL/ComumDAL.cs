@@ -571,7 +571,7 @@ namespace WeatherWiseApi.Code.DAL
             insertSql.AppendLine("     (                      ");
             insertSql.AppendLine("       (SELECT COUNT(*)+1   ");
             insertSql.AppendLine("          FROM WS.TB_RAIN), ");
-            insertSql.AppendLine("         @3H                ");
+            insertSql.AppendLine("         @3H )              ");
             insertSql.AppendLine(" RETURNING  ID_RAIN         ");
 
             try

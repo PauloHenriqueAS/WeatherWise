@@ -117,17 +117,22 @@ namespace WeatherWiseApi.Code.BLL
                     var listIds = weatherDAL.GetIdsInfo();
                     if (listIds != null && listIds.Count > 0)
                     {
-                        foreach (var item in listIds)
+                        using (TransactionScope scope2 = new TransactionScope())
                         {
-                            comumDal.DeleteMain(item.id_main);
-                            comumDal.DeleteClouds(item.id_clouds);
-                            comumDal.DeleteRain(item.id_rain);
-                            comumDal.DeleteSys(item.id_sys);
-                            comumDal.DeleteWeather(item.id_weather);
-                            comumDal.DeleteWind(item.id_wind);
+                            weatherDAL.DeleteForecastWeather();
+                            weatherDAL.DeleteListForecast();
+
+                            foreach (var item in listIds)
+                            {
+                                comumDal.DeleteMain(item.id_main);
+                                comumDal.DeleteClouds(item.id_clouds);
+                                comumDal.DeleteRain(item.id_rain);
+                                comumDal.DeleteSys(item.id_sys);
+                                comumDal.DeleteWeather(item.id_weather);
+                                comumDal.DeleteWind(item.id_wind);
+                            }
+                            scope2.Complete();
                         }
-                        weatherDAL.DeleteListForecast();
-                        weatherDAL.DeleteForecastWeather();
                     }
 
                     var idCoordenateCity = comumDal.GetCityInfo(objForecast.city);
@@ -155,7 +160,7 @@ namespace WeatherWiseApi.Code.BLL
                         foreach (var itemWeather in item.weather)
                         {
                             forecastDB.id_weather = comumDal.PostWeather(itemWeather);
-                            objForecast.id_listForecast = weatherDAL.PostListForecast(item);
+                            objForecast.id_listForecast = weatherDAL.PostListForecast(forecastDB);
                             weatherDAL.PostForecastWeather(objForecast);
                         }
                     }
