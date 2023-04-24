@@ -129,5 +129,27 @@ namespace WeatherWiseApi.Helpers
             }
             else { return false; }
         }
+
+        /// <summary>
+        /// Método para validar informações do alerta a ser criado
+        /// </summary>
+        /// <param name="objAlert"></param>
+        /// <returns></returns>
+        public bool ValidateObjAlert(Alert objAlert)
+        {
+            if (objAlert != null)
+            {
+                if (!String.IsNullOrEmpty(objAlert.email_user))
+                {
+                    if (objAlert.air_pollution_aqi == 0 && objAlert.precipitation == 0 && objAlert.wind_speed == 0 && objAlert.visibility == 0)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
     }
 }

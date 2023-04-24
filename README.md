@@ -167,3 +167,7 @@ Entre no link e divirta-se!
 | ------------ | ------------ | ------------ | ------------ |
 | [<img src="https://avatars.githubusercontent.com/u/76082388?v=4" width="100"><br><sub>@cerutti542</sub>](https://github.com/cerutti542)  | [<img src="https://avatars.githubusercontent.com/u/84159269?v=4" width="100"><br><sub>@carlos-000-carlos</sub>](https://github.com/carlos-000-carlos)  |  |  
 </div>
+
+<hr>
+
+![Alt Text](https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fpt%2FCtmQ&psig=AOvVaw15HS1xUg2dG8zQUwCKUwO_&ust=1682449770073000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLDnlPmbw_4CFQAAAAAdAAAAABAQ)

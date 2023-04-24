@@ -156,13 +156,13 @@ namespace WeatherWiseApi.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult InsertAlert(Alert alert)
+        public IActionResult InsertAlert(Alert objAlert)
         {
             try
             {
-                if (alert is not null)
+                if (new Comum().ValidateObjAlert(objAlert))
                 {
-                    var retorno = new WeatherBLL(_configuration).InsertAlert(alert);
+                    var retorno = new WeatherBLL(_configuration).InsertAlert(objAlert);
 
                     if (retorno != false)
                         return Ok(new ResponseApi(retorno, true, "Alerta cadastrado com sucesso!."));

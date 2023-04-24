@@ -4,59 +4,74 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Warning - WeatherWise</title>
+    <title>Warning - Weather Wise</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/site.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <style>
+        #divAlerta {
+            margin-top: 8%;
+        }
+    </style>
 </head>
 
 <body class="bg-gradient-primary">
     <div class="container">
-        <div class="card shadow-lg o-hidden border-0 my-5">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-flex">
-                        <div class="flex-grow-1 bg-register-image"
-                            style="background-image: url(&quot;assets/img/Weather%20Wise.png&quot;);"></div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4">Adicione um alerta</h4>
+        <div class="row justify-content-center">
+            <div id="divAlerta" class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5" style="margin-top: 10%;">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-5 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-register-image"
+                                    style="background-image: url(&quot;assets/img/Weather%20Wise.png&quot;);"></div>
                             </div>
-                            <form class="user">
-                                <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input
-                                            class="form-control form-control-user text-center" min="0" type="number"
-                                            id="windSpeedAlert" placeholder="Velocidade do vento (Km/h)"
-                                            name="wind_speed">
+                            <div class="col-lg-7">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Adicione um alerta</h4>
                                     </div>
-                                    <div class="col-sm-6"><input min="0" class="form-control form-control-user text-center"
-                                            type="number" id="preciptationAlert" placeholder="Precipitação (mm)"
-                                            name="precipitation">
-                                    </div>
+                                    <form class="user">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3 mb-sm-0"><input
+                                                    class="form-control form-control-user text-center" min="0"
+                                                    type="number" id="windSpeedAlert"
+                                                    placeholder="Velocidade do vento (Km/h)" name="wind_speed">
+                                            </div>
+                                            <div class="col-sm-6"><input min="0"
+                                                    class="form-control form-control-user text-center" type="number"
+                                                    id="preciptationAlert" placeholder="Precipitação (mm)"
+                                                    name="precipitation">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-6 mb-3 mb-sm-0"><input
+                                                    class="form-control form-control-user text-center" min="0"
+                                                    type="number" id="visibilityAlert" placeholder="Visibilidade (m)"
+                                                    name="visibility">
+                                            </div>
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <select name="airPollutionSituation" class="form-select text-center"
+                                                    id="airPollutionSituation">
+                                                    <option value="0">Poluição do ar</option>
+                                                    <option value="1">Bom</option>
+                                                    <option value="2">Normal</option>
+                                                    <option value="3">Moderado</option>
+                                                    <option value="4">Pobre</option>
+                                                    <option value="5">Muito Pobre</option>
+                                                </select>
+                                            </div>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="button"
+                                            onclick="registerAlert()">Registrar
+                                            alerta</button>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a class="small" href="dashboard.html">Voltar aos
+                                            Dashboards</a></div>
+                                    <div class="text-center"></div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input
-                                            class="form-control form-control-user text-center" min="0" type="number"
-                                            id="visibilityAlert" placeholder="Visibilidade (m)" name="visibility">
-                                    </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <select name="airPollutionSituation" class="form-select text-center" id="airPollutionSituation">
-                                            <option value="0">Poluição do ar</option>
-                                            <option value="1">Bom</option>
-                                            <option value="2">Normal</option>
-                                            <option value="3">Moderado</option>
-                                            <option value="4">Pobre</option>
-                                            <option value="5">Muito Pobre</option>
-                                        </select>
-                                    </div>
-                                </div><button class="btn btn-primary d-block btn-user w-100" type="button" onclick="registerAlert()">Registrar
-                                    alerta</button>
-                                <hr>
-                            </form>
-                            <div class="text-center"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
