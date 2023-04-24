@@ -44,5 +44,10 @@
         /// Pôr do Sol
         /// </summary>
         public int sunset { get; set; }
+
+        /// <summary>
+        /// Id de identificação no Banco de Dados sobre a coordenada da cidade
+        /// </summary>
+        public int id_coordenate { get; set; }
     }
 }

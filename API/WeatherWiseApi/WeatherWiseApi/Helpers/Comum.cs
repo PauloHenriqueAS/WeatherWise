@@ -111,5 +111,23 @@ namespace WeatherWiseApi.Helpers
             byte[] hashBytes = encryptor.ComputeHash(bytes);
             return BitConverter.ToString(hashBytes);
         }
+
+        /// <summary>
+        /// Método para validar informações do usuário
+        /// </summary>
+        /// <param name="objUser"></param>
+        /// <returns></returns>
+        public bool ValidateObjUser(User objUser)
+        {
+            if (objUser != null)
+            {
+                if (String.IsNullOrEmpty(objUser.name_user) || String.IsNullOrEmpty(objUser.password_user) || String.IsNullOrEmpty(objUser.email_user) || objUser.type_user == null)  
+                {
+                    return false;
+                }
+                else { return true; }
+            }
+            else { return false; }
+        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
+using WeatherWiseApi.Code.Model;
 using Microsoft.AspNetCore.Mvc;
 using WeatherWiseApi.Code.BLL;
-using System.Net;
-using WeatherWiseApi.Code.Model;
 using WeatherWiseApi.Helpers;
+using System.Net;
 
 namespace WeatherWiseApi.Controllers
 {
@@ -36,7 +36,6 @@ namespace WeatherWiseApi.Controllers
             {
                 if (!String.IsNullOrEmpty(objUser.email_user) && !String.IsNullOrEmpty(objUser.password_user))
                 {
-                    
                     User retorno = new UserBLL(_configuration).AuthorizeUser(objUser);
 
                     if (retorno is not null)
@@ -69,7 +68,6 @@ namespace WeatherWiseApi.Controllers
             {
                 if (!String.IsNullOrEmpty(email_user))
                 {
-
                     var retorno = new UserBLL(_configuration).GetUserInfo(email_user);
 
                     if (retorno is not null)
@@ -99,15 +97,14 @@ namespace WeatherWiseApi.Controllers
         {
             try
             {
-                if (objUser != null)
+                if (new Comum().ValidateObjUser(objUser))
                 {
-
                     var retorno = new UserBLL(_configuration).PostUser(objUser);
 
                     if (retorno != false)
-                        return Ok(new ResponseApi(retorno, true, "Cadastro realizado com sucesso!."));
+                        return Ok(new ResponseApi(retorno, true, "Cadastro realizado com sucesso!"));
                     else
-                        return BadRequest(new ResponseApi(retorno, false, "Não foi possível realizar cadastro do usuário"));
+                        return BadRequest(new ResponseApi(retorno, false, $"Usuário com o email: {objUser.email_user} já cadastrado no sistema."));
                 }
                 else
                 {
@@ -120,7 +117,7 @@ namespace WeatherWiseApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("PutUserInfo")]
         [SwaggerOperation("PutUserInfo")]
         [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
@@ -131,9 +128,8 @@ namespace WeatherWiseApi.Controllers
         {
             try
             {
-                if (!String.IsNullOrEmpty(objUser.email_user))
+                if (new Comum().ValidateObjUser(objUser))
                 {
-
                     var retorno = new UserBLL(_configuration).PutUser(objUser);
 
                     if (retorno != false)

@@ -100,10 +100,12 @@ namespace WeatherWiseApi.Controllers
             {
                 if (new Comum().ValidateObjCurrentWeather(objCurrentWeather))
                 {
-                    //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
+                    var retorno = new WeatherBLL(_configuration).PostCurrentWeather(objCurrentWeather);
 
-                    //return Ok(retorno);
-                    return null;
+                    if (retorno != null && retorno.StatusRetorno == true)
+                        return Ok(retorno);
+                    else
+                        return BadRequest(retorno);
                 }
                 else
                 {
@@ -129,10 +131,12 @@ namespace WeatherWiseApi.Controllers
             {
                 if (new Comum().ValidateObjForecastWeather(objForecast))
                 {
-                    //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
+                    var retorno = new WeatherBLL(_configuration).PostForecast(objForecast);
 
-                    //return Ok(retorno);
-                    return null;
+                    if (retorno != null && retorno.StatusRetorno == true)
+                        return Ok(retorno);
+                    else
+                        return BadRequest(retorno);
                 }
                 else
                 {

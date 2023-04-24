@@ -8,6 +8,8 @@ using System.Net;
 
 namespace WeatherWiseApi.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class AirPollutionController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -66,10 +68,12 @@ namespace WeatherWiseApi.Controllers
             {
                 if (new Comum().ValidateObjAirPollution(objAirPollution))
                 {
-                    //var retorno = new WeatherBLL(_configuration).GetCurrentWeather(coordinate);
+                    var retorno = new AirPollutionBLL(_configuration).PostAirPollution(objAirPollution);
 
-                    //return Ok(retorno);
-                    return null;
+                    if (retorno != null && retorno.StatusRetorno == true)
+                        return Ok(retorno);
+                    else
+                        return BadRequest(retorno);
                 }
                 else
                 {
