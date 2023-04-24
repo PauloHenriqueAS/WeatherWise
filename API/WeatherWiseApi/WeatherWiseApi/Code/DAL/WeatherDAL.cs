@@ -106,7 +106,6 @@ namespace WeatherWiseApi.Code.DAL
 
             try
             {
-
                 using (var connection = new NpgsqlConnection(base.ConnectionString))
                 {
                     connection.Open();
