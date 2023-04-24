@@ -314,7 +314,11 @@ namespace WeatherWiseApi.Code.DAL
                 using (var connection = new NpgsqlConnection(base.ConnectionString))
                 {
                     connection.Open();
-
+                    using (var command = new NpgsqlCommand(deletSql.ToString(), connection))
+                    {
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -332,22 +336,22 @@ namespace WeatherWiseApi.Code.DAL
         {
             var insertSql = new StringBuilder();
 
-            insertSql.AppendLine(" INSERT INTO ");
-            insertSql.AppendLine("     WS.TB_ALERT ( ");
-            insertSql.AppendLine("         EMAIL_USER, ");
-            insertSql.AppendLine("         WIND_SPEED, ");
-            insertSql.AppendLine("         VISIBILITY, ");
-            insertSql.AppendLine("         PRECIPTATION, ");
-            insertSql.AppendLine("         AIR_POLLUTION_AQI ");
-            insertSql.AppendLine("     ) ");
-            insertSql.AppendLine(" VALUES ");
-            insertSql.AppendLine("     ( ");
-            insertSql.AppendLine("         @EMAIL_USER, ");
-            insertSql.AppendLine("         @WIND_SPEED, ");
-            insertSql.AppendLine("         @VISIBILITY, ");
-            insertSql.AppendLine("         @PRECIPTATION, ");
+            insertSql.AppendLine(" INSERT INTO                ");
+            insertSql.AppendLine("     WS.TB_ALERT (          ");
+            insertSql.AppendLine("         EMAIL_USER,        ");
+            insertSql.AppendLine("         WIND_SPEED,        ");
+            insertSql.AppendLine("         VISIBILITY,        ");
+            insertSql.AppendLine("         PRECIPTATION,      ");
+            insertSql.AppendLine("         AIR_POLLUTION_AQI  ");
+            insertSql.AppendLine("     )                      ");
+            insertSql.AppendLine(" VALUES                     ");
+            insertSql.AppendLine("     (                      ");
+            insertSql.AppendLine("         @EMAIL_USER,       ");
+            insertSql.AppendLine("         @WIND_SPEED,       ");
+            insertSql.AppendLine("         @VISIBILITY,       ");
+            insertSql.AppendLine("         @PRECIPTATION,     ");
             insertSql.AppendLine("         @AIR_POLLUTION_AQI ");
-            insertSql.AppendLine("     ) ");
+            insertSql.AppendLine("     )                      ");
 
             try
             {
@@ -363,11 +367,6 @@ namespace WeatherWiseApi.Code.DAL
                         command.Parameters.AddWithValue("@PRECIPTATION", alert.precipitation);
                         command.Parameters.AddWithValue("@AIR_POLLUTION_AQI", alert.air_pollution_aqi);
 
-                        return command.ExecuteNonQuery() > 0;
-                    }
-                }
-                    using (var command = new NpgsqlCommand(deletSql.ToString(), connection))
-                    {
                         return command.ExecuteNonQuery() > 0;
                     }
                 }
