@@ -7,7 +7,7 @@ namespace WsRoutine.Helpers
 {
     public class DataBase : IDisposable
     {
-        private readonly IConfiguration _configuration;
+        private readonly IConfigurationBuilder _configuration;
         /// <summary>
         /// Instância da base de dados.
         /// </summary>
@@ -26,10 +26,9 @@ namespace WsRoutine.Helpers
         /// <summary>
         /// Busca a configuração padrão da Web Config.
         /// </summary>
-        public DataBase(IConfiguration configuration)
+        public DataBase()
         {
-            _configuration = configuration;
-            this.ConnectionString = ConnnectionsStrings.GetDatabaseConnectionString(configuration);
+            this.ConnectionString = ConnnectionsStrings.GetDatabaseConnectionString();
         }
 
         public void Dispose()

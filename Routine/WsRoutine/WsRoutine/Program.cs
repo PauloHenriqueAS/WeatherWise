@@ -1,13 +1,18 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.Globalization;
+using System.IO;
 using WsRoutine.Code.BLL;
+using WsRoutine.Code.Model;
 using WsRoutine.Helpers;
 
 namespace WsRoutine
 {
 
-    class Program
+    public class Program
     {
+
         static void Main(string[] args)
         {
             CultureInfo culture = new CultureInfo("pt-BR");
@@ -17,6 +22,9 @@ namespace WsRoutine
             try
             {
                 Log.InicioProcesso();
+
+                var configurationBuilder = new ConfigurationBuilder();
+                var path = $"{AppDomain.CurrentDomain.BaseDirectory}";
 
                 new WsRoutineBLL().Processar();
 

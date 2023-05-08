@@ -9,8 +9,6 @@ namespace WsRoutine.Code.DAL
 {
     public class AirPollutionDAL : DataBase
     {
-        public AirPollutionDAL(IConfiguration configuration) : base(configuration) { }
-
         #region INSERTS
 
         /// <summary>

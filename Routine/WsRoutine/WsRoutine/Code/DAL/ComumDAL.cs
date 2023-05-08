@@ -10,8 +10,6 @@ namespace WsRoutine.Code.DAL
 {
     public class ComumDAL : DataBase
     {
-        public ComumDAL(IConfiguration configuration) : base(configuration) { }
-
         #region GET
         /// <summary>
         /// Consulta Identificação de coordenada caso exista já no banco de dados

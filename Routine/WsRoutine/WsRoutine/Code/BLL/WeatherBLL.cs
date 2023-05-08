@@ -12,13 +12,6 @@ namespace WsRoutine.Code.BLL
     /// </summary>
     public class WeatherBLL
     {
-        private readonly IConfiguration _configuration;
-
-        public WeatherBLL(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         /// <summary>
         /// Consultar informações do tempo atual
         /// </summary>
@@ -26,7 +19,7 @@ namespace WsRoutine.Code.BLL
         /// <returns></returns>
         public CurrentWeather GetCurrentWeather(Coordinate coordinate)
         {
-            var result = new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
+            var result = new OpenWeatherApi().GetCurrentWeather(coordinate);
             return result;
         }
 
@@ -37,7 +30,7 @@ namespace WsRoutine.Code.BLL
         /// <returns></returns>
         public Forecast GetForecastWeather(Coordinate coordinate)
         {
-            return new OpenWeatherApi(_configuration).GetForecastWeather(coordinate);
+            return new OpenWeatherApi().GetForecastWeather(coordinate);
         }
 
         /// <summary>
@@ -50,9 +43,9 @@ namespace WsRoutine.Code.BLL
             RetornoObj retornoObj = new RetornoObj();
             try
             {
-                WeatherDAL weatherDAL = new WeatherDAL(_configuration);
+                WeatherDAL weatherDAL = new WeatherDAL();
                 CurrentWeatherDB weatherDB = new CurrentWeatherDB();
-                ComumDAL comumDal = new ComumDAL(_configuration);
+                ComumDAL comumDal = new ComumDAL();
 
                 retornoObj.obj = currentWeather;
                 weatherDB._base = (!String.IsNullOrEmpty(currentWeather._base)) ? currentWeather._base : " ";
@@ -97,8 +90,8 @@ namespace WsRoutine.Code.BLL
             RetornoObj retornoObj = new RetornoObj();
             try
             {
-                WeatherDAL weatherDAL = new WeatherDAL(_configuration);
-                ComumDAL comumDal = new ComumDAL(_configuration);
+                WeatherDAL weatherDAL = new WeatherDAL();
+                ComumDAL comumDal = new ComumDAL();
 
                 retornoObj.obj = objForecast;
 

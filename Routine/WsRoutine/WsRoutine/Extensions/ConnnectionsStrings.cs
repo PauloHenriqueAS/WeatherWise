@@ -14,30 +14,35 @@ namespace WsRoutine.Extensions
         /// </summary>
         public static string ConfigName { get; set; }
 
-        public static string GetApiKey(IConfiguration configuration, string ApiName)
+        public static string GetApiKey(string ApiName)
         {
-            ConfigPath = configuration.GetSection("ConfigPath").Value;
-            ConfigName = configuration.GetSection("ConfigName").Value;
+            IConfiguration configDatabase = new ConfigurationBuilder()
+                               .SetBasePath("C:\\WeatherApiConfig")
+                               .AddJsonFile("weather.api.json", optional: true, reloadOnChange: true)
+                               .Build();
 
-            IConfiguration configApi = new ConfigurationBuilder()
-                                .SetBasePath(ConfigPath)
-                                .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
-                                .Build();
-
-            return ConfigurationExtensions.GetConnectionString(configApi, $"{ApiName}Key");
+            return ConfigurationExtensions.GetConnectionString(configDatabase, $"{ApiName}Key");
         }
 
-        public static string GetDatabaseConnectionString(IConfiguration configuration)
+        public static string GetDatabaseConnectionString()
         {
-            ConfigPath = configuration.GetSection("ConfigPath").Value;
-            ConfigName = configuration.GetSection("ConfigName").Value;
-
             IConfiguration configDatabase = new ConfigurationBuilder()
-                                .SetBasePath(ConfigPath)
-                                .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
+                                .SetBasePath("C:\\WeatherApiConfig")
+                                .AddJsonFile("weather.api.json", optional: true, reloadOnChange: true)
                                 .Build();
 
-            return ConfigurationExtensions.GetConnectionString(configDatabase, "Database");
+            return ConfigurationExtensions.GetConnectionString(configDatabase, "Database"); ;
+        }
+
+        public static string GetRootCOnfigProperties(string key)
+        {
+            var baseTop = AppDomain.CurrentDomain.BaseDirectory;
+            IConfiguration configDatabase = new ConfigurationBuilder()
+                                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                .Build();
+
+            return ConfigurationExtensions.GetConnectionString(configDatabase, key);
         }
     }
 }

@@ -5,10 +5,6 @@ using RestSharp;
 namespace WsRoutine.Api;
 public class Api
 {
-    /// <summary>
-    /// CONFIGURATION INFORMATIONS
-    /// </summary>
-    public IConfiguration _configuration { get; set; }
 
     /// <summary>
     /// URL
@@ -34,6 +30,7 @@ public class Api
     /// REQUEST
     /// </summary>
     public RestRequest? REQUEST { get; set; }
+
 
     public T Get<T>(string uri, Dictionary<string, string>? headers = null)
     {

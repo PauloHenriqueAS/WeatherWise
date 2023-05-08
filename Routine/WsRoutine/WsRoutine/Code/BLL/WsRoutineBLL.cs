@@ -9,10 +9,6 @@ namespace WsRoutine.Code.BLL
     /// </summary>
     public class WsRoutineBLL
     {
-        private readonly IConfiguration _configuration;
-
-       
-
         public void Processar()
         {
             try
@@ -20,8 +16,8 @@ namespace WsRoutine.Code.BLL
                 Log.Salvar("INICI DO PROCESSAMENTO");
                 Log.Salvar("Consultando a lista de pontos importantes de Uberlândia.");
                 List<Coordinate> listCoordenates = new Coordinate().GetListCoordenatesUberlandia();
-                AirPollutionBLL airPollutionBLL = new AirPollutionBLL(_configuration);
-                WeatherBLL weatherBLL = new WeatherBLL(_configuration);
+                AirPollutionBLL airPollutionBLL = new AirPollutionBLL();
+                WeatherBLL weatherBLL = new WeatherBLL();
 
                 foreach (var itemCoordenate in listCoordenates)
                 {

@@ -30,10 +30,10 @@
             ConfigPath = configuration.GetSection("ConfigPath").Value;
             ConfigName = configuration.GetSection("ConfigName").Value;
 
-            IConfiguration configDatabase = new ConfigurationBuilder()
-                                .SetBasePath(ConfigPath)
-                                .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
-                                .Build();
+                IConfiguration configDatabase = new ConfigurationBuilder()
+                                    .SetBasePath(ConfigPath)
+                                    .AddJsonFile(ConfigName, optional: true, reloadOnChange: true)
+                                    .Build();
 
             return ConfigurationExtensions.GetConnectionString(configDatabase, "Database");
         }

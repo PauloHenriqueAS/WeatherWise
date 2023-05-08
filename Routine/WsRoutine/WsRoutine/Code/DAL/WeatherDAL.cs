@@ -10,8 +10,6 @@ namespace WsRoutine.Code.DAL
 {
     public class WeatherDAL : DataBase
     {
-        public WeatherDAL(IConfiguration configuration) : base(configuration) { }
-
         #region GETS
         /// <summary>
         /// Consulta de Ids 

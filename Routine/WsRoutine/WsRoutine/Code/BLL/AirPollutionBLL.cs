@@ -12,13 +12,6 @@ namespace WsRoutine.Code.BLL
     /// </summary>
     public class AirPollutionBLL
     {
-        private readonly IConfiguration _configuration;
-
-        public AirPollutionBLL(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         /// <summary>
         /// Consultar informações da poluição do ar
         /// </summary>
@@ -26,7 +19,7 @@ namespace WsRoutine.Code.BLL
         /// <returns></returns>
         public AirPollution GetAirPollution(Coordinate coordinate)
         {
-            var result = new OpenWeatherApi(_configuration).GetAirPollution(coordinate);
+            var result = new OpenWeatherApi().GetAirPollution(coordinate);
             result.air_pollution_description = GetAirPollutionSituationDescription(result.list.FirstOrDefault()!.main.aqi);
 
             return result;
@@ -61,9 +54,9 @@ namespace WsRoutine.Code.BLL
             RetornoObj retornoObj = new RetornoObj();
             try
             {
-                AirPollutionDAL airDal = new AirPollutionDAL(_configuration);
+                AirPollutionDAL airDal = new AirPollutionDAL();
                 AirPollutionDB airPollutionDB = new AirPollutionDB();
-                ComumDAL comumDal = new ComumDAL(_configuration);
+                ComumDAL comumDal = new ComumDAL();
 
                 retornoObj.obj = airPollution;
                 airPollutionDB.data_save = DateTime.Now;
