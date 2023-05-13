@@ -71,7 +71,12 @@ namespace WeatherWiseApi.Code.BLL
 
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    airPollutionDB.id_coordenate = comumDal.PostCoordenate(airPollution.coord);
+                    int idCord = comumDal.GetCoordenateInfo(airPollution.coord);
+
+                    if (idCord == 0)
+                        airPollutionDB.id_coordenate = comumDal.PostCoordenate(airPollution.coord);
+                    else
+                        airPollutionDB.id_coordenate = idCord;
 
                     foreach (var item in airPollution.list)
                     {

@@ -75,7 +75,13 @@ namespace WeatherWiseApi.Code.BLL
 
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    weatherDB.id_coordate = comumDal.PostCoordenate(currentWeather.coord);
+                    int idCord = comumDal.GetCoordenateInfo(currentWeather.coord);
+
+                    if (idCord == 0)
+                        weatherDB.id_coordate = comumDal.PostCoordenate(currentWeather.coord);
+                    else
+                        weatherDB.id_coordate = idCord;
+
                     weatherDB.id_main = comumDal.PostMain(currentWeather.main);
                     weatherDB.id_wind = comumDal.PostWind(currentWeather.wind);
                     weatherDB.id_clouds = comumDal.PostClouds(currentWeather.clouds);
@@ -140,7 +146,14 @@ namespace WeatherWiseApi.Code.BLL
                         objForecast.id_city = idCoordenateCity;
                     else
                     {
-                        objForecast.city.id_coordenate = comumDal.PostCoordenate(objForecast.city.coord);
+                        int idCord = comumDal.GetCoordenateInfo(objForecast.city.coord);
+
+                        if (idCord == 0)
+                            objForecast.city.id_coordenate = comumDal.PostCoordenate(objForecast.city.coord);
+                        else
+                            objForecast.city.id_coordenate = idCord;
+
+
                         objForecast.id_city = comumDal.PostCity(objForecast.city);
                     }
 
