@@ -13,7 +13,7 @@ namespace WsRoutine.Code.BLL
         {
             try
             {
-                Log.Salvar("INICI DO PROCESSAMENTO");
+                Log.Salvar("INICIO DO PROCESSAMENTO");
                 Log.Salvar("Consultando a lista de pontos importantes de Uberlândia.");
                 List<Coordinate> listCoordenates = new Coordinate().GetListCoordenatesUberlandia();
                 AirPollutionBLL airPollutionBLL = new AirPollutionBLL();
