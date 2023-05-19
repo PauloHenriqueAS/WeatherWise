@@ -126,10 +126,9 @@ namespace WeatherWiseApi.Code.DAL
             selectSql.AppendLine("       HIST.NOM_LOCATE                            ");
             selectSql.AppendLine("  FROM ws.\"tb_historicCoordenatesUser\" HIST     ");
             selectSql.AppendLine("  INNER JOIN WS.TB_COORDENATES COORD              ");
-            selectSql.AppendLine("                                                  ");
             selectSql.AppendLine("      ON COORD.id_coordenate = HIST.id_coordenate ");
             selectSql.AppendLine(" WHERE                                            ");
-            selectSql.AppendLine("      ID_USER = @ID_USER                          ");
+            selectSql.AppendLine("      ID_USER = @IDUSER                           ");
 
             try
             {
@@ -139,19 +138,22 @@ namespace WeatherWiseApi.Code.DAL
 
                     using (var command = new NpgsqlCommand(selectSql.ToString(), connection))
                     {
-                        command.Parameters.AddWithValue("@ID_USER", idUser);
+                        command.Parameters.AddWithValue("@IDUSER", idUser);
 
                         var results = new List<Coordinate>();
                         using (var reader = command.ExecuteReader())
                         {
-                            var model = new Coordinate
+                            while (reader.Read())
                             {
-                                Lat = reader.GetFieldValue<double>("LAT"),
-                                Lon = reader.GetFieldValue<double>("LON"),
-                                DisplayName = reader.GetFieldValue<String>("NOM_LOCATE")
-                            };
+                                var model = new Coordinate
+                                {
+                                    Lat = reader.GetFieldValue<double>("LAT"),
+                                    Lon = reader.GetFieldValue<double>("LON"),
+                                    DisplayName = reader.GetFieldValue<String>("NOM_LOCATE")
+                                };
 
-                            results.Add(model);
+                                results.Add(model);
+                            }
                         }
                         return results;
                     }

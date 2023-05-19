@@ -18,5 +18,7 @@
     {
         public Coordinate? coordenate { get; set; }
         public string? email_user { get; set; }
+
+        public Coordinate? coordenateNew { get; set; }
     }
 }
