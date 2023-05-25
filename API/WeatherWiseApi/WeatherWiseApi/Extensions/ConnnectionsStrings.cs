@@ -25,7 +25,7 @@
             return ConfigurationExtensions.GetConnectionString(configApi, $"{ApiName}Key");
         }
 
-        public static string GetDatabaseConnectionString(IConfiguration configuration)
+        public static string GetDatabaseConnectionString(IConfiguration configuration)  
         {
             ConfigPath = configuration.GetSection("ConfigPath").Value;
             ConfigName = configuration.GetSection("ConfigName").Value;

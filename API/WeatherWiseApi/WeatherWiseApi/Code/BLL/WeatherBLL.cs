@@ -28,6 +28,10 @@ namespace WeatherWiseApi.Code.BLL
             var result = new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
             return result;
         }
+        public List<Alert> GetAlertByUser(string email_user)
+        {
+            return new WeatherDAL(_configuration).GetAlertByUser(email_user);
+        }
 
         /// <summary>
         /// Inserir as alertas

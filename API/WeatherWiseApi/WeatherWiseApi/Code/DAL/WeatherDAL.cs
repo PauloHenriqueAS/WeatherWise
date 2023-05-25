@@ -65,6 +65,56 @@ namespace WeatherWiseApi.Code.DAL
                 throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
             }
         }
+
+
+        /// <summary>
+        /// Consulta de Ids 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public List<Alert> GetAlertByUser(string user_email)
+        {
+            var selectSql = new StringBuilder();
+            selectSql.AppendLine(" SELECT WIND_SPEED, VISIBILITY, AIR_POLLUTION_AQI, PRECIPTATION  ");
+            selectSql.AppendLine("      FROM WS.TB_ALERT                                           ");
+            selectSql.AppendLine("          WHERE EMAIL_USER = @EMAIL_USER                         ");
+
+            try
+            {
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new NpgsqlCommand(selectSql.ToString(), connection))
+                    {
+                        var results = new List<Alert>();
+                        command.Parameters.AddWithValue("@EMAIL_USER", user_email);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var model = new Alert
+                                {
+                                    wind_speed = reader.GetFieldValue<double>("wind_speed"),
+                                    visibility = reader.GetFieldValue<double>("visibility"),
+                                    air_pollution_aqi = reader.GetFieldValue<int>("air_pollution_aqi"),
+                                    preciptation = reader.GetFieldValue<double>("preciptation"),
+                                };
+
+                                results.Add(model);
+                            }
+                        }
+
+                        return results;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region INSERTS
@@ -364,7 +414,7 @@ namespace WeatherWiseApi.Code.DAL
                         command.Parameters.AddWithValue("@EMAIL_USER", alert.email_user);
                         command.Parameters.AddWithValue("@WIND_SPEED", alert.wind_speed);
                         command.Parameters.AddWithValue("@VISIBILITY", alert.visibility);
-                        command.Parameters.AddWithValue("@PRECIPTATION", alert.precipitation);
+                        command.Parameters.AddWithValue("@PRECIPTATION", alert.preciptation);
                         command.Parameters.AddWithValue("@AIR_POLLUTION_AQI", alert.air_pollution_aqi);
 
                         return command.ExecuteNonQuery() > 0;
