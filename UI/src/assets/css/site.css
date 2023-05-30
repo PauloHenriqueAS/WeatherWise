@@ -11,3 +11,13 @@
 .warning-button:hover{
     cursor: pointer;
 }
+
+/* colors */
+.bg-orange {
+    background-color: rgb(255, 145, 0);
+}
+
+.bg-purple {
+    background-color: rgb(148, 0, 161);
+}
+/* # colors */

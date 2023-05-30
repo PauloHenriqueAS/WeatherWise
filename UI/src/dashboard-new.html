@@ -21,32 +21,6 @@
         #iconRegistro {
             margin-right: 5%;
         }
-
-        /* regua */
-        .regua .col-2,
-        .regua-card .card-body {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        .regua-card {
-            height: 50px;
-        }
-
-        .regua-card .card-body {
-            margin-top: -5px;
-        }
-
-        .regua-card .card-body .card-title,
-        .regua-card .card-body .card-subtitle {
-            font-size: smaller;
-        }
-
-        .disabled-card {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        /* # regua */
     </style>
 </head>
 
@@ -234,72 +208,18 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-1">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <h3 class="text-dark mb-0">Dashboard</h3>
                         <button class="btn btn-warning btn-icon-split warning-button"
                             data-bss-hover-animate="pulse" type="button" onclick="location.href = 'warning.html'"><span class="text-white-50 icon"><i
                                     class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Criar Alerta</span>
-                        </button>
+                            </button>
 
-                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block"role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
-                        Relatório (.csv)</a>
+
+                            <a class="btn btn-primary btn-sm d-none d-sm-inline-block"role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
+                            Relatório (.csv)</a>
                     </div>
-
-                    <!-- regua de ranges -->
-                    <div class="row no-gutters regua">
-                        <div class="col-2">
-                            <div class="card regua-card bg-light text-black disabled-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">Qualidade do ar</h6>
-                                    <h6 class="card-subtitle">Índice</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card regua-card bg-success text-black disabled-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">N1 - Boa</h6>
-                                    <h6 class="card-subtitle">0 - 40</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card regua-card bg-warning text-black disabled-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">N2 - Moderada</h6>
-                                    <h6 class="card-subtitle">41 - 80</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card regua-card bg-orange text-black disabled-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">N3 - Ruim</h6>
-                                    <h6 class="card-subtitle">81 - 120</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card regua-card bg-danger text-white">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">N4 - Bem Ruim</h6>
-                                    <h6 class="card-subtitle">121 - 200</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card regua-card bg-purple text-white disabled-card">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">N5 - Péssima</h6>
-                                    <h6 class="card-subtitle">> 200</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- # regua de ranges -->
-
-                    <!-- cards informativos -->
-                    <!-- <div class="row mt-1">
+                    <div class="row">
                         <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-primary py-2">
                                 <div class="card-body">
@@ -391,28 +311,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
-                    <!-- # cards informativos -->
-
-                    <!-- mapa de regioes -->
-                    <div class="row  justify-content-center mt-1">
-                        <div class="col-lg-6 col-xl-6">
-                            <div class="card shadow mb-3">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Uberlândia</h6>
-                                </div>
-                                <div class="card-body position-relative">
-                                    <img src="assets/img/mapa_geral_sem_fundo.png">
-                                    <button class="btn btn-primary position-absolute top-20 start-0">Button 1</button>
-                                    <button class="btn btn-secondary position-absolute top-50 start-50 translate-middle">Button 2</button>
-                                    <button class="btn btn-danger position-absolute bottom-0 end-0">Button 3</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <!-- # mapa de regioes -->
-
-                    <div class="row mt-1">
+                    <div class="row">
                         <div class="col-lg-12 col-xl-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
