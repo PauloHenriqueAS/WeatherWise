@@ -471,13 +471,13 @@ namespace WsRoutine.Code.DAL
                     {
                         command.Parameters.AddWithValue("@TYPE", objSys.type);
                         command.Parameters.AddWithValue("@ID", objSys.id);
-                        command.Parameters.AddWithValue("@COUNTRY", objSys.country);
+                        command.Parameters.AddWithValue("@COUNTRY", (string.IsNullOrEmpty(objSys.country) ? " " : objSys.country));
                         command.Parameters.AddWithValue("@SUNRISE", objSys.sunrise);
                         command.Parameters.AddWithValue("@SUNSET", objSys.sunset);
 
                         return Convert.ToInt32(command.ExecuteScalar());
                     }
-                }
+                } 
             }
             catch (Exception ex)
             {
@@ -560,7 +560,9 @@ namespace WsRoutine.Code.DAL
         public int PostRain(Rain objRain)
         {
             var insertSql = new StringBuilder();
-
+            if(objRain == null)
+                objRain = new Rain();
+            
             insertSql.AppendLine(" INSERT INTO                ");
             insertSql.AppendLine("     WS.TB_RAIN (           ");
             insertSql.AppendLine("         ID_RAIN,           ");
@@ -581,7 +583,7 @@ namespace WsRoutine.Code.DAL
 
                     using (var command = new NpgsqlCommand(insertSql.ToString(), connection))
                     {
-                        command.Parameters.AddWithValue("@3H", objRain._3h);
+                        command.Parameters.AddWithValue("@3H", (objRain._3h == null) ? 0 : objRain._3h);
 
                         return Convert.ToInt32(command.ExecuteScalar());
                     }

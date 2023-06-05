@@ -1,10 +1,10 @@
-#airPollutionSituation{
+#airPollutionSituation, #WeatherRegion{
     border-radius: 10rem;
     padding: 1rem;
     font-size: .8rem;
 }
 
-#airPollutionSituation:hover{
+#airPollutionSituation:hover, #WeatherRegion:hover{
     cursor: pointer;
 }
 
@@ -21,3 +21,15 @@
     background-color: rgb(148, 0, 161);
 }
 /* # colors */
+
+.desactivate-power-button{
+    color: red;
+}
+
+.activate-power-button{
+    color: green;
+}
+
+.activate-power-button:hover, .desactivate-power-button:hover{
+    cursor: pointer;
+}

@@ -36,7 +36,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-6 mb-3 mb-sm-0"><input
                                                     class="form-control form-control-user text-center" min="0"
-                                                    type="number" id="windSpeedAlert"
+                                                    type="number" id="windSpeedAlert" title="Máxima (20 km/h)"
                                                     placeholder="Velocidade do vento (Km/h)" name="wind_speed">
                                             </div>
                                             <div class="col-sm-6"><input min="0"
@@ -62,7 +62,20 @@
                                                     <option value="5">Muito Pobre</option>
                                                 </select>
                                             </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="button"
+                                        </div>
+                                        <div class="row mb-3">
+                                            
+                                            <div class="col-sm-9 mb-3 mb-sm-0 mx-auto">
+                                                <select name="WeatherRegion" class="form-select text-center"
+                                                    id="WeatherRegion">
+                                                    <option value="0">Região</option>
+                                                    <option value="1">Norte</option>
+                                                    <option value="2">Sul</option>
+                                                    <option value="3">Centro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary d-block btn-user w-100" type="button"
                                             onclick="registerAlert()">Registrar
                                             alerta</button>
                                         <hr>
