@@ -11,6 +11,9 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/site.css">
     <style>
         #iconDashboard,
         #iconPerfil,
@@ -208,86 +211,7 @@
                             <p class="text-primary m-0 fw-bold">Relatórios gerados</p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                        <label class="form-label">Mostrar&nbsp;<select
-                                                class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label
-                                            class="form-label"><input type="search" class="form-control form-control-sm"
-                                                aria-controls="dataTable" placeholder="Buscar"></label></div>
-                                </div>
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid"
-                                aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Conteúdo</th>
-                                            <th>Data Início</th>
-                                            <th>Data Fim</th>
-                                            <th>Região</th>
-                                            <th>Criado em</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>chuvas janeiro</td>
-                                            <td>Precipitação</td>
-                                            <td>01/01/2023</td>
-                                            <td>31/01/2023</td>
-                                            <td>Todas</td>
-                                            <td>17/02/2023</td>
-                                        </tr>
-                                        <tr>
-                                            <td>geral 3 trimestre</td>
-                                            <td>Precipitação; Ventos; Poluição; Temperatura</td>
-                                            <td>01/07/2022</td>
-                                            <td>30/09/2022</td>
-                                            <td>Todas</td>
-                                            <td>15/10/2022</td>
-                                        </tr>
-                                        <tr>
-                                            <td>poluicao norte</td>
-                                            <td>Poluição; Temperatura</td>
-                                            <td>01/01/2023</td>
-                                            <td>20/03/2023</td>
-                                            <td>Norte</td>
-                                            <td>01/04/2023</td>
-                                        </tr>
-                                        <tr></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
-                                        Mostrando 1 a 3 de 3</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav
-                                        class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous"
-                                                    href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
-                                                        aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
+                            <table id="reportTable" class="display" width="100%"></table>
                         </div>
                     </div>
                 </div>
@@ -306,6 +230,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="./clientApp/partialReport.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>

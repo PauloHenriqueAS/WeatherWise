@@ -11,3 +11,15 @@
 .warning-button:hover{
     cursor: pointer;
 }
+
+.desactivate-power-button{
+    color: red;
+}
+
+.activate-power-button{
+    color: green;
+}
+
+.activate-power-button:hover, .desactivate-power-button:hover{
+    cursor: pointer;
+}

@@ -95,10 +95,10 @@ namespace WeatherWiseApi.Code.DAL
                             {
                                 var model = new Alert
                                 {
-                                    wind_speed = reader.GetFieldValue<double>("wind_speed"),
-                                    visibility = reader.GetFieldValue<double>("visibility"),
-                                    air_pollution_aqi = reader.GetFieldValue<int>("air_pollution_aqi"),
-                                    preciptation = reader.GetFieldValue<double>("preciptation"),
+                                    wind_speed = reader.GetFieldValue<double?>("WIND_SPEED"),
+                                    visibility = reader.GetFieldValue<double?>("VISIBILITY"),
+                                    air_pollution_aqi = reader.GetFieldValue<int?>("AIR_POLLUTION_AQI"),
+                                    preciptation = reader.GetFieldValue<double?>("PRECIPTATION"),
                                 };
 
                                 results.Add(model);

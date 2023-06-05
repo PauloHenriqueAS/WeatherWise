@@ -34,7 +34,7 @@ function createNewLoginUser() {
 }
 
 function storeUserOnLocalStorage(user) {
-    sessionStorage.setItem("userData", JSON.stringify(user))
+    localStorage.setItem("userData", JSON.stringify(user))
 }
 
 function LoginUser() {

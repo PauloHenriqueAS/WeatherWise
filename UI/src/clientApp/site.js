@@ -22,16 +22,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 function isSessionOn() {
-    const user = sessionStorage.getItem("userData");
+    const user = localStorage.getItem("userData");
     return user != null && user != '' && user != undefined;
 }
 
 function clearSession() {
-    sessionStorage.removeItem("userData");
+    localStorage.removeItem("userData");
 }
 
 function getUserData(){
-    const user = sessionStorage.getItem("userData")
+    const user = localStorage.getItem("userData")
 
     return JSON.parse(user);
 }

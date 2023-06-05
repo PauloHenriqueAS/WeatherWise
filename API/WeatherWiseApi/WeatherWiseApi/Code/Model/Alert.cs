@@ -26,4 +26,9 @@ public class Alert
     /// Precipitação
     /// </summary>
     public double? preciptation { get; set; } = 0;
+    
+    /// <summary>
+    /// Data de desativação 
+    /// </summary>
+    public DateTime? desactivationDate { get; set; }
 }
