@@ -66,6 +66,61 @@ namespace WeatherWiseApi.Code.DAL
             }
         }
 
+        public List<WindStatistics> GetWindAllStatistics()
+        {
+            var cmdSql = new StringBuilder();
+
+            cmdSql.AppendLine(" SELECT LAT, LON, SPEED, DATE_WEATHER              ");
+            cmdSql.AppendLine(" 	FROM WS.\"tb_currentWeather\" WEA             ");
+            cmdSql.AppendLine(" 	INNER JOIN WS.TB_WIND AS WIN                  ");
+            cmdSql.AppendLine(" 		ON WEA.ID_WIND = WIN.ID_WIND              ");
+            cmdSql.AppendLine(" 	INNER JOIN WS.TB_COORDENATES COOR             ");
+            cmdSql.AppendLine(" 		ON COOR.ID_COORDENATE = WEA.ID_COORDENATE ");
+
+            using (var connection = new NpgsqlConnection(base.ConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new NpgsqlCommand(cmdSql.ToString(), connection))
+                {
+                    var results = new List<WindStatistics>();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(new WindStatistics
+                            {
+                                Lat = reader.GetFieldValue<double>("LAT"),
+                                Lon = reader.GetFieldValue<double>("LON"),
+                                Speed = reader.GetFieldValue<double>("SPEED"),
+                                DateWeather = reader.GetFieldValue<DateTime>("DATE_WEATHER"),
+                            });
+                        }
+                    }
+
+                    return results;
+                }
+            }
+        }
+
+
+        public List<WindStatistics> GetWindStatisticsByRegion()
+        {
+            var allStatisticWindData = GetWindAllStatistics();
+
+            var groupedStatistic = (from item in allStatisticWindData
+                                    group item by item.Lat into Group
+                                    select new WindStatistics
+                                    {
+                                        Lat = Group.FirstOrDefault().Lat,
+                                        Lon = Group.FirstOrDefault().Lon,
+                                        Speed = Group.FirstOrDefault().Speed,
+                                        DateWeather = Group.FirstOrDefault().DateWeather
+                                    }).ToList();
+
+            return groupedStatistic;
+        }
 
         /// <summary>
         /// Consulta de Ids 
@@ -75,7 +130,7 @@ namespace WeatherWiseApi.Code.DAL
         public List<Alert> GetAlertByUser(string user_email)
         {
             var selectSql = new StringBuilder();
-            selectSql.AppendLine(" SELECT WIND_SPEED, VISIBILITY, AIR_POLLUTION_AQI, PRECIPTATION  ");
+            selectSql.AppendLine(" SELECT WIND_SPEED, VISIBILITY, AIR_POLLUTION_AQI, PRECIPTATION, \"desactivationDate\"  ");
             selectSql.AppendLine("      FROM WS.TB_ALERT                                           ");
             selectSql.AppendLine("          WHERE EMAIL_USER = @EMAIL_USER                         ");
 
@@ -99,6 +154,7 @@ namespace WeatherWiseApi.Code.DAL
                                     visibility = reader.GetFieldValue<double?>("VISIBILITY"),
                                     air_pollution_aqi = reader.GetFieldValue<int?>("AIR_POLLUTION_AQI"),
                                     preciptation = reader.GetFieldValue<double?>("PRECIPTATION"),
+                                    desactivationDate = reader.GetFieldValue<DateTime?>("DESACTIVATIONDATE"),
                                 };
 
                                 results.Add(model);
