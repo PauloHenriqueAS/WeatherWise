@@ -14,7 +14,6 @@ function getFavoriteLocations() {
         .then((response) => response.json())
         .then((result) => {
             if (result.success) {
-                console.log(result.data);
                 buildDatatable(result.data);
             } else {
                 throw new Error('Erro na consulta das localidades favoritas');
@@ -26,7 +25,6 @@ function getFavoriteLocations() {
                 'Erro na consulta das localidades favoritas',
                 'error'
             );
-            console.error(error);
         });
 }
 
@@ -47,7 +45,6 @@ function buildDatatable(favoritesData) {
                 data: 'displayName',
                 className: 'text-center',
                 render: function (data, type, row) {
-                    console.log("DATA LOCALIDADE", data);
                     return `${data}`;
                 }
             },
@@ -74,17 +71,34 @@ function buildDatatable(favoritesData) {
                 }
             },
             {
-                title: 'Ações',
+                title: 'Status',
                 data: 'desactivationDate',
                 className: 'text-center',
                 render: function (data, type, row) {
                     if (data == null) {
-                        return 'ativado';
+                        return `<i class="fas fa-power-off activate-power-button" style="color:green" title="Clique para desativar" onclick="activateDesactivateFavorite(${false})"></i>`;
                     } else {
-                        return 'desativado';
+                        return `<i class="fas fa-power-off desactivate-power-button" style="color:red" "Clique para ativar" onclick="activateDesactivateFavorite(${true})></i>`;
                     }
                 }
             }
         ],
     });
+}
+
+function activateDesactivateFavorite(activate) {
+    let actionText = activate ? 'ativar' : 'desativar';
+    Swal.fire({
+        title: `Deseja ${actionText} localidade favorita?`,
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire('Alerta desativado com sucesso', '', 'success').then(() => {
+                getFavoriteLocations();
+            });
+        }
+    })
 }

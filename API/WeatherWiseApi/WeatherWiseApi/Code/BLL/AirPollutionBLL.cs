@@ -3,6 +3,7 @@ using WeatherWiseApi.Code.DAL;
 using WeatherWiseApi.Helpers;
 using System.Transactions;
 using WeatherWiseApi.Api;
+using System.Linq;
 
 namespace WeatherWiseApi.Code.BLL
 {
@@ -97,6 +98,18 @@ namespace WeatherWiseApi.Code.BLL
             }
 
             return retornoObj;
+        }
+
+        public DashAirPollutionDB GetDataAirPollutionDashBoard(Coordinate coordinate)
+        {
+            AirPollutionDAL airDal = new AirPollutionDAL(_configuration);
+            DateTime dataDia =  DateTime.Parse("2023-06-05");
+
+            var resultado = airDal.GetDataAirPollutionDashBoard(coordinate, dataDia);
+            var Total = resultado.co + resultado.no + resultado.no2 + resultado.o3 + resultado.so2 + resultado.pm2_5 + resultado.pm10 + resultado.nh3;
+
+            var retorno = new DashAirPollutionDB(resultado, Total);
+            return retorno;
         }
     }
 }
