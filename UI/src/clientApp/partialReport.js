@@ -41,6 +41,7 @@ function getAirPollutionAqiDescription(aqi) {
 
 function buildDatatable(reportData) {
     $('#reportTable').DataTable({
+        bDestroy: true,
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
@@ -96,7 +97,7 @@ function buildDatatable(reportData) {
                     if(data == null){
                         return `<i class="fas fa-power-off activate-power-button" title="Clique para desativar" onclick="activateDesactivateAlert(${false})"></i>`;
                     }else{
-                        return `<i class="fas fa-power-off desactivate-power-button" "Clique para ativar" onclick="activateDesactivateAlert(${true})></i>`;
+                        return `<i class="fas fa-power-off desactivate-power-button" title="Clique para desativar" onclick="activateDesactivateAlert(${true})"></i>`;
                     }
                 }
             }

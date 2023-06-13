@@ -33,12 +33,12 @@ namespace WsRoutine.Code.BLL
 
                     Log.Salvar("Inserindo informações obtidas no banco de dados.");
                     var retornoCurrent = weatherBLL.PostCurrentWeather(curretWeather);
-                    var retornoForecast = weatherBLL.PostForecast(forecast);
+                    //var retornoForecast = weatherBLL.PostForecast(forecast);
 
                     if (retornoCurrent.StatusRetorno == false)
                         Log.Salvar($"Erro: {retornoCurrent.MensagemErro} na inserção das informações obtidas de {itemCoordenate.DisplayName} no banco de dados");
-                    if (retornoForecast.StatusRetorno == false)
-                        Log.Salvar($"Erro: {retornoForecast.MensagemErro} na inserção das informações obtidas de {itemCoordenate.DisplayName} no banco de dados");
+                    //if (retornoForecast.StatusRetorno == false)
+                    //    Log.Salvar($"Erro: {retornoForecast.MensagemErro} na inserção das informações obtidas de {itemCoordenate.DisplayName} no banco de dados");
 
                     Log.Salvar($"Consultando informações sobre a poluição do ar para {itemCoordenate.DisplayName} na Latitude: {itemCoordenate.Lat} e Longitude: {itemCoordenate.Lon}.");
                     var airPollution = airPollutionBLL.GetAirPollution(itemCoordenate);
@@ -50,8 +50,8 @@ namespace WsRoutine.Code.BLL
                     }
 
                     var retornoAirPollution = airPollutionBLL.PostAirPollution(airPollution);
-                    if (retornoAirPollution.StatusRetorno == false)
-                        Log.Salvar($"Erro: {retornoForecast.MensagemErro} na inserção das informações obtidas de {itemCoordenate.DisplayName} no banco de dados");
+                    //if (retornoAirPollution.StatusRetorno == false)
+                    //    Log.Salvar($"Erro: {retornoForecast.MensagemErro} na inserção das informações obtidas de {itemCoordenate.DisplayName} no banco de dados");
                 }
                 Log.Salvar("FIM DO PROCESSAMENTO");
             }

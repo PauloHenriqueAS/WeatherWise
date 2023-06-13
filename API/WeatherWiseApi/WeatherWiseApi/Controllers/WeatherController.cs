@@ -75,6 +75,30 @@ namespace WeatherWiseApi.Controllers
                 return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
+        
+        [HttpGet]
+        [Route("GetWindStatisticsByRegion")]
+        [SwaggerOperation("GetWindStatisticsByRegion")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
+        public IActionResult GetWindStatisticsByRegion()
+        {
+            try
+            {
+                    var retorno = new WeatherBLL(_configuration).GetWindStatisticsByRegion();
+
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
+                    else
+                        return BadRequest(new ResponseApi(retorno, false, $"Erro na consulta das informações de vento por região"));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
+            }
+        }
 
         [HttpPost]
         [Route("GetForecastWeather")]

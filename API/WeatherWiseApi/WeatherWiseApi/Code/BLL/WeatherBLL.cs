@@ -33,6 +33,10 @@ namespace WeatherWiseApi.Code.BLL
             return new WeatherDAL(_configuration).GetAlertByUser(email_user);
         }
 
+        public List<WindStatistics> GetWindStatisticsByRegion() {
+            return new WeatherDAL(_configuration).GetWindStatisticsByRegion();
+        }
+
         /// <summary>
         /// Inserir as alertas
         /// </summary>
