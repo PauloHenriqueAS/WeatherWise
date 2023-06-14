@@ -34,16 +34,18 @@
         }
 
         .regua-card .card-body {
-            margin-top: -5px;
+            /* margin-top: -5px; */
+            /* descomentar se tiver subtitle */
         }
 
-        .regua-card .card-body .card-title,
-        .regua-card .card-body .card-subtitle {
-            font-size: smaller;
+        .regua-card .card-body .card-title {
+        /* .regua-card .card-body .card-subtitle { */
+        /* descomentar se tiver subtitle */
+            font-size: medium;
         }
 
         .disabled-card {
-            opacity: 0.5;
+            opacity: 0.3;
             cursor: not-allowed;
         }
         /* # regua */
@@ -296,50 +298,50 @@
                     <!-- Rick - regua de ranges -->
                     <div class="row no-gutters regua">
                         <div class="col-2">
-                            <div class="card regua-card bg-light text-black disabled-card">
+                            <div class="card regua-card bg-light text-black">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">Qualidade do ar</h6>
-                                    <h6 class="card-subtitle">Índice</h6>
+                                    <h6 class="card-title">Qualidade do ar: </h6>
+                                    <!-- <h6 class="card-subtitle">Índice</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-success text-black disabled-card">
+                            <div id="cardN1" class="card regua-card bg-success text-black disabled-card">
                                 <div class="card-body text-center">
                                     <h6 class="card-title">N1 - Boa</h6>
-                                    <h6 class="card-subtitle">0 - 40</h6>
+                                    <!-- <h6 class="card-subtitle">0 - 40</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-warning text-black disabled-card">
+                            <div id="cardN2" class="card regua-card bg-warning text-black disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N2 - Moderada</h6>
-                                    <h6 class="card-subtitle">41 - 80</h6>
+                                    <h6 class="card-title">N2 - Normal</h6>
+                                    <!-- <h6 class="card-subtitle">41 - 80</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-orange text-black disabled-card">
+                            <div id="cardN3" class="card regua-card bg-orange text-black disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N3 - Ruim</h6>
-                                    <h6 class="card-subtitle">81 - 120</h6>
+                                    <h6 class="card-title">N3 - Moderada</h6>
+                                    <!-- <h6 class="card-subtitle">81 - 120</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-danger text-white">
+                            <div id="cardN4" class="card regua-card bg-danger text-white disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N4 - Bem Ruim</h6>
-                                    <h6 class="card-subtitle">121 - 200</h6>
+                                    <h6 class="card-title">N4 - Pobre</h6>
+                                    <!-- <h6 class="card-subtitle">121 - 200</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-purple text-white disabled-card">
+                            <div id="cardN5" class="card regua-card bg-purple text-white disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N5 - Péssima</h6>
-                                    <h6 class="card-subtitle">> 200</h6>
+                                    <h6 class="card-title">N5 - Muito pobre</h6>
+                                    <!-- <h6 class="card-subtitle">> 200</h6> -->
                                 </div>
                             </div>
                         </div>

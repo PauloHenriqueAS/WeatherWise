@@ -53,7 +53,7 @@ function getCurrentWeather() {
 
 
 function getAirPollution(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
-  const url = `${baseUrl}/GetAirPollution`;
+  const url = `${baseUrl}/AirPollution/GetAirPollution`;
 
   const body = {
     "displayName": displayName,
@@ -71,7 +71,26 @@ function getAirPollution(displayName = "Uberlandia", lat = -18.909216, lon = -48
     .then((response) => response.json())
     .then((result) => {
       if (result.success) {
-        $('#airPollutionDescription').text(result.data.air_pollution_description);
+        // $('#airPollutionDescription').text(result.data.air_pollution_description);
+        let aqi = result.data.list[0].main.aqi ?? 0;
+
+        const cardN1 = document.getElementById('cardN1');
+        const cardN2 = document.getElementById('cardN2');
+        const cardN3 = document.getElementById('cardN3');
+        const cardN4 = document.getElementById('cardN4');
+        const cardN5 = document.getElementById('cardN5');
+
+        cardN1.classList.add('disabled-card');
+        cardN2.classList.add('disabled-card');
+        cardN3.classList.add('disabled-card');
+        cardN4.classList.add('disabled-card');
+        cardN5.classList.add('disabled-card');
+
+        const cards = [cardN1, cardN2, cardN3, cardN4, cardN5];
+
+        if (aqi >= 1 && aqi <= 5) {
+          cards[aqi - 1].classList.remove('disabled-card');
+        }
       } else {
         Swal.fire({
           icon: 'error',
