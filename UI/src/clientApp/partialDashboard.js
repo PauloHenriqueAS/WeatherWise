@@ -52,13 +52,13 @@ function getCurrentWeather() {
 
 
 
-function getAirPollution() {
+function getAirPollution(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
   const url = `${baseUrl}/GetAirPollution`;
 
   const body = {
-    "displayName": "Uberlandia",
-    "lat": -18.909216,
-    "lon": -48.2622005
+    "displayName": displayName,
+    "lat": lat,
+    "lon": lon
   }
 
   fetch(url, {
@@ -75,7 +75,7 @@ function getAirPollution() {
       } else {
         Swal.fire({
           icon: 'error',
-          title: 'Erro buscar poluiçaõ do ar!',
+          title: 'Erro ao buscar poluição do ar!',
           text: result.message
         });
       }

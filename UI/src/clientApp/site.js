@@ -1,5 +1,48 @@
 const baseUrl = 'https://localhost:7126';
 
+const locations = [
+    {
+        address: "Avenida Antônio Thomaz Ferreira de Rezende, 1766 - Bairro Marta Helena",
+        displayName: "Rural Brasil",
+        region: "Norte",
+        lat: -18.87491506886587,
+        lon: -48.27947888151518
+        // https://diariodeuberlandia.com.br/noticia/29612/apos-estragos-neste-domingo-17--uberlandia-segue-em-alerta-vermelho-por-conta-da-chuva
+    },
+    {
+        address: "Av. Felipe Calixto Milken, 960 - Bairro Morumbi",
+        displayName: "Próximo ao UAI Morumbi",
+        region: "Leste",
+        lat: -18.913570338202373,
+        lon: -48.19142804673244
+        // https://g1.globo.com/minas-gerais/triangulo-mineiro/noticia/2012/10/chuva-de-10-minutos-alaga-ruas-no-bairro-morumbi-em-uberlandia-mg.html
+    },
+    {
+        address: "Rua Idalina Vieira Borges, 54 - Bairro Taiaman",
+        displayName: "Próximo ao Bosque Municipal do Guanandi",
+        region: "Oeste",
+        lat: -18.901398174591435,
+        lon: -48.32454296305783
+        // https://g1.globo.com/mg/triangulo-mineiro/noticia/2023/03/15/casas-ficam-destruidas-apos-temporal-em-uberlandia.ghtml
+    },
+    {
+        address: "Avenida Rondon Pacheco, 350 - Bairro Copacabana",
+        displayName: "Próximo ao Praia Clube",
+        region: "Sul",
+        lat: -18.931304406958176,
+        lon: -48.290165987724464
+        // https://g1.globo.com/mg/triangulo-mineiro/noticia/2022/01/16/forte-chuva-atinge-uberlandia-e-causa-alagamento-em-diversas-ruas-da-cidade.ghtml
+    },
+    {
+        address: "Avenida Professora Minervina Cândida Oliveira - Bairro Martins",
+        displayName: "Próximo à Rodoviária",
+        region: "Centro",
+        lat: -18.904887204577225,
+        lon: -48.286895702971265
+        // https://diariodeuberlandia.com.br/noticia/29756/apos-quase-20-dias-estragos-causados-pela-chuva-na-avenida-minervina-candida-oliveira-seguem-sem-reparos-em-uberlandia
+    }
+  ];
+
 document.addEventListener("DOMContentLoaded", function (event) {
     const isLoginPage = window.location.href.includes('login.html');
 
@@ -64,3 +107,51 @@ function isPagePrivate() {
     return false;
 }
 
+function openModal(argument) {
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    
+    const location = locations.find(a => a.region === argument);
+
+    getAirPollutionRegion(location)
+    // getAirPollutionRegion("Praça da Bicota", -18.9229, -48.2791, argument)
+    document.getElementById('myModalLabel').textContent = "Região " + argument;
+    // document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + argument;
+    myModal.show();
+}
+
+function getAirPollutionRegion(location = {displayName: "Uberlandia", lat: -18.909216, lon: -48.2622005, region: "Uberlandia", address: ""}) {
+    const url = `${baseUrl}/AirPollution/GetAirPollution`;
+
+    document.getElementById('modalContent').textContent = "Carregando..."
+  
+    const body = {
+      "displayName": location.displayName,
+      "lat": location.lat,
+      "lon": location.lon
+    }
+  
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+            console.log(result)
+            let components = result.data.list[0].components
+            document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + location.region + ": " + 
+                                                                location.displayName + " - " + result.data.air_pollution_description +
+                                                                " | Co: " + components.co + " | No2: " + components.no2 + " | O3: " +
+                                                                components.o3;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro ao buscar poluição do ar!',
+            text: result.message
+          });
+        }
+      });
+  }

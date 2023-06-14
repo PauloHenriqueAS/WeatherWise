@@ -47,6 +47,52 @@
             cursor: not-allowed;
         }
         /* # regua */
+
+        /* mapa */
+        .btn-wrap{
+            position:relative;
+            text-align:center;
+        }
+
+        .btn-region {
+            position:absolute;
+            z-index:1;
+            width:60px;
+            height:30px;
+            padding:0;
+            margin:-15px 0 0 -30px;
+            border:0 none;
+        }
+
+        .btn-norte{
+            top:23%;
+            left:36%;
+        }
+
+        .btn-leste{
+            top: 45%;
+            left:75%;
+        }
+
+        .btn-oeste{
+            top: 67%;
+            left: 23%;
+        }
+
+        .btn-sul{
+            top:74%;
+            left:53%;
+        }
+
+        .btn-center{
+            top:48%;
+            left:43%;
+        }
+
+        .modal-content {
+            color: #161616;
+        }
+        /* # mapa */
     </style>
 </head>
 
@@ -397,18 +443,40 @@
                     <!-- # cards informativos -->
 
                     <!-- Rick - mapa de regioes -->
-                    <div class="row  justify-content-center mt-1">
+                    <div class="row justify-content-center mt-1">
                         <div class="col-lg-6 col-xl-6">
-                            <div class="card shadow mb-3">
+                            <div class="card mapa-card shadow mb-3">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary fw-bold m-0">Uberlândia</h6>
                                 </div>
                                 <div class="card-body position-relative">
-                                    <img src="assets/img/mapa_geral_sem_fundo.png">
-                                    <button class="btn btn-primary position-absolute top-20 start-0">Button 1</button>
-                                    <button class="btn btn-secondary position-absolute top-50 start-50 translate-middle">Button 2</button>
-                                    <button class="btn btn-danger position-absolute bottom-0 end-0">Button 3</button>
+                                    <div class="btn-wrap">
+                                        <img src="assets/img/mapa_geral_sem_fundo.png">
+                                        <button class="btn btn-success btn-region btn-norte" onclick="openModal('Norte')">Norte</button>
+                                        <button class="btn btn-success btn-region btn-leste" onclick="openModal('Leste')">Leste</button>
+                                        <button class="btn btn-success btn-region btn-oeste" onclick="openModal('Oeste')">Oeste</button>
+                                        <button class="btn btn-success btn-region btn-sul" onclick="openModal('Sul')">Sul</button>
+                                        <button class="btn btn-success btn-region btn-center" onclick="openModal('Centro')">Centro</button>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="modalContent"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
                             </div>
                         </div>
                     </div>
