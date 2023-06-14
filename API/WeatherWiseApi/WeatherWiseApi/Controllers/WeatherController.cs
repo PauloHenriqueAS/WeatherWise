@@ -77,17 +77,17 @@ namespace WeatherWiseApi.Controllers
         }
         
         [HttpGet]
-        [Route("GetWindStatisticsByRegion")]
-        [SwaggerOperation("GetWindStatisticsByRegion")]
+        [Route("GetWindDashboardInformation")]
+        [SwaggerOperation("GetWindDashboardInformation")]
         [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
         [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
         [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
-        public IActionResult GetWindStatisticsByRegion()
+        public IActionResult GetWindDashboardInformation()
         {
             try
             {
-                    var retorno = new WeatherBLL(_configuration).GetWindStatisticsByRegion();
+                    var retorno = new WeatherBLL(_configuration).GetWindDashboardInformation();
 
                     if (retorno is not null)
                         return Ok(new ResponseApi(retorno, true, null));

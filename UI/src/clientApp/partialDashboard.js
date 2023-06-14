@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   setWeatherScreenData();
   getAirPollution();
-  generateChart();
+  generateChartWindSpeed();
   generateChartPollution();
 });
 
@@ -83,7 +83,69 @@ function getAirPollution() {
     });
 }
 
-function generateChart() {
+function getDataDashBoardWindSpeed() {
+  const url = `${baseUrl}/Weather/GetWindDashboardInformation`;
+
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          resolve(result.data);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro buscar informações da velocidade do vento!',
+            text: result.message
+          }).then(() => {
+            resolve(null);
+          })
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+function getDataSets(windSpeedInfo){
+
+  let dataSets = []
+  windSpeedInfo.forEach(element => {
+    dataSets.push({
+      label: element.label,
+      data: element.data,
+      fill: false,
+      borderColor: element.borderColor,
+      backgroundColor: element.backgroundColor,
+      borderWidth: 2
+    });
+  });
+  return dataSets;
+}
+
+function generateChartWindSpeed() {
+  var ctx = document.getElementById("windChart").getContext('2d');
+  getDataDashBoardWindSpeed()
+  .then((result) => {
+    if (result != null) {
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: result[0].generalLabels,
+          datasets: getDataSets(result)
+        },
+        options: {
+          responsive: true, // Instruct chart js to respond nicely.
+          maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+        }
+      });
+    }
+  });
+  
+}
+
+function generateGenericChart() {
   var ctx = document.getElementById("windChart").getContext('2d');
 
   var myChart = new Chart(ctx, {

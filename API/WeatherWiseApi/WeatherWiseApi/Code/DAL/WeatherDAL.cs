@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Data;
 using Npgsql;
+using System.Globalization;
 
 namespace WeatherWiseApi.Code.DAL
 {
@@ -70,7 +71,7 @@ namespace WeatherWiseApi.Code.DAL
         {
             var cmdSql = new StringBuilder();
 
-            cmdSql.AppendLine(" SELECT LAT, LON, SPEED, DATE_WEATHER              ");
+            cmdSql.AppendLine(" SELECT DISTINCT LAT, LON, SPEED, DATE_WEATHER              ");
             cmdSql.AppendLine(" 	FROM WS.\"tb_currentWeather\" WEA             ");
             cmdSql.AppendLine(" 	INNER JOIN WS.TB_WIND AS WIN                  ");
             cmdSql.AppendLine(" 		ON WEA.ID_WIND = WIN.ID_WIND              ");
@@ -104,22 +105,88 @@ namespace WeatherWiseApi.Code.DAL
             }
         }
 
+        
 
-        public List<WindStatistics> GetWindStatisticsByRegion()
+        public List<List<WindStatistics>> GetWindStatisticsByRegion()
         {
             var allStatisticWindData = GetWindAllStatistics();
+            var allRegions = GetMockedCoordinates();
 
+            foreach (var windData in allStatisticWindData)
+            {
+                var selectedRegion = allRegions.Where(x => x.Lat.ToString("N2") == windData.Lat.ToString("N2") && x.Lon.ToString("N2") == windData.Lon.ToString("N2"))
+                                            .FirstOrDefault();
+
+                if(selectedRegion is not null)
+                {
+                    windData.Region = selectedRegion.DisplayName!;
+                }
+            }
+
+            allStatisticWindData = allStatisticWindData.Where(x => x.Region is not null).ToList();
             var groupedStatistic = (from item in allStatisticWindData
-                                    group item by item.Lat into Group
-                                    select new WindStatistics
-                                    {
-                                        Lat = Group.FirstOrDefault().Lat,
-                                        Lon = Group.FirstOrDefault().Lon,
-                                        Speed = Group.FirstOrDefault().Speed,
-                                        DateWeather = Group.FirstOrDefault().DateWeather
-                                    }).ToList();
+                                    group item by new { item.Region } into Group
+                                    select Group.ToList()).ToList();
+            List<List<WindStatistics>> returnList = new List<List<WindStatistics>>();
 
-            return groupedStatistic;
+            foreach (var statistic in groupedStatistic)
+            {
+                returnList.Add(statistic.DistinctBy(x => x.DateWeather).ToList());
+            }
+
+
+            return returnList;
+        }
+
+        public List<WindDashboardInformation> GetWindDashboardInformation()
+        {
+            var windStatistics = GetWindStatisticsByRegion();
+            List<WindDashboardInformation> windDashboardInformation = new List<WindDashboardInformation>();
+
+            foreach (var statistics in windStatistics)
+            {
+                windDashboardInformation.Add(new WindDashboardInformation(statistics));
+            }
+
+            return windDashboardInformation;
+        } 
+
+        public List<Coordinate> GetMockedCoordinates()
+        {
+            var retorno = new List<Coordinate>();
+
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.8819,
+                Lon = -48.2830,
+                DisplayName = "Região Norte"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9462,
+                Lon = -48.2731,
+                DisplayName = "Região Sul"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9210,
+                Lon = -48.2351,
+                DisplayName = "Região Leste"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9322,
+                Lon = -48.3294,
+                DisplayName = "Região Oeste"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9103,
+                Lon = -48.2757,
+                DisplayName = "Centro (Sérgio Pacheco)"
+            });
+
+            return retorno;
         }
 
         /// <summary>
