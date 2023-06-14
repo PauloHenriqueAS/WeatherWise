@@ -30,6 +30,7 @@ function getFavoriteLocations() {
 
 function buildDatatable(favoritesData) {
     $('#favoriteTable').DataTable({
+        bDestroy: true,
         searching: false,
         dom: 'Bfrtip',
         buttons: [
