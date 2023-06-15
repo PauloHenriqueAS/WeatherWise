@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <style>
         #iconDashboard,
         #iconPerfil,
@@ -35,20 +36,77 @@
         }
 
         .regua-card .card-body {
-            margin-top: -5px;
+            /* margin-top: -5px; */
+            /* descomentar se tiver subtitle */
         }
 
-        .regua-card .card-body .card-title,
-        .regua-card .card-body .card-subtitle {
-            font-size: smaller;
+        .regua-card .card-body .card-title {
+        /* .regua-card .card-body .card-subtitle { */
+        /* descomentar se tiver subtitle */
+            font-size: medium;
         }
 
         .disabled-card {
-            opacity: 0.5;
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
         /* # regua */
+
+        /* mapa */
+        .mapa-card {
+            max-width: 845px;
+        }
+
+        .btn-wrap {
+            position:relative;
+            text-align:center;
+        }
+
+        .btn-wrap img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn-region {
+            position:absolute;
+            z-index:1;
+            width:60px;
+            height:30px;
+            padding:0;
+            margin:-15px 0 0 -30px;
+            border:0 none;
+        }
+
+        .btn-norte{
+            top:23%;
+            left:36%;
+        }
+
+        .btn-leste{
+            top: 45%;
+            left:75%;
+        }
+
+        .btn-oeste{
+            top: 67%;
+            left: 23%;
+        }
+
+        .btn-sul{
+            top:74%;
+            left:53%;
+        }
+
+        .btn-center{
+            top:48%;
+            left:43%;
+        }
+
+        .modal-content {
+            color: #161616;
+        }
+        /* # mapa */
     </style>
 </head>
 
@@ -254,50 +312,50 @@
                     <!-- Rick - regua de ranges -->
                     <div class="row no-gutters regua">
                         <div class="col-2">
-                            <div class="card regua-card bg-light text-black disabled-card">
+                            <div class="card regua-card bg-light text-black">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">Qualidade do ar</h6>
-                                    <h6 class="card-subtitle">Índice</h6>
+                                    <h6 class="card-title">Qualidade do ar: </h6>
+                                    <!-- <h6 class="card-subtitle">Índice</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-success text-black disabled-card">
+                            <div id="cardN1" class="card regua-card bg-success text-black disabled-card">
                                 <div class="card-body text-center">
                                     <h6 class="card-title">N1 - Boa</h6>
-                                    <h6 class="card-subtitle">0 - 40</h6>
+                                    <!-- <h6 class="card-subtitle">0 - 40</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-warning text-black disabled-card">
+                            <div id="cardN2" class="card regua-card bg-warning text-black disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N2 - Moderada</h6>
-                                    <h6 class="card-subtitle">41 - 80</h6>
+                                    <h6 class="card-title">N2 - Normal</h6>
+                                    <!-- <h6 class="card-subtitle">41 - 80</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-orange text-black disabled-card">
+                            <div id="cardN3" class="card regua-card bg-orange text-black disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N3 - Ruim</h6>
-                                    <h6 class="card-subtitle">81 - 120</h6>
+                                    <h6 class="card-title">N3 - Moderada</h6>
+                                    <!-- <h6 class="card-subtitle">81 - 120</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-danger text-white">
+                            <div id="cardN4" class="card regua-card bg-danger text-white disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N4 - Bem Ruim</h6>
-                                    <h6 class="card-subtitle">121 - 200</h6>
+                                    <h6 class="card-title">N4 - Pobre</h6>
+                                    <!-- <h6 class="card-subtitle">121 - 200</h6> -->
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="card regua-card bg-purple text-white disabled-card">
+                            <div id="cardN5" class="card regua-card bg-purple text-white disabled-card">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">N5 - Péssima</h6>
-                                    <h6 class="card-subtitle">> 200</h6>
+                                    <h6 class="card-title">N5 - Muito pobre</h6>
+                                    <!-- <h6 class="card-subtitle">> 200</h6> -->
                                 </div>
                             </div>
                         </div>
@@ -305,20 +363,40 @@
 
 
                     <!-- Rick - mapa de regioes -->
-                    <div class="row  justify-content-center mt-1">
+                    <div class="row justify-content-center mt-1">
                         <div class="col-lg-6 col-xl-6">
-                            <div class="card shadow mb-3">
+                            <div class="card mapa-card shadow mb-3">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h6 class="text-primary fw-bold m-0">Uberlândia</h6>
                                 </div>
                                 <div class="card-body position-relative">
-                                    <img src="assets/img/mapa_geral_sem_fundo.png">
-                                    <button class="btn btn-primary position-absolute top-20 start-0">Button 1</button>
-                                    <button
-                                        class="btn btn-secondary position-absolute top-50 start-50 translate-middle">Button
-                                        2</button>
-                                    <button class="btn btn-danger position-absolute bottom-0 end-0">Button 3</button>
+                                    <div class="btn-wrap">
+                                        <img src="assets/img/mapa_geral_sem_fundo.png">
+                                        <button class="btn btn-success btn-region btn-norte" onclick="openModal('Norte')">Norte</button>
+                                        <button class="btn btn-success btn-region btn-leste" onclick="openModal('Leste')">Leste</button>
+                                        <button class="btn btn-success btn-region btn-oeste" onclick="openModal('Oeste')">Oeste</button>
+                                        <button class="btn btn-success btn-region btn-sul" onclick="openModal('Sul')">Sul</button>
+                                        <button class="btn btn-success btn-region btn-center" onclick="openModal('Centro')">Centro</button>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade modal-xl" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table id="regionTable" class="display" width="100%"></table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -448,6 +526,7 @@
         <script src="jquery-3.6.4.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,60 @@
+const locations = [
+  {
+      address: "Avenida Antônio Thomaz Ferreira de Rezende, 1766 - Bairro Marta Helena",
+      displayName: "Rural Brasil",
+      region: "Norte",
+      lat: -18.87491506886587,
+      lon: -48.27947888151518
+      // https://diariodeuberlandia.com.br/noticia/29612/apos-estragos-neste-domingo-17--uberlandia-segue-em-alerta-vermelho-por-conta-da-chuva
+  },
+  {
+      address: "Av. Felipe Calixto Milken, 960 - Bairro Morumbi",
+      displayName: "Próximo ao UAI Morumbi",
+      region: "Leste",
+      lat: -18.913570338202373,
+      lon: -48.19142804673244
+      // https://g1.globo.com/minas-gerais/triangulo-mineiro/noticia/2012/10/chuva-de-10-minutos-alaga-ruas-no-bairro-morumbi-em-uberlandia-mg.html
+  },
+  {
+      address: "Rua Idalina Vieira Borges, 54 - Bairro Taiaman",
+      displayName: "Próximo ao Bosque Municipal do Guanandi",
+      region: "Oeste",
+      lat: -18.901398174591435,
+      lon: -48.32454296305783
+      // https://g1.globo.com/mg/triangulo-mineiro/noticia/2023/03/15/casas-ficam-destruidas-apos-temporal-em-uberlandia.ghtml
+  },
+  {
+      address: "Avenida Rondon Pacheco, 350 - Bairro Copacabana",
+      displayName: "Próximo ao Praia Clube",
+      region: "Sul",
+      lat: -18.931304406958176,
+      lon: -48.290165987724464
+      // https://g1.globo.com/mg/triangulo-mineiro/noticia/2022/01/16/forte-chuva-atinge-uberlandia-e-causa-alagamento-em-diversas-ruas-da-cidade.ghtml
+  },
+  {
+      address: "Avenida Professora Minervina Cândida Oliveira - Bairro Martins",
+      displayName: "Próximo à Rodoviária",
+      region: "Centro",
+      lat: -18.904887204577225,
+      lon: -48.286895702971265
+      // https://diariodeuberlandia.com.br/noticia/29756/apos-quase-20-dias-estragos-causados-pela-chuva-na-avenida-minervina-candida-oliveira-seguem-sem-reparos-em-uberlandia
+  }
+];
+
 document.addEventListener("DOMContentLoaded", function () {
   setWeatherScreenData();
   getAirPollution();
   generateChartWindSpeed();
   generateChartPollution();
+  generateChart();
+
+  // destruir DT quando modal sumir, para poder criar outras depois
+  $('#myModal').on('hidden.bs.modal', function (e) {
+    if ($.fn.dataTable.isDataTable('#regionTable')) {
+      table = $('#regionTable').DataTable();
+      table.destroy();
+    }
+  });
 });
 
 function setWeatherScreenData() {
@@ -15,12 +67,12 @@ function setWeatherScreenData() {
     });
 }
 
-function getCurrentWeather() {
+function getCurrentWeather(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
   const url = `${baseUrl}/Weather/GetCurrentWeather`;
   const body = {
-    "displayName": "Uberlandia",
-    "lat": -18.909216,
-    "lon": -48.2622005
+    "displayName": displayName,
+    "lat": lat,
+    "lon": lon
   };
 
   return new Promise((resolve, reject) => {
@@ -51,15 +103,13 @@ function getCurrentWeather() {
   });
 }
 
-
-
-function getAirPollution() {
-  const url = `${baseUrl}/GetAirPollution`;
+function getAirPollution(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
+  const url = `${baseUrl}/AirPollution/GetAirPollution`;
 
   const body = {
-    "displayName": "Uberlandia",
-    "lat": -18.909216,
-    "lon": -48.2622005
+    "displayName": displayName,
+    "lat": lat,
+    "lon": lon
   }
 
   fetch(url, {
@@ -72,11 +122,30 @@ function getAirPollution() {
     .then((response) => response.json())
     .then((result) => {
       if (result.success) {
-        $('#airPollutionDescription').text(result.data.air_pollution_description);
+        // $('#airPollutionDescription').text(result.data.air_pollution_description);
+        let aqi = result.data.list[0].main.aqi ?? 0;
+
+        const cardN1 = document.getElementById('cardN1');
+        const cardN2 = document.getElementById('cardN2');
+        const cardN3 = document.getElementById('cardN3');
+        const cardN4 = document.getElementById('cardN4');
+        const cardN5 = document.getElementById('cardN5');
+
+        cardN1.classList.add('disabled-card');
+        cardN2.classList.add('disabled-card');
+        cardN3.classList.add('disabled-card');
+        cardN4.classList.add('disabled-card');
+        cardN5.classList.add('disabled-card');
+
+        const cards = [cardN1, cardN2, cardN3, cardN4, cardN5];
+
+        if (aqi >= 1 && aqi <= 5) {
+          cards[aqi - 1].classList.remove('disabled-card');
+        }
       } else {
         Swal.fire({
           icon: 'error',
-          title: 'Erro buscar poluiçaõ do ar!',
+          title: 'Erro ao buscar poluição do ar!',
           text: result.message
         });
       }
@@ -271,3 +340,124 @@ function getDataDashPollution() {
       });
   });
 }
+
+//#region informações de regioes
+function openModal(argument) {
+  var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+  
+  const location = locations.find(a => a.region === argument);
+
+  // TODO: criar um endpoint que retorna os trem resumido de tempo poluição vento etc (ver se já nao tem no Weather/GetCurrentWeather) e colocar pra regiao
+  // getAirPollutionRegion(location);
+  setRegionWeatherData(location);
+  document.getElementById('myModalLabel').textContent = "Região " + argument;
+  myModal.show();
+}
+
+function getAirPollutionRegion(location = {displayName: "Uberlandia", lat: -18.909216, lon: -48.2622005, region: "Uberlandia", address: ""}) {
+  const url = `${baseUrl}/AirPollution/GetAirPollution`;
+
+  document.getElementById('modalContent').textContent = "Carregando..."
+
+  const body = {
+    "displayName": location.displayName,
+    "lat": location.lat,
+    "lon": location.lon
+  }
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.success) {
+          console.log(result)
+          let components = result.data.list[0].components
+          document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + location.region + ": " + 
+                                                              location.displayName + " - " + result.data.air_pollution_description +
+                                                              " | Co: " + components.co + " | No2: " + components.no2 + " | O3: " +
+                                                              components.o3;
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro ao buscar poluição do ar!',
+          text: result.message
+        });
+      }
+    });
+}
+
+function setRegionWeatherData(location) {
+  const listRegionData = [];
+
+  getCurrentWeather(location.displayName, location.lat, location.lon)
+    .then((result) => {
+      if (result != null) {
+        result.displayName = location.displayName
+        listRegionData.push(result)
+        buildDatatable(listRegionData, location)
+      }
+    });
+}
+
+function buildDatatable(regionData, location) {
+  $('#regionTable').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+      ],
+      data: regionData,
+      searching: false,
+      columns: [
+          {
+            title: 'Lugar',
+            data: 'displayName',
+            className: 'text-center',
+            render: function ( data, type, row) {
+                return `${data}`
+            }
+          },
+          // {
+          //     title: 'Poluição',
+          //     data: 'air_pollution_description',
+          //     className: 'text-center',
+          //     render: function ( data, type, row) {
+          //         if(data != null){
+          //             return `${data}`
+          //         }
+          //         return ''
+          //     }
+          // },
+          {
+            title: 'Visibilidade',
+            data: 'visibility',
+            className: 'text-center',
+            render: function ( data, type, row) {
+                if(data != null){
+                    return `${data} m`
+                }
+                return ''
+            }
+          },
+          {
+            title: 'Velocidade do vento',
+            data: 'wind.speed',
+            className: 'text-center',
+            render: function ( data, type, row) {
+              if(data != null){
+                return `${data} km/h`
+              }
+              return ''
+            }
+          }
+      ],
+  });
+}
+//#endregion
