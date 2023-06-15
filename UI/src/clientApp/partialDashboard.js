@@ -45,6 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
   setWeatherScreenData();
   getAirPollution();
   generateChart();
+
+  // destruir DT quando modal sumir, para poder criar outras depois
+  $('#myModal').on('hidden.bs.modal', function (e) {
+    if ($.fn.dataTable.isDataTable('#regionTable')) {
+      table = $('#regionTable').DataTable();
+      table.destroy();
+    }
+  });
 });
 
 function setWeatherScreenData() {
@@ -57,12 +65,12 @@ function setWeatherScreenData() {
     });
 }
 
-function getCurrentWeather() {
+function getCurrentWeather(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
   const url = `${baseUrl}/Weather/GetCurrentWeather`;
   const body = {
-    "displayName": "Uberlandia",
-    "lat": -18.909216,
-    "lon": -48.2622005
+    "displayName": displayName,
+    "lat": lat,
+    "lon": lon
   };
 
   return new Promise((resolve, reject) => {
@@ -92,8 +100,6 @@ function getCurrentWeather() {
       });
   });
 }
-
-
 
 function getAirPollution(displayName = "Uberlandia", lat = -18.909216, lon = -48.2622005) {
   const url = `${baseUrl}/AirPollution/GetAirPollution`;
@@ -199,15 +205,16 @@ function generateChart() {
   });
 }
 
+//#region informações de regioes
 function openModal(argument) {
   var myModal = new bootstrap.Modal(document.getElementById('myModal'));
   
   const location = locations.find(a => a.region === argument);
 
-  getAirPollutionRegion(location)
-  // getAirPollutionRegion("Praça da Bicota", -18.9229, -48.2791, argument)
+  // TODO: criar um endpoint que retorna os trem resumido de tempo poluição vento etc (ver se já nao tem no Weather/GetCurrentWeather) e colocar pra regiao
+  // getAirPollutionRegion(location);
+  setRegionWeatherData(location);
   document.getElementById('myModalLabel').textContent = "Região " + argument;
-  // document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + argument;
   myModal.show();
 }
 
@@ -247,3 +254,74 @@ function getAirPollutionRegion(location = {displayName: "Uberlandia", lat: -18.9
       }
     });
 }
+
+function setRegionWeatherData(location) {
+  const listRegionData = [];
+
+  getCurrentWeather(location.displayName, location.lat, location.lon)
+    .then((result) => {
+      if (result != null) {
+        result.displayName = location.displayName
+        listRegionData.push(result)
+        buildDatatable(listRegionData, location)
+      }
+    });
+}
+
+function buildDatatable(regionData, location) {
+  $('#regionTable').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5'
+      ],
+      data: regionData,
+      searching: false,
+      columns: [
+          {
+            title: 'Lugar',
+            data: 'displayName',
+            className: 'text-center',
+            render: function ( data, type, row) {
+                return `${data}`
+            }
+          },
+          // {
+          //     title: 'Poluição',
+          //     data: 'air_pollution_description',
+          //     className: 'text-center',
+          //     render: function ( data, type, row) {
+          //         if(data != null){
+          //             return `${data}`
+          //         }
+          //         return ''
+          //     }
+          // },
+          {
+            title: 'Visibilidade',
+            data: 'visibility',
+            className: 'text-center',
+            render: function ( data, type, row) {
+                if(data != null){
+                    return `${data} m`
+                }
+                return ''
+            }
+          },
+          {
+            title: 'Velocidade do vento',
+            data: 'wind.speed',
+            className: 'text-center',
+            render: function ( data, type, row) {
+              if(data != null){
+                return `${data} km/h`
+              }
+              return ''
+            }
+          }
+      ],
+  });
+}
+//#endregion
