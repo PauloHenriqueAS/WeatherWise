@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
   getAirPollution();
   generateChartWindSpeed();
   generateChartPollution();
-  generateChart();
 
   // destruir DT quando modal sumir, para poder criar outras depois
   $('#myModal').on('hidden.bs.modal', function (e) {
