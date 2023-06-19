@@ -13,14 +13,100 @@
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <style>
         #iconDashboard,
         #iconPerfil,
         #iconRelatorio,
         #iconAlerta,
-        #iconRegistro {
+        #iconRegistro,
+        #iconFavorites {
             margin-right: 5%;
         }
+
+        /* regua */
+        .regua .col-2,
+        .regua-card .card-body {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .regua-card {
+            height: 50px;
+        }
+
+        .regua-card .card-body {
+            /* margin-top: -5px; */
+            /* descomentar se tiver subtitle */
+        }
+
+        .regua-card .card-body .card-title {
+        /* .regua-card .card-body .card-subtitle { */
+        /* descomentar se tiver subtitle */
+            font-size: medium;
+        }
+
+        .disabled-card {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* # regua */
+
+        /* mapa */
+        .mapa-card {
+            max-width: 845px;
+        }
+
+        .btn-wrap {
+            position:relative;
+            text-align:center;
+        }
+
+        .btn-wrap img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn-region {
+            position:absolute;
+            z-index:1;
+            width:60px;
+            height:30px;
+            padding:0;
+            margin:-15px 0 0 -30px;
+            border:0 none;
+        }
+
+        .btn-norte{
+            top:23%;
+            left:36%;
+        }
+
+        .btn-leste{
+            top: 45%;
+            left:75%;
+        }
+
+        .btn-oeste{
+            top: 67%;
+            left: 23%;
+        }
+
+        .btn-sul{
+            top:74%;
+            left:53%;
+        }
+
+        .btn-center{
+            top:48%;
+            left:43%;
+        }
+
+        .modal-content {
+            color: #161616;
+        }
+        /* # mapa */
     </style>
 </head>
 
@@ -56,6 +142,8 @@
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="warning.html"><i id="iconAlerta"
                                 class="icon ion-android-warning"></i><span>Alertas</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="favoriteLocations.html"><i id="iconFavorites"
+                                class="icon fa fa-heart"></i><span>Localidades Favoritas</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link" href="register.html"><i id="iconRegistro"
                                 class="icon fas fa-edit"></i><span>Registrar Usuário</span></a>
@@ -208,111 +296,113 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-1">
                         <h3 class="text-dark mb-0">Dashboard</h3>
-                        <button class="btn btn-warning btn-icon-split warning-button"
-                            data-bss-hover-animate="pulse" type="button" onclick="location.href = 'warning.html'"><span class="text-white-50 icon"><i
-                                    class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Criar Alerta</span>
-                            </button>
+                        <button class="btn btn-warning btn-icon-split warning-button" data-bss-hover-animate="pulse"
+                            type="button" onclick="location.href = 'warning.html'"><span class="text-white-50 icon"><i
+                                    class="fas fa-exclamation-triangle"></i></span><span class="text-white text">Criar
+                                Alerta</span>
+                        </button>
 
-
-                            <a class="btn btn-primary btn-sm d-none d-sm-inline-block"role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
+                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i
+                                class="fas fa-download fa-sm text-white-50"></i>&nbsp;Gerar
                             Relatório (.csv)</a>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                                <span>Precipitação</span>
-                                            </div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>50 mm</span></div>
-                                        </div>
-                                        <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                class="bi bi-cloud-rain-fill fa-2x text-gray-300">
-                                                <path
-                                                    d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317zm3 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317zm3 0a.5.5 0 0 1 .316.633l-1 3a.5.5 0 1 1-.948-.316l1-3a.5.5 0 0 1 .632-.317zm.247-6.998a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973z">
-                                                </path>
-                                            </svg></div>
-                                    </div>
+
+                    <!-- Rick - regua de ranges -->
+                    <div class="row no-gutters regua">
+                        <div class="col-2">
+                            <div class="card regua-card bg-light text-black">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">Qualidade do ar: </h6>
+                                    <!-- <h6 class="card-subtitle">Índice</h6> -->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-success py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-success fw-bold text-xs mb-1">
-                                                <span>ventos</span>
-                                            </div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span id="windSpeed"> - km/h</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                class="bi bi-wind fa-2x text-gray-300">
-                                                <path
-                                                    d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z">
-                                                </path>
-                                            </svg></div>
-                                    </div>
+                        <div class="col-2">
+                            <div id="cardN1" class="card regua-card bg-success text-black disabled-card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">N1 - Boa</h6>
+                                    <!-- <h6 class="card-subtitle">0 - 40</h6> -->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-info py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Poluição
-                                                    (AQI)</span></div>
-                                            <div class="row g-0 align-items-center">
-                                                <div class="col-auto col-xl-12">
-                                                    <div class="text-dark fw-bold h5 mb-0"><span
-                                                            id="airPollutionDescription">-</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                                class="icon icon-tabler icon-tabler-alert-circle fa-2x text-gray-300">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <circle cx="12" cy="12" r="9"></circle>
-                                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                            </svg></div>
-                                    </div>
+                        <div class="col-2">
+                            <div id="cardN2" class="card regua-card bg-warning text-black disabled-card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">N2 - Normal</h6>
+                                    <!-- <h6 class="card-subtitle">41 - 80</h6> -->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-start-warning py-2">
-                                <div class="card-body">
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-warning fw-bold text-xs mb-1">
-                                                <span>Visibilidade</span>
-                                            </div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span id="visibility">-</span></div>
-                                        </div>
-                                        <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
-                                                height="1em" fill="currentColor" viewBox="0 0 16 16"
-                                                class="bi bi-water fa-2x text-gray-300">
-                                                <path
-                                                    d="M.036 3.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 3.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 6.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0L.314 9.964a.5.5 0 0 1-.278-.65zm0 3a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65z">
-                                                </path>
-                                            </svg></div>
+                        <div class="col-2">
+                            <div id="cardN3" class="card regua-card bg-orange text-black disabled-card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">N3 - Moderada</h6>
+                                    <!-- <h6 class="card-subtitle">81 - 120</h6> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div id="cardN4" class="card regua-card bg-danger text-white disabled-card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">N4 - Pobre</h6>
+                                    <!-- <h6 class="card-subtitle">121 - 200</h6> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div id="cardN5" class="card regua-card bg-purple text-white disabled-card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">N5 - Muito pobre</h6>
+                                    <!-- <h6 class="card-subtitle">> 200</h6> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Rick - mapa de regioes -->
+                    <div class="row justify-content-center mt-1">
+                        <div class="col-lg-6 col-xl-6">
+                            <div class="card mapa-card shadow mb-3">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0">Uberlândia</h6>
+                                </div>
+                                <div class="card-body position-relative">
+                                    <div class="btn-wrap">
+                                        <img src="assets/img/mapa_geral_sem_fundo.png">
+                                        <button class="btn btn-success btn-region btn-norte" onclick="openModal('Norte')">Norte</button>
+                                        <button class="btn btn-success btn-region btn-leste" onclick="openModal('Leste')">Leste</button>
+                                        <button class="btn btn-success btn-region btn-oeste" onclick="openModal('Oeste')">Oeste</button>
+                                        <button class="btn btn-success btn-region btn-sul" onclick="openModal('Sul')">Sul</button>
+                                        <button class="btn btn-success btn-region btn-center" onclick="openModal('Centro')">Centro</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+
+                    <!-- Modal -->
+                    <div class="modal fade modal-xl" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table id="regionTable" class="display" width="100%"></table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- # mapa de regioes -->
+
+                    <div class="row mt-1">
                         <div class="col-lg-12 col-xl-12">
                             <div class="card shadow mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -336,63 +426,80 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-xl-4 d-none">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Distribuição de chuvas pela cidade</h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle"
-                                            aria-expanded="false" data-bs-toggle="dropdown" type="button"><i
-                                                class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                            <p class="text-center dropdown-header">dropdown header:</p><a
-                                                class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item"
-                                                href="#">&nbsp;Another action</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item"
-                                                href="#">&nbsp;Something else here</a>
+                        <!----->
+                        <div class="row mt-1">
+                            <div class="col-lg-12 col-xl-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary fw-bold m-0">Poluição do Ar</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-area" style="height: 30%;">
+                                            <canvas id="pollutionChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="chart-area"><canvas
-                                            data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Norte&quot;,&quot;Sul&quot;,&quot;Leste&quot;,&quot;Oeste&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;,&quot;rgb(238,58,58)&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;20&quot;,&quot;50&quot;,&quot;10&quot;,&quot;20&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;fontSize&quot;:10},&quot;position&quot;:&quot;bottom&quot;,&quot;reverse&quot;:false},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;display&quot;:false,&quot;fontSize&quot;:7}}}"></canvas>
+                            </div>
+
+                            <div class="col-lg-5 col-xl-4 d-none">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary fw-bold m-0">Distribuição de chuvas pela cidade</h6>
+                                        <div class="dropdown no-arrow"><button
+                                                class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false"
+                                                data-bs-toggle="dropdown" type="button"><i
+                                                    class="fas fa-ellipsis-v text-gray-400"></i></button>
+                                            <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                                <p class="text-center dropdown-header">dropdown header:</p><a
+                                                    class="dropdown-item" href="#">&nbsp;Action</a><a
+                                                    class="dropdown-item" href="#">&nbsp;Another action</a>
+                                                <div class="dropdown-divider"></div><a class="dropdown-item"
+                                                    href="#">&nbsp;Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-area"><canvas
+                                                data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Norte&quot;,&quot;Sul&quot;,&quot;Leste&quot;,&quot;Oeste&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;,&quot;rgb(238,58,58)&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;20&quot;,&quot;50&quot;,&quot;10&quot;,&quot;20&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;fontSize&quot;:10},&quot;position&quot;:&quot;bottom&quot;,&quot;reverse&quot;:false},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;display&quot;:false,&quot;fontSize&quot;:7}}}"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col offset-xl-0">
-                            <div class="row">
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card text-white bg-primary shadow">
-                                        <div class="card-body">
-                                            <p class="text-center m-0">Norte</p>
-                                            <p class="text-white-50 small m-0"></p>
+                        <div class="row">
+                            <div class="col offset-xl-0">
+                                <div class="row">
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card text-white bg-primary shadow">
+                                            <div class="card-body">
+                                                <p class="text-center m-0">Norte</p>
+                                                <p class="text-white-50 small m-0"></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card text-white bg-success shadow">
-                                        <div class="card-body">
-                                            <p class="text-center m-0"><span>Sul</span></p>
-                                            <p class="text-white-50 small m-0"></p>
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card text-white bg-success shadow">
+                                            <div class="card-body">
+                                                <p class="text-center m-0"><span>Sul</span></p>
+                                                <p class="text-white-50 small m-0"></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card text-white bg-warning shadow">
-                                        <div class="card-body">
-                                            <p class="text-center m-0">Leste</p>
-                                            <p class="text-white-50 small m-0"></p>
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card text-white bg-warning shadow">
+                                            <div class="card-body">
+                                                <p class="text-center m-0">Leste</p>
+                                                <p class="text-white-50 small m-0"></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 mb-4"></div>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card text-white bg-danger shadow">
-                                        <div class="card-body">
-                                            <p class="text-center m-0">Oeste</p>
-                                            <p class="text-white-50 small m-0"></p>
+                                    <div class="col-lg-4 mb-4"></div>
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card text-white bg-danger shadow">
+                                            <div class="card-body">
+                                                <p class="text-center m-0">Oeste</p>
+                                                <p class="text-white-50 small m-0"></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -400,26 +507,26 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Weather Wise 2023</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/theme.js"></script>
+                <footer class="bg-white sticky-footer">
+                    <div class="container my-auto">
+                        <div class="text-center my-auto copyright"><span>Copyright © Weather Wise 2023</span></div>
+                    </div>
+                </footer>
+            </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/chart.min.js"></script>
+        <script src="assets/js/bs-init.js"></script>
+        <script src="assets/js/theme.js"></script>
 
-    <script src="./clientApp/site.js"></script>
-    <script src="./clientApp/partialDashboard.js"></script>
+        <script src="./clientApp/site.js"></script>
+        <script src="./clientApp/partialDashboard.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="jquery-3.6.4.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="jquery-3.6.4.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

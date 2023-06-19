@@ -71,7 +71,7 @@ function updateLocalStorageUserInformations() {
           .then((response) => response.json())
           .then((result) => {
               if (result.success) {
-                  sessionStorage.setItem("userData", JSON.stringify(result.data));
+                  localStorage.setItem("userData", JSON.stringify(result.data));
                   resolve(result.data);
               } else {
                   Swal.fire({
@@ -90,7 +90,7 @@ function updateLocalStorageUserInformations() {
 
 function saveProfileChanges(){
     const user = getUserData();
-    const url = `${baseUrl}/Weather/InsertAlert`;
+    const url = `${baseUrl}/User/PutUserInfo`;
 
     const body = {
         "name_user": `${$('#first_name').val()} ${$('#last_name').val()}`,
@@ -101,7 +101,7 @@ function saveProfileChanges(){
 
     console.log(JSON.stringify(body))
     fetch(url, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',            
         },

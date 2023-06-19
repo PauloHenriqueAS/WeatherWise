@@ -28,6 +28,14 @@ namespace WeatherWiseApi.Code.BLL
             var result = new OpenWeatherApi(_configuration).GetCurrentWeather(coordinate);
             return result;
         }
+        public List<Alert> GetAlertByUser(string email_user)
+        {
+            return new WeatherDAL(_configuration).GetAlertByUser(email_user);
+        }
+
+        public List<WindDashboardInformation> GetWindDashboardInformation() {
+            return new WeatherDAL(_configuration).GetWindDashboardInformation();
+        }
 
         /// <summary>
         /// Inserir as alertas
@@ -75,7 +83,13 @@ namespace WeatherWiseApi.Code.BLL
 
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    weatherDB.id_coordate = comumDal.PostCoordenate(currentWeather.coord);
+                    int idCord = comumDal.GetCoordenateInfo(currentWeather.coord);
+
+                    if (idCord == 0)
+                        weatherDB.id_coordate = comumDal.PostCoordenate(currentWeather.coord);
+                    else
+                        weatherDB.id_coordate = idCord;
+
                     weatherDB.id_main = comumDal.PostMain(currentWeather.main);
                     weatherDB.id_wind = comumDal.PostWind(currentWeather.wind);
                     weatherDB.id_clouds = comumDal.PostClouds(currentWeather.clouds);
@@ -111,36 +125,42 @@ namespace WeatherWiseApi.Code.BLL
 
                 retornoObj.obj = objForecast;
 
+                var listIds = weatherDAL.GetIdsInfo();
+                if (listIds != null && listIds.Count > 0)
+                {
+                    using (TransactionScope scope2 = new TransactionScope())
+                    {
+                        weatherDAL.DeleteForecastWeather();
+                        weatherDAL.DeleteListForecast();
+
+                        foreach (var item in listIds)
+                        {
+                            comumDal.DeleteMain(item.id_main);
+                            comumDal.DeleteClouds(item.id_clouds);
+                            comumDal.DeleteRain(item.id_rain);
+                            comumDal.DeleteSys(item.id_sys);
+                            comumDal.DeleteWeather(item.id_weather);
+                            comumDal.DeleteWind(item.id_wind);
+                        }
+                        scope2.Complete();
+                    }
+                }
+
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    //primeiro limpar as tabelas e depois inserir
-                    var listIds = weatherDAL.GetIdsInfo();
-                    if (listIds != null && listIds.Count > 0)
-                    {
-                        using (TransactionScope scope2 = new TransactionScope())
-                        {
-                            weatherDAL.DeleteForecastWeather();
-                            weatherDAL.DeleteListForecast();
-
-                            foreach (var item in listIds)
-                            {
-                                comumDal.DeleteMain(item.id_main);
-                                comumDal.DeleteClouds(item.id_clouds);
-                                comumDal.DeleteRain(item.id_rain);
-                                comumDal.DeleteSys(item.id_sys);
-                                comumDal.DeleteWeather(item.id_weather);
-                                comumDal.DeleteWind(item.id_wind);
-                            }
-                            scope2.Complete();
-                        }
-                    }
-
                     var idCoordenateCity = comumDal.GetCityInfo(objForecast.city);
                     if (idCoordenateCity > 0)
                         objForecast.id_city = idCoordenateCity;
                     else
                     {
-                        objForecast.city.id_coordenate = comumDal.PostCoordenate(objForecast.city.coord);
+                        int idCord = comumDal.GetCoordenateInfo(objForecast.city.coord);
+
+                        if (idCord == 0)
+                            objForecast.city.id_coordenate = comumDal.PostCoordenate(objForecast.city.coord);
+                        else
+                            objForecast.city.id_coordenate = idCord;
+
+
                         objForecast.id_city = comumDal.PostCity(objForecast.city);
                     }
 

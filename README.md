@@ -10,9 +10,10 @@
     <div style="display: inline_block"><br>
         <img align="center" alt="HTML5" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
         <img align="center" alt="CSS3" height="30" width="40"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
-        <img align="center" alt="Typescript" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg">
+        <img align="center" alt="Bootstrap" height="30" width="40"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg">
+        <img align="center" alt="DotNet Core" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg">
         <img align="center" alt="Javascript" height="30" width="40"src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
-        <img align="center" alt="React" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg">
+        <img align="center" alt="Amazon Web Services" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg">
         <img align="center" alt="Postgresql" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg">        
     </div>
 </div>
@@ -50,7 +51,6 @@
     - WeatherBLL.cs
 - **API:**
     - Api.cs
-    - AccuWeather.cs
     - OpenWeatherApi.cs
     - NominatimApi.cs
 - **Extensions:**
@@ -157,6 +157,32 @@ Git visualizing: https://git-school.github.io/visualizing-git/
 
 Entre no link e divirta-se!
 
+<hr>
+
+# 🚧 Separação dos Projetos
+- ## <img height="30" width="30" src="https://img.icons8.com/color/48/null/code.png"/> Pasta API (Application Programming Interface)
+  - Arquivos Api e solução Api
+- ## 🖼️ Pasta UI (User Interface)
+  - SRC -> Paginas HTML, Assets para a estilização da página e Códigos Javascript.
+  - Arquivo Bootstrap Studio
+
+- ## 🔃 Pasta Rotina
+  - Arquivos Rotina e solução rotina
+  
+# ☁️ Weather Wise API
+Principal função sendo a consulta de informações sobre o tempo atual, a previsão do tempo para os próximos 5 dias e a poluição do ar na API externa [OpenWeather](https://openweathermap.org/) API, informações de latitude e longitude pela [Nominatim](https://nominatim.org/) API, e por fim salvando as informações obtidas nas tabelas de nosso banco de dados [PostgreSQL](https://www.postgresql.org/) que se encontra hospedado online na [AWS (Amazon Web Services)](https://aws.amazon.com/pt/free/?trk=e4d1a24a-13d1-4019-b365-e284fded1202&sc_channel=ps&ef_id=Cj0KCQjw0tKiBhC6ARIsAAOXutnuX91tteylv0xn_QAylMx7Q0_rob3W8Afo_jZPeUWhqAWmiZy_TKAaAs-eEALw_wcB:G:s&s_kwcid=AL!4422!3!454435137069!e!!g!!aws!10758390150!106168762236&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all).
+
+# 🔃 Rotina Weather Wise
+Rotina com o objetivo de consulta a API externa [OpenWeather](https://openweathermap.org/) API e alimentar o banco de dados a cada 3 horas com informações sobre o tempo atual, poluição do ar e previsão do tempo a fim de sempre termos dados atualizados e para a criação de dashboards disponíveis no Front-End.
+
+# <img height="30" width="30" src="https://img.icons8.com/ios/50/null/database--v1.png"/>  Modelagem do Banco de Dados 
+![Imagem BancoDados](Material_Grafico/dbWeather.png)
+
+# <img height="30" width="30" src="https://img.icons8.com/external-others-pike-picture/50/null/external-creative-web-design-development-others-pike-picture-2.png"/> Prints DashBoards
+- ## DashBoard
+![Imagem BancoDados](Material_Grafico/dashboard.jpeg)
+
+
 
 <hr>
 
@@ -170,4 +196,4 @@ Entre no link e divirta-se!
 
 <hr>
 
-![Gif ClimaTempo](ClimaTempo.gif)
+![Gif ClimaTempo](Material_Grafico/ClimaTempo.gif)

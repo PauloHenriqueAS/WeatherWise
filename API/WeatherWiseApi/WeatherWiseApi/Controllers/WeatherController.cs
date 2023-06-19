@@ -51,6 +51,54 @@ namespace WeatherWiseApi.Controllers
                 return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
             }
         }
+        
+        [HttpGet]
+        [Route("GetAlertByUser")]
+        [SwaggerOperation("GetAlertByUser")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
+        public IActionResult GetAlertByUser(string email_user)
+        {
+            try
+            {
+                    var retorno = new WeatherBLL(_configuration).GetAlertByUser(email_user);
+
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
+                    else
+                        return BadRequest(new ResponseApi(retorno, false, $"Erro na consulta das informações de alerta"));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
+            }
+        }
+        
+        [HttpGet]
+        [Route("GetWindDashboardInformation")]
+        [SwaggerOperation("GetWindDashboardInformation")]
+        [SwaggerResponse((int)HttpStatusCode.OK, Description = "OK")]
+        [SwaggerResponse((int)HttpStatusCode.NotFound, Description = "Nenhum resultado encontrado.")]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Description = "Requisição inválida. Veja a mensagem para mais detalhes.")]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError, Description = "Erro interno. Contate o suporte.")]
+        public IActionResult GetWindDashboardInformation()
+        {
+            try
+            {
+                    var retorno = new WeatherBLL(_configuration).GetWindDashboardInformation();
+
+                    if (retorno is not null)
+                        return Ok(new ResponseApi(retorno, true, null));
+                    else
+                        return BadRequest(new ResponseApi(retorno, false, $"Erro na consulta das informações de vento por região"));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseApi(null, false, $"Um erro ocorreu. Erro:" + e.Message + " Inner:" + e.InnerException?.Message));
+            }
+        }
 
         [HttpPost]
         [Route("GetForecastWeather")]

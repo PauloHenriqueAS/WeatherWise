@@ -100,19 +100,6 @@ namespace WeatherWiseApi.Helpers
         }
 
         /// <summary>
-        /// Método para a encriptar a senha so usuário
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public string EncriptyUserPassword(string password)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(password);
-            SHA256 encryptor = SHA256.Create();
-            byte[] hashBytes = encryptor.ComputeHash(bytes);
-            return BitConverter.ToString(hashBytes);
-        }
-
-        /// <summary>
         /// Método para validar informações do usuário
         /// </summary>
         /// <param name="objUser"></param>
@@ -141,7 +128,51 @@ namespace WeatherWiseApi.Helpers
             {
                 if (!String.IsNullOrEmpty(objAlert.email_user))
                 {
-                    if (objAlert.air_pollution_aqi == 0 && objAlert.precipitation == 0 && objAlert.wind_speed == 0 && objAlert.visibility == 0)
+                    if (objAlert.air_pollution_aqi == 0 && objAlert.preciptation == 0 && objAlert.wind_speed == 0 && objAlert.visibility == 0)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                else { return false; }
+            }
+            else { return false; }
+        }
+
+        /// <summary>
+        /// Método para a encriptar a senha so usuário
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static string EncriptyUserPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+
+                return sb.ToString().ToUpper();
+            }
+        }
+
+        /// <summary>
+        /// Valida objeto de localidade favorita do usuário
+        /// </summary>
+        /// <param name="objHistoricCoordenatesUser"></param>
+        /// <returns></returns>
+        public bool ValidateObjHistoricUser(HistoricCoordenatesUser objHistoricCoordenatesUser)
+        {
+            if (objHistoricCoordenatesUser != null)
+            {
+                if (!String.IsNullOrEmpty(objHistoricCoordenatesUser.email_user))
+                {
+                    if (!ValidateObjCoordenate(objHistoricCoordenatesUser.coordenate))
                     {
                         return false;
                     }

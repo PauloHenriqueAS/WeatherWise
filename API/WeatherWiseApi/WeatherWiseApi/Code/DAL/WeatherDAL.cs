@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Data;
 using Npgsql;
+using System.Globalization;
 
 namespace WeatherWiseApi.Code.DAL
 {
@@ -65,6 +66,178 @@ namespace WeatherWiseApi.Code.DAL
                 throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
             }
         }
+
+        public List<WindStatistics> GetWindAllStatistics()
+        {
+            var cmdSql = new StringBuilder();
+
+            cmdSql.AppendLine(" SELECT DISTINCT LAT, LON, SPEED, DATE_WEATHER              ");
+            cmdSql.AppendLine(" 	FROM WS.\"tb_currentWeather\" WEA             ");
+            cmdSql.AppendLine(" 	INNER JOIN WS.TB_WIND AS WIN                  ");
+            cmdSql.AppendLine(" 		ON WEA.ID_WIND = WIN.ID_WIND              ");
+            cmdSql.AppendLine(" 	INNER JOIN WS.TB_COORDENATES COOR             ");
+            cmdSql.AppendLine(" 		ON COOR.ID_COORDENATE = WEA.ID_COORDENATE ");
+
+            using (var connection = new NpgsqlConnection(base.ConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new NpgsqlCommand(cmdSql.ToString(), connection))
+                {
+                    var results = new List<WindStatistics>();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(new WindStatistics
+                            {
+                                Lat = reader.GetFieldValue<double>("LAT"),
+                                Lon = reader.GetFieldValue<double>("LON"),
+                                Speed = reader.GetFieldValue<double>("SPEED"),
+                                DateWeather = reader.GetFieldValue<DateTime>("DATE_WEATHER"),
+                            });
+                        }
+                    }
+
+                    return results;
+                }
+            }
+        }
+
+        
+
+        public List<List<WindStatistics>> GetWindStatisticsByRegion()
+        {
+            var allStatisticWindData = GetWindAllStatistics();
+            var allRegions = GetMockedCoordinates();
+
+            foreach (var windData in allStatisticWindData)
+            {
+                var selectedRegion = allRegions.Where(x => x.Lat.ToString("N2") == windData.Lat.ToString("N2") && x.Lon.ToString("N2") == windData.Lon.ToString("N2"))
+                                            .FirstOrDefault();
+
+                if(selectedRegion is not null)
+                {
+                    windData.Region = selectedRegion.DisplayName!;
+                }
+            }
+
+            allStatisticWindData = allStatisticWindData.Where(x => x.Region is not null).ToList();
+            var groupedStatistic = (from item in allStatisticWindData
+                                    group item by new { item.Region } into Group
+                                    select Group.ToList()).ToList();
+            List<List<WindStatistics>> returnList = new List<List<WindStatistics>>();
+
+            foreach (var statistic in groupedStatistic)
+            {
+                returnList.Add(statistic.DistinctBy(x => x.DateWeather).ToList());
+            }
+
+
+            return returnList;
+        }
+
+        public List<WindDashboardInformation> GetWindDashboardInformation()
+        {
+            var windStatistics = GetWindStatisticsByRegion();
+            List<WindDashboardInformation> windDashboardInformation = new List<WindDashboardInformation>();
+
+            foreach (var statistics in windStatistics)
+            {
+                windDashboardInformation.Add(new WindDashboardInformation(statistics));
+            }
+
+            return windDashboardInformation;
+        } 
+
+        public List<Coordinate> GetMockedCoordinates()
+        {
+            var retorno = new List<Coordinate>();
+
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.8819,
+                Lon = -48.2830,
+                DisplayName = "Região Norte"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9462,
+                Lon = -48.2731,
+                DisplayName = "Região Sul"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9210,
+                Lon = -48.2351,
+                DisplayName = "Região Leste"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9322,
+                Lon = -48.3294,
+                DisplayName = "Região Oeste"
+            });
+            retorno.Add(new Coordinate
+            {
+                Lat = -18.9103,
+                Lon = -48.2757,
+                DisplayName = "Centro (Sérgio Pacheco)"
+            });
+
+            return retorno;
+        }
+
+        /// <summary>
+        /// Consulta de Ids 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public List<Alert> GetAlertByUser(string user_email)
+        {
+            var selectSql = new StringBuilder();
+            selectSql.AppendLine(" SELECT WIND_SPEED, VISIBILITY, AIR_POLLUTION_AQI, PRECIPTATION, \"desactivationDate\"  ");
+            selectSql.AppendLine("      FROM WS.TB_ALERT                                           ");
+            selectSql.AppendLine("          WHERE EMAIL_USER = @EMAIL_USER                         ");
+
+            try
+            {
+                using (var connection = new NpgsqlConnection(base.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new NpgsqlCommand(selectSql.ToString(), connection))
+                    {
+                        var results = new List<Alert>();
+                        command.Parameters.AddWithValue("@EMAIL_USER", user_email);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var model = new Alert
+                                {
+                                    wind_speed = reader.GetFieldValue<double?>("WIND_SPEED"),
+                                    visibility = reader.GetFieldValue<double?>("VISIBILITY"),
+                                    air_pollution_aqi = reader.GetFieldValue<int?>("AIR_POLLUTION_AQI"),
+                                    preciptation = reader.GetFieldValue<double?>("PRECIPTATION"),
+                                    desactivationDate = reader.GetFieldValue<DateTime?>("DESACTIVATIONDATE"),
+                                };
+
+                                results.Add(model);
+                            }
+                        }
+
+                        return results;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Falha ao executar método {MethodBase.GetCurrentMethod()} em {this.GetType().Name}. 4o: " + ex.Message);
+            }
+        }
+
         #endregion
 
         #region INSERTS
@@ -364,7 +537,7 @@ namespace WeatherWiseApi.Code.DAL
                         command.Parameters.AddWithValue("@EMAIL_USER", alert.email_user);
                         command.Parameters.AddWithValue("@WIND_SPEED", alert.wind_speed);
                         command.Parameters.AddWithValue("@VISIBILITY", alert.visibility);
-                        command.Parameters.AddWithValue("@PRECIPTATION", alert.precipitation);
+                        command.Parameters.AddWithValue("@PRECIPTATION", alert.preciptation);
                         command.Parameters.AddWithValue("@AIR_POLLUTION_AQI", alert.air_pollution_aqi);
 
                         return command.ExecuteNonQuery() > 0;
