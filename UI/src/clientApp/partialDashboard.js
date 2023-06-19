@@ -347,16 +347,14 @@ function openModal(argument) {
   const location = locations.find(a => a.region === argument);
 
   // TODO: criar um endpoint que retorna os trem resumido de tempo poluição vento etc (ver se já nao tem no Weather/GetCurrentWeather) e colocar pra regiao
-  // getAirPollutionRegion(location);
-  setRegionWeatherData(location);
+  getAirPollutionRegion(location);
+  // setRegionWeatherData(location);
   document.getElementById('myModalLabel').textContent = "Região " + argument;
   myModal.show();
 }
 
 function getAirPollutionRegion(location = {displayName: "Uberlandia", lat: -18.909216, lon: -48.2622005, region: "Uberlandia", address: ""}) {
   const url = `${baseUrl}/AirPollution/GetAirPollution`;
-
-  document.getElementById('modalContent').textContent = "Carregando..."
 
   const body = {
     "displayName": location.displayName,
@@ -374,12 +372,14 @@ function getAirPollutionRegion(location = {displayName: "Uberlandia", lat: -18.9
     .then((response) => response.json())
     .then((result) => {
       if (result.success) {
-          console.log(result)
-          let components = result.data.list[0].components
-          document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + location.region + ": " + 
-                                                              location.displayName + " - " + result.data.air_pollution_description +
-                                                              " | Co: " + components.co + " | No2: " + components.no2 + " | O3: " +
-                                                              components.o3;
+        location.air_pollution_description = result.data.air_pollution_description;
+        setRegionWeatherData(location);
+        // console.log(result)
+        // let components = result.data.list[0].components
+        // document.getElementById('modalContent').textContent = "Conteúdo específico sobre a região " + location.region + ": " + 
+        //                                                     location.displayName + " - " + result.data.air_pollution_description +
+        //                                                     " | Co: " + components.co + " | No2: " + components.no2 + " | O3: " +
+        //                                                     components.o3;
       } else {
         Swal.fire({
           icon: 'error',
@@ -396,9 +396,10 @@ function setRegionWeatherData(location) {
   getCurrentWeather(location.displayName, location.lat, location.lon)
     .then((result) => {
       if (result != null) {
-        result.displayName = location.displayName
-        listRegionData.push(result)
-        buildDatatable(listRegionData, location)
+        result.displayName = location.displayName;
+        result.air_pollution_description = location.air_pollution_description;
+        listRegionData.push(result);
+        buildDatatable(listRegionData, location);
       }
     });
 }
@@ -423,17 +424,17 @@ function buildDatatable(regionData, location) {
                 return `${data}`
             }
           },
-          // {
-          //     title: 'Poluição',
-          //     data: 'air_pollution_description',
-          //     className: 'text-center',
-          //     render: function ( data, type, row) {
-          //         if(data != null){
-          //             return `${data}`
-          //         }
-          //         return ''
-          //     }
-          // },
+          {
+              title: 'Poluição',
+              data: 'air_pollution_description',
+              className: 'text-center',
+              render: function ( data, type, row) {
+                  if(data != null){
+                      return `${data}`
+                  }
+                  return ''
+              }
+          },
           {
             title: 'Visibilidade',
             data: 'visibility',
