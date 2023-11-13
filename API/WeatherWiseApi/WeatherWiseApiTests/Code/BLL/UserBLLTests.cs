@@ -35,5 +35,5 @@ namespace WeatherWiseApi.Code.BLL.Tests
 
             Assert.That(result, Is.Null);
         }        
-    }   
+    }
 }

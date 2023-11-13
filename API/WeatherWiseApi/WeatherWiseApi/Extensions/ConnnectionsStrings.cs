@@ -1,4 +1,6 @@
-﻿namespace WeatherWiseApi.Extensions
+﻿using WeatherWiseApi.Constants;
+
+namespace WeatherWiseApi.Extensions
 {
     public static class ConnnectionsStrings
     {
@@ -14,8 +16,8 @@
 
         public static string GetApiKey(IConfiguration configuration, string ApiName)
         {
-            ConfigPath = configuration.GetSection("ConfigPath").Value;
-            ConfigName = configuration.GetSection("ConfigName").Value;
+            var ConfigPath = ConfigurationVariables.configPath;
+            var ConfigName = ConfigurationVariables.configName;
 
             IConfiguration configApi = new ConfigurationBuilder()
                                 .SetBasePath(ConfigPath)
@@ -27,8 +29,8 @@
 
         public static string GetDatabaseConnectionString(IConfiguration configuration)  
         {
-            var ConfigPath = "C:\\WeatherApiConfig";
-            var ConfigName = "weather.api.json";
+            var ConfigPath = ConfigurationVariables.configPath;
+            var ConfigName = ConfigurationVariables.configName;
 
             IConfiguration configDatabase = new ConfigurationBuilder()
                                 .SetBasePath(ConfigPath)

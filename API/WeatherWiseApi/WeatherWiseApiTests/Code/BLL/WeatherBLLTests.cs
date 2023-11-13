@@ -60,5 +60,16 @@ namespace WeatherWiseApi.Code.BLL.Tests
 
             Assert.That(wasInserted, Is.True);
         }
+
+
+        [TestCase]
+        public void Should_ReturnPositiveWindSpeed_WhenGetWindSpeedDashboardIsCalled()
+        {
+            var windInformation = _weatherBLL.GetWindDashboardInformation();
+            var windSpeed = windInformation.SelectMany(x => x.Data).ToList();
+
+            bool thereIsNegativeWindSpeed = windSpeed.Any(x => x < 0.0);
+            Assert.That(thereIsNegativeWindSpeed, Is.False);
+        } 
     }
 }

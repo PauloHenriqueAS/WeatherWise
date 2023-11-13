@@ -39,7 +39,7 @@ namespace WeatherWiseApi.Controllers
                     if (retorno != null)
                         return Ok(retorno);
                     else
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro na consulta da Latitude e Longitude para a localidade {place} informada.");
+                        return StatusCode((int)HttpStatusCode.NotFound, $"Erro na consulta da Latitude e Longitude para a localidade {place} informada.");
                 }
                 else
                 {
