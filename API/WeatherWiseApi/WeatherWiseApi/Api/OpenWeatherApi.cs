@@ -15,7 +15,7 @@ public class OpenWeatherApi : Api
     {
         _configuration = configuration;
 
-        this.HOST = _configuration.GetSection(this.GetType().Name).Value;
+        this.HOST = "http://api.openweathermap.org/data/2.5/";
         this.API_KEY = ConnnectionsStrings.GetApiKey(configuration, this.GetType().Name);
     }
 

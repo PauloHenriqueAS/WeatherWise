@@ -22,5 +22,13 @@ namespace WeatherWiseApi.Code.Model
         /// Longitude
         /// </summary>
         public double Lon { get; set; }
+
+        public Coordinate(double latitude, double longitude)
+        {
+            this.Lat = latitude;
+            this.Lon = longitude;
+        }
+
+        public Coordinate() { }
     }
 }
